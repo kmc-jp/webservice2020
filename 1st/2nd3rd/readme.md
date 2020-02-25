@@ -65,6 +65,7 @@ func main() {
 **参考**
 
 main関数では最後のreturnでOSに対して終了したという旨(0)を返している。
+
 →自明なことなためにGolangでは省略している。
 
 ```go
@@ -129,6 +130,7 @@ func main(){
 |bool|真理値|
 
 他にもcomplex64(複素数)，※byte(文字列)など沢山ある。
+
 ※byteはstringとは保存される文字列形式が違う。(UTF-8/Unicode)
 
 #### 関数を作ってみよう
