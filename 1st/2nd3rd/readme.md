@@ -171,6 +171,7 @@ func main() {
 ```
 
 - `import "fmt"`	fmtというpackageを読み込むことを示唆。
+
 **package**
 
 →関数の集合。先人の知恵ですね。
