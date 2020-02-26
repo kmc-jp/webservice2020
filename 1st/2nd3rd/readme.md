@@ -2,7 +2,7 @@
 ## 概要
 - プログラミングの基礎／Golangの基礎を学んでもらう
 
-## プログラミング始めるにあたって
+## プログラミング始める前に...
 そもそもプログラムってなんなのかを考えてみる。
 - コンピュータ：電子計算機
   - 計算をさせる。
@@ -34,7 +34,7 @@ func main(){
 
 ```
 
-コマンドラインで`go run main.go`と入力してみる。
+コマンドラインで`$ go run main.go`と入力してみる。
 
 ```sh
 $ go run main.go
@@ -85,7 +85,7 @@ func main(){
 }
 ```
 
-- `println`	printと違い、末尾に自動的に改行が挿入される。(print line)
+- `println`	`print`と違い、末尾に自動的に改行が挿入される。(print line)
 このように計算をすることもできる。
 
 
@@ -98,7 +98,7 @@ func main(){
 	var x int
 	x = 1
 	
-	print(x)
+	print(x) //1
 	return
 }
 ```
@@ -109,6 +109,8 @@ func main(){
   - `var`	変数を宣言することを示唆
   - `x`		変数の名前
   - `int`	型
+
+☆このプログラムではxという変数を整数型で宣言し、その変数にxを代入し、その内容を出力している。
 
 **型とは？**
 - 計算機にとって、変数の中にどんなものが入るのかはとても重要。
@@ -143,7 +145,7 @@ package	main
 func main() {
 	var ans int
 	ans = compute(1, 1)
-	print(ans, "\n")
+	print(ans, "\n") //2
 }
 
 func compute(x int, y int) int {
@@ -167,7 +169,7 @@ import "fmt"
 
 func main() {
      var year int = 2020
-     fmt.Printf("今年は%d年です。\n", year)
+     fmt.Printf("今年は%d年です。\n", year) //今年は2020年です。
      return
 }
 
@@ -196,3 +198,5 @@ func main() {
 
 `fmt.Printf("%02d:%02d\n",12,5) //12:05`
 
+ここまでわかれば、[A Tour of Go](/1st/2nd3rd/go_tour.md)
+も始められます！
