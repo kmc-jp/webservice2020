@@ -118,6 +118,19 @@ func main(){
     - 例：1 + "Hello!" : 明らかにおかしい。
 - そこで型という概念を導入することで、入るものの種類を決めておく
 
+**初期値**
+- 変数は宣言した時点で初期化が行われる。
+  - 数値型(int,floatなど): 0
+  - bool型: false
+  - string型: "" (空文字列( empty string ))
+
+```go
+var x int
+var t bool
+var str	string
+fmt.Printf("x:%d t:%t str:%s", x, t, str)
+```
+
 **参考**
 
 C系の言語に触れたことがある人は違和感を持つでしょう。何故`int x`ではなく`x int`なのか...。
