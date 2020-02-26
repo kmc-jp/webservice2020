@@ -128,7 +128,7 @@ func main(){
 var x int
 var t bool
 var str	string
-fmt.Printf("x:%d t:%t str:%s", x, t, str)
+fmt.Printf("x:%d t:%t str:%q", x, t, str)//x:0 t:false str:""
 ```
 
 **参考**
