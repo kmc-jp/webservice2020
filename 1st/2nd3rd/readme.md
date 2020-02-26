@@ -181,6 +181,24 @@ func main() {
 
 →関数の集合。先人の知恵ですね。
 
+各packageの中の関数を使うときは`packageNAME.functionNAME`の形で実行する。
+
+☆複数packageをimportするときは、二種類の書き方がある。
+
+1. import を列挙
+```go
+import "fmt"
+import "net/http"
+```
+2. factored import（集合化）
+import(
+	"fmt"
+	"net/http"
+)
+```
+
+どちらでもいいですが、後者の方が基本的に書きやすいし、みやすいでしょう。
+
 - fmt.Printf(...)		fmt package中のPrintf関数を呼び出している。
   - printよりも多くのことができる。上位互換。
 - ("...は%d年...", year)
@@ -198,5 +216,80 @@ func main() {
 
 `fmt.Printf("%02d:%02d\n",12,5) //12:05`
 
-ここまでわかれば、[A Tour of Go](/1st/2nd3rd/go_tour.md)
-も始められます！
+### 補足
+1. public／private 関数・変数について
+   - packageを作る際、外部から参照できるか否かを指定できる。
+   - 最初の文字が大文字：Public、外部から参照できる。
+   - 最初の文字が小文字：Private、外部からは参照されない。
+```go
+package tkmax
+
+import "fmt"
+
+//DisplayTKMAX Print "TKMAX"
+// This function can be used by external functions
+func DisplayTKMAX() {
+     fmt.Printf("TKMAX\n")
+     return
+}
+
+//displayTKMINIMUM Print"TKMINIMUM"
+// This function can be used only by internal functions
+func displayTKMINIMUM() {
+     fmt.Println("TKMINIMUM\n")
+     return
+}
+
+```
+
+2. functionについて
+   - 幾らか便利な機能がある。
+
+   1. returnの省略
+      - 何も値を返さない関数(`func () return`型)に関してはreturnを書かなくても良い。
+        - 明示的に書くと、そこで関数を終わらせることができる。
+例：
+```go
+func main() {
+     print("Hey YO!")
+     return
+     print("Bye!")//呼ばれない。
+}
+```
+
+   2. returnする変数の事前宣言
+      - 関数を宣言するときに、返す変数を予め決められる。
+例；
+```go
+func AddInt(x, y int) (z int) {
+     z = x + y
+     return
+}
+```
+☆この書き方ではzをreturnすることは自明なのでreturn zと書く必要はない。
+- ただしreturnは書いてね。
+
+3. 変数の宣言の簡略化
+標準の書き方
+```go
+var x int = 1
+```
+xに1を代入するうため、int型であることが推定できる。
+
+そのため次のように書ける。
+```go
+var x = 1
+```
+さらにいちいちvarを書くのが面倒なので次のようにも書ける。
+```go
+x := 1
+```
+とても柔軟ですね！
+
+**注意**
+1. 省略は関数内でのみ行うことができる。
+2. Golangでは使わない変数は宣言することが許されていない
+
+ここまでわかれば、[A Tour of Go](https://go-tour-jp.appspot.com/basics/12)も始められます！
+順番に始めましょう。
+
