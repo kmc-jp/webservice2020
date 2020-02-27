@@ -240,15 +240,15 @@ func main() {
         var i int
 
 	fmt.Scanf("%d", &i)
-		switch {
+	switch {
 	case i == 0:
 		fmt.Printf("虚無\n")
 	case i == 1:
 		fmt.Printf("素数ではない。\n")
 	case i < 0:
-		fmt.Printf("整数\n")
+		fmt.Printf("負の整数\n")
 	default:
-		fmt.Printf("素数ではない。\n")
+		fmt.Printf("素数かもしれない。\n")
 	}
 }
 
