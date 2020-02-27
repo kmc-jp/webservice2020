@@ -146,8 +146,119 @@ for sum < 1000 {...}
 
 Goにおけるfor文はとても柔軟なことがわかりますね。
 
-試しに次の練習問題を解いてみましょう
+**継続／脱出フラグ**
+
+- `continue`と書くことで、loopの最後まで達していなくても次のloopに移行できる。
+
+例：
+```go
+for i := 0; i < 2; i++ {
+    if i == 0 {
+       continue
+    }
+
+    fmt.Printf("%d\n", %d)//1
+}
+```
+
+- `break`と書くことで、本来forから脱出できない条件下でも脱出できる。
+
+例：
+```go
+for {
+    fmt.Printf("実行\n")
+    break
+}
+
+fmt.Printf("forからの脱出\n")
+```
+
+**参考 - 他段階脱出**
+
+forを重ねがけしているとき、Tagをつけていることで複数個のforを跨いで脱出できる。
+
+例：
+```go
+
+First:
+	for {
+		for {
+			break First
+		}
+	}
+
+	fmt.Printf("多段階脱出完了！")
+	
+```
+
+ここまで来たら、試しに次の練習問題を解いてみましょう
 
 [A Tour of Go](https://go-tour-jp.appspot.com/flowcontrol/8)
+
+### switch文
+`if else`が頻発するような場合わけをするとき、Switch文を使えば可読性をあげることができます。
+
+例：
+```go
+func main() {
+	var i int
+	
+	fmt.Scanf("%d", &i)
+
+	switch i {
+	case 0:
+		fmt.Printf("虚無\n")
+	case 1:
+		fmt.Printf("素数ではない。\n")
+	default:
+		fmt.Printf("素数かもしれない。\n")
+	}
+}
+```
+
+これは次と同値：
+```go
+func main() {
+        var i int
+
+        fmt.Scanf("%d", &i)
+
+	if i == 0 {
+	   fmt.Printf("虚無\n")
+	} else if i == 1 {
+	   fmt.Printf("素数ではない。\n")
+	} else {
+	   fmt.Printf("素数かもしれない。\n")
+	}
+}
+```
+
+また、goのSwitch文はさらに次のように、caseに条件式を持ってくる拡張を認めています。
+
+```go
+func main() {
+        var i int
+
+	fmt.Scanf("%d", &i)
+		switch {
+	case i == 0:
+		fmt.Printf("虚無\n")
+	case i == 1:
+		fmt.Printf("素数ではない。\n")
+	case i < 0:
+		fmt.Printf("整数\n")
+	default:
+		fmt.Printf("素数ではない。\n")
+	}
+}
+
+```
+とても便利ですね！
+
+**参考**
+
+Cではcaseごとにいちいちbreakする必要がありますが、Goではその必要はありません。
+
+あえてCのような挙動にする場合、各case末尾に`fallthrough`を書く必要があります。
 
 ここまでで本当に基礎な部分は説明し終わりました。しかしGoの世界はまだまだ沢山知っておくべきことがあります。是非A Tour of GoをやりGoをマスターしてください。
