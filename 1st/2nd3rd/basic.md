@@ -261,4 +261,76 @@ Cではcaseごとにいちいちbreakする必要がありますが、Goでは�
 
 あえてCのような挙動にする場合、各case末尾に`fallthrough`を書く必要があります。
 
-ここまでで本当に基礎な部分は説明し終わりました。しかしGoの世界はまだまだ沢山知っておくべきことがあります。是非A Tour of GoをやりGoをマスターしてください。
+### defer文
+```go
+//OpenFile 指定したfilenameのファイルの内容を出力
+func OpenFile(filename string) {
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatalf("File open error\n%v", err)
+	}
+	defer file.Close()
+
+	var b []byte = make([]byte, 10)
+	for {
+		n, err := file.Read(b)
+		if err == io.EOF {
+			break
+		}
+		fmt.Printf("%s", b[:n])
+	}
+	return
+}
+
+```
+
+- defer文に書いた関数は関数から抜け出すときに必ず実行される。
+  - 上記の例では開いたファイルが関数から抜け出すときに必ず閉じられる。
+
+**Point**
+
+defer文内の関数f(x, y, ...)の評価はdeferが呼ばれた時点で行われる。
+
+例:
+```go
+
+func main() {
+     var i int = 0
+     
+     defer fmt.Printf("i = %d\n", i)
+     i = 1
+     fmt.Printf("iに%dを代入しました。", i)
+}
+
+```
+実行結果
+```sh
+iに1を代入しました。
+i = 0
+```
+- 今回ではdeferを読んだ時点ではiは0だったため、最後に実行されたときにはi = 0だったときの内容が出てきたというわけです。
+
+**Stacking defers**
+
+関数内でdeferを複数回読んだとき、関数終了後に呼び出されるdefer節は呼んだ逆順になる。
+
+例：
+```go
+func main(){
+     defer fmt.Println("First")
+     defer fmt.Println("Second")
+}
+```
+実行結果
+```sh
+Second
+First
+```
+
+何が嬉しいかというと、例えば依存関係のあるファイルなどを開いているとき、最後から閉じてくれるのでエラーが生じないのです。この機能を考えた人はとても頭いいですね。
+
+ここまでで、基本的な関数の作成はできるようになりました。ここからは、さらに変数などに関して掘り下げていきます。
+
+[続き](/1st/2ns3rd/basic2)
+
+
