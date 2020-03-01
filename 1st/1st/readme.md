@@ -1,10 +1,29 @@
+<!-- TOC -->
+
+- [第一回](#第一回)
+    - [概要](#概要)
+    - [手順](#手順)
+        - [Golang導入](#golang導入)
+            - [macOS](#macos)
+            - [Windows](#windows)
+        - [gitの導入](#gitの導入)
+            - [macOS](#macos)
+            - [Windows](#windows)
+        - [導入確認](#導入確認)
+        - [VSCodeの導入](#vscodeの導入)
+
+<!-- /TOC -->
+
 # 第一回
+
 ## 概要
 - 開発に必要な各種ツールを導入してもらう。
 
 ## 手順
+
 ### Golang導入
 世界線の移動があります。
+
 #### macOS
 1. command + Space
 2. terminalと入力
@@ -25,6 +44,7 @@
       - C:\Go
 
 ### gitの導入
+
 #### macOS
 1. terminalを起動
 2. `$ git --version`
@@ -41,4 +61,13 @@
 - terminal / GitBashでgo --version を確認。
 
 ### VSCodeの導入
-[ここ](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)からダウンロード & インストール
+1. [ここ](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)からダウンロード & インストール
+2. Tool and Languageを開く
+3. `@category:"hoge...`となっている検索窓でJapaneseと検索
+4. `Japanese Language Pack for Visual Studio Code`をインストール＆VSCodeを再起動
+- Windowsの場合
+3. VS Codeの設定を開く
+4. 右上のマークをクリック
+![ここ](/1st/1st/resources/SettingsJson.png)
+5. `"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"`という行を追加
+6. VSCodeを再起動
