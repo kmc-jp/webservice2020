@@ -303,7 +303,7 @@ func main() {
    2. returnする変数の事前宣言
       - 関数を宣言するときに、返す変数を予め決められる。
 
-例；
+例：
 ```go
 func AddInt(x, y int) (z int) {
      z = x + y
@@ -319,7 +319,7 @@ func AddInt(x, y int) (z int) {
 ```go
 var x int = 1
 ```
-xに1を代入するうため、int型であることが推定できる。
+xに1を代入するため、int型であることが推定できる。
 
 そのため次のようにも書ける。
 ```go
