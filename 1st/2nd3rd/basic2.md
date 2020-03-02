@@ -241,11 +241,11 @@ func main(){
 func main(){
      var sweet []string = make([]string, 2)
 	sweet = []string{"KINOKO", "Saikou"}
-     modifer(sweet)
+     modifier(sweet)
      fmt.Printf("%v", sweet)//[TAKENOKO Saikou]
 }
 
-func modifer(sweet []string) {
+func modifier(sweet []string) {
      sweet[0] = "TAKENOKO"
      return
 }
