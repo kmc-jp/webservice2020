@@ -134,7 +134,7 @@ func main(){
      user[0] = "tkmax777"
      user[1] = "matu"
 
-     fmt.Printf("user1:%s\nuser2:%s")//user1:tkmax777 user2:matu
+     fmt.Printf("user1:%s user2:%s")//user1:tkmax777 user2:matu
      return
 }
 ```
@@ -145,7 +145,7 @@ func main(){
 また、次のように初期化することもできる。
 ```go
      user = [2]string{"tkmax777", "matu"}
-     fmt.Printf("user1:%s\nuser2:%s\n")//user1:tkmax777 user2:matu
+     fmt.Printf("user1:%s user2:%s\n")//user1:tkmax777 user2:matu
 ```
 
 **Point**
