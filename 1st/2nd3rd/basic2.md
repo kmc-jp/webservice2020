@@ -161,7 +161,7 @@ func main(){
      var userSlice []string = []string{"tkmax777", "matu"}
 
      fmt.Printf("%v", userSlice)//[tkmax777 matu]
-     fmt.Printf("このスライスの容量は%dです。\n", cap(userSlice))//このスライスの長さは2です。
+     fmt.Printf("このスライスの容量は%dです。\n", cap(userSlice))//このスライスの容量は2です。
 }
 ```
 - `[]型名`という型を持つ
@@ -212,7 +212,7 @@ func main(){
      userSlice[1] = "matu"
      
      fmt.Printf("%v\n", userSlice)//[tkmax777 matu]
-     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))//容量：4, 長さ：3
+     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))//容量：4, 長さ：2
 }
 ```
 
