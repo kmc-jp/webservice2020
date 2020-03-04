@@ -29,7 +29,7 @@ func sqrt(x float64) string {
 }
 
 func main() {
-	fmt.Println(sqrt(2), sqrt(-4))//1.4142135623730951 2i
+	fmt.Println(sqrt(2), sqrt(-4))// => 1.4142135623730951 2i
 }
 ```
 
@@ -59,7 +59,7 @@ or : `||`
 
 例:
 ```go
-fmt.Printf("%t %t\n", 1 == 1 || 1 == 2, 1 == 1 && 1 == 2)//true false
+fmt.Printf("%t %t\n", 1 == 1 || 1 == 2, 1 == 1 && 1 == 2)// => true false
 ```
 
 ### if...else
@@ -124,10 +124,10 @@ for文の構成要素
 1を足したり引いたりする作業は頻繁に行うので次のような略記が許されている。
 - インクリメント
 
-int++：1を足す（i++ ↔︎ i = i + 1 ↔︎ i += 1）
+int++：1を足す（`i++ ↔︎ i = i + 1 ↔︎ i += 1`）
 - デクリメント
 
-int--：1を引く（i-- ↔︎ i = i - 1 ↔︎ i -= 1）
+int--：1を引く（`i-- ↔︎ i = i - 1 ↔︎ i -= 1`）
 
 ☆for文構成要素1, 3は省略することができる。
 
@@ -142,7 +142,7 @@ func main() {
 	for ; sum < 1000; {
 		sum += sum
 	}
-	fmt.Println(sum) //1024
+	fmt.Println(sum) // => 1024
 }
 ```
 こうなると、もはやfor分の`;`は意をなしていないので省略できる。
@@ -169,7 +169,7 @@ for i := 0; i < 2; i++ {
        continue
     }
 
-    fmt.Printf("%d\n", %d)//1
+    fmt.Printf("%d\n", %d)// => 1
 }
 ```
 

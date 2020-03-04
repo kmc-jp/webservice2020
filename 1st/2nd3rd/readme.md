@@ -44,6 +44,7 @@
 
 ### Golangの世界でHello World!
 実際にプログラムを動かしてみる。
+Visual Studio Codeで新たなファイルを作り、以下のコードを写す。
 
 ```go
 package main
@@ -55,7 +56,21 @@ func main(){
 
 ```
 
-コマンドラインで`$ go run main.go`と入力してみる。
+ターミナル → 新しいターミナルを開き、出てきたコンソールに`$ go run main.go`と入力してみる。
+
+**Terminal**
+
+計算機をコマンドを入力することで操作するインターフェース。
+
+慣例的にコマンドラインを入力内容を記述するとき、`$`の後にコマンドを記述します。
+
+実際に書くときは`$`は書かずに入力してください。
+
+```sh
+$ hogehoge
+```
+→hogehogeとだけ入力
+
 
 ```sh
 $ go run main.go
@@ -85,12 +100,6 @@ func main() {
 
 `{}`で囲まれた範囲をスコープ（scope）と呼ぶ。
 
-**参考**
-
-main関数では最後のreturnでOSに対して終了したという旨(0)を返している。
-
-→自明なことなためにGolangでは省略している。
-
 ```go
 print("Hello World!\n")
 ```
@@ -99,6 +108,26 @@ print("Hello World!\n")
 - `\n`		改行コード。改行する旨を指示。
 
 ☆ 同様に`print("hogehoge\n")`を増やしていくことで文字列をどんどん出力できる。
+
+**コメント機能**
+
+プログラムにどういう作業をしているかなどの注釈を残したいとき、コメントを残す機能があります。
+
+1. `//+文字列`
+2. `/* 文章（改行あり）*/`
+
+```go
+  printf("hoge\n") //hogeを表示
+  /*この後には
+    複数行に跨がる
+    コメントを残せます。*/
+```
+
+☆以降、出力を以下の形式で記述します。
+
+```go
+  fmt.Printf("出力") // => 出力
+```
 
 ### 計算をしてみる
 ```go
@@ -131,7 +160,7 @@ func main(){
 	var x int
 	x = 1
 	
-	print(x) //1
+	print(x) // => 1
 	return
 }
 ```
@@ -148,7 +177,7 @@ func main(){
 **型とは？**
 - 計算機にとって、変数の中にどんなものが入るのかはとても重要。
   - 文字列、数字、真偽など。入るものによって扱いが違う
-    - 例：1 + "Hello!" : 明らかにおかしい。
+    - 例：`1 + "Hello!"` : 明らかにおかしい。
 - そこで型という概念を導入することで、入るものの種類を決めておく
 
 **初期値**
@@ -161,8 +190,9 @@ func main(){
 var x int
 var t bool
 var str	string
-fmt.Printf("x:%d t:%t str:%q", x, t, str)//x:0 t:false str:""
+fmt.Printf("x:%d t:%t str:%q", x, t, str)// => x:0 t:false str:""
 ```
+参考：`fmt.Printf(...)`は後述で詳しくやります。今はとりあえず`%...`という書式を使うことでのちの変数の中身を表示できる物と捉えてください。
 
 **型変換**
 - int型とfloat型のような数値同士の計算が必要になった場合、型の変換を行うことができる。
@@ -170,7 +200,7 @@ fmt.Printf("x:%d t:%t str:%q", x, t, str)//x:0 t:false str:""
 var i int = 42
 var f float64 = float64(i)
 
-fmt.Printf("i:%d f:%f\n", i, f)//i:42 f:42.000000
+fmt.Printf("i:%d f:%f\n", i, f)// => i:42 f:42.000000
 ```
 以上のように、`型(変数)`で型を変化させることができる。
 
@@ -191,7 +221,7 @@ C系の言語に触れたことがある人は違和感を持つでしょう。�
 
 他にもcomplex64(複素数)，※byte(文字列)など沢山ある。
 
-※byteはstringとは保存される文字列形式が違う。(UTF-8/Unicode)
+※byteとスライスは本質的には同じ物。ただし文字列を扱うだけなら基本的にstringで扱う。
 
 **変数の有効範囲**
 
@@ -205,7 +235,7 @@ package	main
 func main() {
 	var ans int
 	ans = compute(1, 1)
-	print(ans, "\n") //2
+	print(ans, "\n") // => 2
 }
 
 func compute(x int, y int) int {
@@ -213,7 +243,7 @@ func compute(x int, y int) int {
 }
 ```
 
-- `func compute(x int, y int) int {`	computeという関数を宣言(cf:f(x, y) = z)
+- `func compute(x int, y int) int {`	computeという関数を宣言(cf:f(x, y) = x + y, x, y∈**Q**)
   - `compute(x int, y int)`    	  	整数x, yを与えている。
   - `int`				整数が出力されることを示唆。
 - `return x + y`			x + yの結果を返す。
@@ -231,7 +261,7 @@ import "fmt"
 
 func main() {
      var year int = 2020
-     fmt.Printf("今年は%d年です。\n", year) //今年は2020年です。
+     fmt.Printf("今年は%d年です。\n", year) // => 今年は2020年です。
      return
 }
 
@@ -241,7 +271,7 @@ func main() {
 
 **package**
 
-→関数の集合。先人の知恵ですね。
+→関数などの集合。先人の知恵ですね。
 
 各packageの中の関数を使うときは`packageNAME.functionNAME`の形で実行する。
 
@@ -271,20 +301,30 @@ import(
 
 → `%...`のこと。
 ものすごく沢山の種類がある。
-代表的なものには、`%s`:文字列`%v`:標準書式`%g`:浮動小数点数がある。
+
+代表的なもの
+
+|書式指定子|種類|
+| ---- | ---- |
+|`%s`|文字列|
+|`%q`|エスケープした文字列|
+|`%v`|標準書式|
+|`%f`|実数を出力|
 
 [ここ](https://qiita.com/rock619/items/14eb2b32f189514b5c3c)をみるとめちゃくちゃ書いてあるよ。興味あれば読むといいかもね。
 
 何が嬉しいかというと、例えば数値なら桁数指定とかできる。
 
-`fmt.Printf("%02d:%02d\n",12,5) //12:05`
+```go
+fmt.Printf("%02d:%02d\n",12,5) // => 12:05
+```
 
 ### その他
 
 #### public／private 関数・変数について
    - packageを作る際、外部から参照できるか否かを指定できる。
-   - 最初の文字が大文字：Public、外部から参照できる。
-   - 最初の文字が小文字：Private、外部からは参照されない。
+   - 最初の文字が大文字：Public、package外部から参照できる。
+   - 最初の文字が小文字：Private、package外部からは参照されない。
 
 ```go
 package tkmax
@@ -316,7 +356,7 @@ func displayTKMINIMUM() {
 例：
 ```go
 func main() {
-     print("Hey YO!")
+     print("Hey YO!") // => Hey YO!
      return
      print("Bye!")//呼ばれない。
 }
@@ -366,8 +406,6 @@ var (
 )
 ```
 
-この宣言はグローバル変数の宣言にも使える。
-
 #### グローバル変数
 - 関数の外で変数／定数を宣言すると任意の関数から値を参照できる。
 ```go
@@ -379,9 +417,13 @@ var x int = 1
 const c int = 2
 
 func main() {
-     fmt.Printf("x:%d c:%d", x, c)//x:1 c:2
+     fmt.Printf("x:%d c:%d", x, c)// => x:1 c:2
 }
 ```
+**注意**
+
+1. 宣言の省略型を用いることはできない
+2. 大文字から始まる変数はpackage外からも参照できる。
 
 `const`:定数
 

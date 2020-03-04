@@ -5,8 +5,10 @@
     - [使い方](#使い方)
     - [実用例](#実用例)
 - [Type節](#type節)
+- [method](#method)
 - [Array（配列）](#array配列)
 - [Slice（スライス）](#sliceスライス)
+- [Struct（構造体）](#struct構造体)
 
 <!-- /TOC -->
 
@@ -95,7 +97,7 @@ func main(){
      var user Name
 
      user = "matu"
-     fmt.Printf("%s：%t\n", user, verify(user))//
+     fmt.Printf("%s：%t\n", user, verify(user))
      
      user = "tkmax777"
      fmt.Printf("%s：%t\n", user, verify(user))
@@ -127,6 +129,89 @@ tkmax777：true
 
 このように型を作っておくことで、より信頼性の高いプログラムを作成することができる。
 
+## method
+Golangでは自分で定義した型に対し、メソッドと呼ばれる操作関数を定義できる。
+
+例：
+```go
+package main
+
+import "fmt"
+
+type AkazaAkari string
+
+func(a AkazaAkari) String() string{
+     return fmt.Sprintf("わぁい%s あかり%s大好き\n", string(a), string(a))
+}
+
+func main() {
+     var food AkazaAkari = "うすしお"
+     fmt.Printf(food.String())// => わぁいうすしお あかりうすしお大好き
+     return
+}
+
+```
+
+`food.String()`：変数xに対して型`AkazaAkari`に定義されたメソッド`String`を呼び出している。
+
+```go
+func(a AkazaAkari) String() string{...}
+```
+メソッドを定義している。
+
+・記法
+```go
+func(変数名 自分で定義した型) メソッド名(引数) 返り値の型 {...}
+```
+で記述する。ここで、最初の括弧内の自分で定義した型に対してメソッドが定義される。
+
+この、最初の括弧で宣言された変数（これを**レシーバ**と呼ぶ）に、メソッドを呼び出した変数の値（先例では`food`）が代入される。
+
+☆それ以外の動作は関数と同じ。
+
+**補足**
+
+1. fmtパッケージで`func(...)String() string{...}`メソッドを実装している物をPrintしようとした時、自動でこのメソッドが実行される。
+```go
+//先ほどのmain関数を変える。
+func main() {
+     var food AkazaAkari = "うすしお"
+     print(food)// => うすしお
+     print("\n")
+     fmt.Printf(food)// => わぁいうすしお あかりうすしお大好き
+     return
+}
+```
+
+2. レシーバにポインタを指定することもできる。
+
+例：
+```go
+package main
+
+import (
+     "math"
+     "fmt"
+)
+
+type SqrtInt float64
+
+func(s *SqrtInt) Sqrt(){
+     *s = math.Sqrt(*s)
+     return
+}
+
+func main() {
+     var x SqrtInt = 2
+
+     fmt.Printf("x:%g", x)// => 2
+     x.Sqrt()
+     fmt.Printf("x:%g", x)// => 1.4142135623730951
+     return
+}
+```
+
+
 ## Array（配列）
 ```go
 func main(){
@@ -134,7 +219,7 @@ func main(){
      user[0] = "tkmax777"
      user[1] = "matu"
 
-     fmt.Printf("user1:%s user2:%s")//user1:tkmax777 user2:matu
+     fmt.Printf("user1:%s user2:%s")// => user1:tkmax777 user2:matu
      return
 }
 ```
@@ -145,7 +230,7 @@ func main(){
 また、次のように初期化することもできる。
 ```go
      user = [2]string{"tkmax777", "matu"}
-     fmt.Printf("user1:%s user2:%s\n")//user1:tkmax777 user2:matu
+     fmt.Printf("user1:%s user2:%s\n")// => user1:tkmax777 user2:matu
 ```
 
 **Point**
@@ -160,8 +245,8 @@ Goにおいて配列は、その長さを型に含むため、後から長さを
 func main(){
      var userSlice []string = []string{"tkmax777", "matu"}
 
-     fmt.Printf("%v", userSlice)//[tkmax777 matu]
-     fmt.Printf("このスライスの容量は%dです。\n", cap(userSlice))//このスライスの容量は2です。
+     fmt.Printf("%v", userSlice)// => [tkmax777 matu]
+     fmt.Printf("このスライスの容量は%dです。\n", cap(userSlice))// => このスライスの容量は2です。
 }
 ```
 - `[]型名`という型を持つ
@@ -177,9 +262,9 @@ func main(){
 例：
 ```go
      //main関数の続き
-     userSlice = append(userSlice, "strelka")//append(追加する前のSlice, 追加する要素)
-     fmt.Printf("%v", userSlice)//[tkmax777 matu, strelka]
-     fmt.Printf("このスライスの容量は%dです。\n", cap(userSlice))//このスライスの容量は3です。
+     userSlice = append(userSlice, "strelka")// => append(追加する前のSlice, 追加する要素)
+     fmt.Printf("%v", userSlice)// => [tkmax777 matu, strelka]
+     fmt.Printf("このスライスの容量は%dです。\n", cap(userSlice))// => このスライスの容量は3です。
 ```
 - append関数によって背後で新たな長さの配列が宣言されている。
 
@@ -190,8 +275,8 @@ func main(){
      var userArray [4]string = [4]string{"tkmax777", "matu", "strelka", "zeke"}
      var userSlice []string = userArray[0:3]
 
-     fmt.Printf("%v\n",userSlice)//[tkmax777 matu strelka]
-     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))//容量：4, 長さ：3
+     fmt.Printf("%v\n",userSlice)// => [tkmax777 matu strelka]
+     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))// => 容量：4, 長さ：3
 }
 ```
 
@@ -212,7 +297,7 @@ func main(){
      userSlice[1] = "matu"
      
      fmt.Printf("%v\n", userSlice)//[tkmax777 matu]
-     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))//容量：4, 長さ：2
+     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))// => 容量：4, 長さ：2
 }
 ```
 
@@ -229,11 +314,11 @@ func main(){
      var userArray [4]string = [4]string{"tkmax777", "matu", "strelka", "zeke"}
      var userSlice []string = userArray[0:3]
 
-     fmt.Printf("%v\n",userSlice)//[tkmax777 matu strelka]
-     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))//容量：4, 長さ：3
+     fmt.Printf("%v\n",userSlice)// => [tkmax777 matu strelka]
+     fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))// => 容量：4, 長さ：3
 	userSlice[2] = "dog"
-     fmt.Printf("%v\n",userSlice)//[tkmax777 matu dog]
-     fmt.Printf("%v\n",userArray)//[tkmax777 matu dog zeke]
+     fmt.Printf("%v\n",userSlice)// => [tkmax777 matu dog]
+     fmt.Printf("%v\n",userArray)// => [tkmax777 matu dog zeke]
 }
 ```
 2. 同様に関数に渡したさきの編集がプログラム全体で反映される。
@@ -242,7 +327,7 @@ func main(){
      var sweet []string = make([]string, 2)
 	sweet = []string{"KINOKO", "Saikou"}
      modifier(sweet)
-     fmt.Printf("%v", sweet)//[TAKENOKO Saikou]
+     fmt.Printf("%v", sweet)// => [TAKENOKO Saikou]
 }
 
 func modifier(sweet []string) {
@@ -250,3 +335,6 @@ func modifier(sweet []string) {
      return
 }
 ```
+
+## Struct（構造体）
+Struct（構造体）：変数の集合
