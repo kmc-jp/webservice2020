@@ -1,5 +1,7 @@
+## 目次
 <!-- TOC -->
 
+- [目次](#目次)
 - [Pointers](#pointers)
     - [ポインタとは？](#ポインタとは)
     - [使い方](#使い方)
@@ -9,6 +11,8 @@
 - [Array（配列）](#array配列)
 - [Slice（スライス）](#sliceスライス)
 - [Struct（構造体）](#struct構造体)
+- [TypeとStruct](#typeとstruct)
+- [interface(インターフェース)](#interfaceインターフェース)
 
 <!-- /TOC -->
 
@@ -21,7 +25,7 @@
   - ただし電源を落とすと同時にデータは消えてしまう。
 
 ☆全ての変数には値を格納する前に値の保存先となるメモリの住所が割り当てられる。
-- この住所、通称"番地"をポインタという。
+- この住所、通称"番地"を格納している変数をポインタという。
 
 ### 使い方
 ```go
@@ -44,18 +48,19 @@ func main() {
 ```
 実行結果
 ```sh
-p値： 0xc0000a82a0//ここの値は毎回変わる。
+p値： 0xc0000a82a0
 i値： 1
 *p値： 2
 i値： 2
 ```
+（p値の`0x...`は実行する度に変化します。）
 
 1. 番地を格納する変数は`var 変数名 *型名`の形で宣言する。
 2. 番地に格納されている値を読み出すときは`*変数名`と記述する。
 3. 一般の変数の番地は`&変数名`という形で読み出すことができる。
 
 ☆上記の例では変数iの番地をpに格納し、pを通してiを編集しています。
-  - 0xhogehogeはメモリ番地を１６進数で表した物です。
+  - 0x...はメモリ番地を１６進数で表した物です。
 
 ### 実用例
 ```go
@@ -138,26 +143,26 @@ package main
 
 import "fmt"
 
-type AkazaAkari string
+type Akari string
 
-func(a AkazaAkari) String() string{
+func(a Akari) String() string{
      return fmt.Sprintf("わぁい%s あかり%s大好き\n", string(a), string(a))
 }
 
 func main() {
-     var food AkazaAkari = "うすしお"
+     var food Akari = "うすしお"
      fmt.Printf(food.String())// => わぁいうすしお あかりうすしお大好き
      return
 }
 
 ```
 
-`food.String()`：変数xに対して型`AkazaAkari`に定義されたメソッド`String`を呼び出している。
+`food.String()`：変数xに対して型`Akari`に定義されたメソッド`String`を呼び出している。
 
 ```go
-func(a AkazaAkari) String() string{...}
+func(a Akari) String() string{...}
 ```
-メソッドを定義している。
+ここでメソッドを定義している。
 
 ・記法
 ```go
@@ -175,7 +180,7 @@ func(変数名 自分で定義した型) メソッド名(引数) 返り値の型
 ```go
 //先ほどのmain関数を変える。
 func main() {
-     var food AkazaAkari = "うすしお"
+     var food Akari = "うすしお"
      print(food)// => うすしお
      print("\n")
      fmt.Printf(food)// => わぁいうすしお あかりうすしお大好き
@@ -194,15 +199,15 @@ import (
      "fmt"
 )
 
-type SqrtInt float64
+type Sqrt float64
 
-func(s *SqrtInt) Sqrt(){
+func(s *Sqrt) Sqrt(){
      *s = math.Sqrt(*s)
      return
 }
 
 func main() {
-     var x SqrtInt = 2
+     var x Sqrt = 2
 
      fmt.Printf("x:%g", x)// => 2
      x.Sqrt()
@@ -210,6 +215,7 @@ func main() {
      return
 }
 ```
+この例ではSqrtメソッド内でレシーバにポインタを指定することで、その実体を上書きしています。
 
 3. 
 
@@ -230,6 +236,7 @@ func main(){
 
 また、次のように初期化することもできる。
 ```go
+     var user [2]string
      user = [2]string{"tkmax777", "matu"}
      fmt.Printf("user1:%s user2:%s\n")// => user1:tkmax777 user2:matu
 ```
@@ -309,6 +316,7 @@ func main(){
 
 **注意**
 1. Sliceは配列の参照型（≒配列の番地リスト）なため、編集すると元の配列も編集される。
+2. 実体化していないスライス変数は`nil`（参照先が存在しない。空集合）として存在するため、当然参照できない。
 
 ```go
 func main(){
@@ -339,3 +347,221 @@ func modifier(sweet []string) {
 
 ## Struct（構造体）
 Struct（構造体）：変数の集合
+・記法
+- `struct{...}`という形の型として定義される。
+```go
+var 変数名 struct{
+     要素名1   型名
+     要素名2   型名
+     ...
+}
+```
+・参照方法
+```go
+変数名.要素名
+```
+という形でかかれる。
+例：
+```go
+func main() {
+     var user struct{
+          Name string
+          Age  int
+     }
+
+     user.Name = "tkmax777"
+     user.Age = 20
+
+     fmt.Printf("Name:%s Age:%d", user.Name, user.Age)// => Name:tkmax777 Age:20
+}
+```
+
+次のように初期化することもできる。
+```go
+var 変数名 struct{
+          要素名1   型名
+          要素名2   型名
+          ...
+     } = struct{
+          要素名1   型名
+          要素名2   型名
+          ...
+     }{
+          要素名1:要素名1の内容
+          要素名2:要素名2の内容
+          ...
+     }
+```
+例：
+```go
+func main() {
+	var user struct {
+		Name string
+		Age  int
+	} = struct {
+		Name string
+		Age  int
+	}{
+		Name: "tkmax777",
+		Age:  20,
+	}
+
+	fmt.Printf("Name:%s Age:%d", user.Name, user.Age)// => Name:tkmax777 Age:20
+}
+```
+見た瞬間は「は？」ってなりますが、これは配列やスライスの初期化方法とよく似ています。
+
+・復習-Slice-
+```go
+     var userSlice []string = []string{"tkmax777", "matu"}
+```
+
+このように、
+```go
+var 変数名 型名 = 型名{要素の内容}
+```
+という初期化方法をちゃんと満たしています。
+
+また、この構造体の型のうちで、`Name`という要素が先で、`Age`という要素が後にきているということに注意すると、次のようにも初期化できます。
+
+```go
+var user struct {
+		Name string
+		Age  int
+	} = struct {
+		Name string
+		Age  int
+	}{
+		"tkmax777",
+		20,
+     }
+```
+これは次のように一般化できます。
+
+```go
+var 変数名 struct{
+          要素名1   型名
+          要素名2   型名
+          ...
+     }=struct{
+          要素名1   型名
+          要素名2   型名
+          ...
+     }{
+          要素名1の内容,
+          要素名2の内容,
+          ...
+     }
+```
+
+このほか、今まで通り変数宣言の略記法もできます。
+```go
+変数名 := struct{
+          要素名1   型名
+          要素名2   型名
+          ...
+     }{
+          要素名1の内容
+          要素名2の内容
+          ...
+     }
+```
+
+例：
+```go
+func main() {
+	user := struct {
+		Name string
+		Age  int
+	}{
+		"tkmax777",
+		20,
+	}
+
+	fmt.Printf("Name:%s Age:%d\n", user.Name, user.Age)// => Name:tkmax777 Age:20
+}
+```
+
+以上のStructの使い方は基本として知っておくことに損はないですが、一般的にはあまり使われません。
+
+## TypeとStruct
+では実際どのようにStruct使われるかというと、type節と組み合わせて使います。
+
+例：
+```go
+package main
+
+import "fmt"
+
+//User Put user data
+type User struct{
+     Name      string
+     Age       int
+     Locate    string
+     Group     string
+}
+
+func main() {
+     var user User
+     user.init()//initメソッドを実行
+     user.Name = "tkmax777"
+     user.Age = 20
+
+     fmt.Printf("%v", user)
+     check(user)
+     fmt.Println()
+
+     user.init()
+     user.Name = "matu"
+     user.Age = 19
+
+     fmt.Printf("%v", user)
+     check(user)
+}
+
+func(u User) String() string{
+     return fmt.Sprintf("ユーザ名：%s 年齢：%d歳\n場所：%s 所属：%s\n", u.Name, u.Age, u.Locate, u.Group)
+}
+
+func(u *User) init() {
+     (*u).Locate = "京都"
+     (*u).Group = "KMC"
+     (*u).Name = ""
+     (*u).Age = 0
+     return
+}
+
+func check(user User){
+     if user.Age < 20{
+          fmt.Printf("お酒とタバコは禁止です！\n")
+     } else {
+          fmt.Printf("飲み過ぎ注意！\n")
+     }
+     return
+}
+```
+実行結果
+```sh
+ユーザ名：tkmax777 年齢：20歳
+場所：京都 所属：KMC
+飲み過ぎ注意！
+
+ユーザ名：matu 年齢：19歳
+場所：京都 所属：KMC
+お酒とタバコは禁止です！
+```
+
+このように、グローバル領域においてtype節であらたな型としてstructを定義すると、メソッドが使えるようになったり、関数の引数に使えたりと嬉しいことがおおいのです。
+
+ちなみに、構造体をポインタで表した時、`(*変数名).要素`と書かず、`変数名.要素`と書いて参照することができます。そのため、以上のinitメソッドは次のように書くことができます。
+```go
+func(u *User) init() {
+     u.Locate = "京都"
+     u.Group = "KMC"
+     u.Name = ""
+     u.Age = 0
+     return
+}
+```
+
+## interface(インターフェース)
