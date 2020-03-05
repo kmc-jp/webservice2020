@@ -72,7 +72,7 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func init() {
 	//message.jsonのファイルパスを指定（環境依存）
 	MessageFilePath = filepath.Join("data", "message.json")
-	//何個まで表示するかを指定
+	//メッセージデータを読み込み
 	ReadMessageData()
 }
 

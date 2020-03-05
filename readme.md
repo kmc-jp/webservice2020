@@ -5,7 +5,7 @@
 ### 前期予定
 #### 第一回 Golang／VSCodeの導入
 [資料](./1st/1st/readme.md)
-#### 第二三回 Go言語の基本の説明 - A Tour of Goをやってみる。
+#### 第二／三回 Go言語の基本の説明 - A Tour of Goをやってみる。
 [資料](./1st/2nd3rd/readme.md)
 #### 第四回 SlackBotの制作
 [資料](./1st/4th/readme.md)
