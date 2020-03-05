@@ -415,7 +415,7 @@ func main() {
 
 ・復習-Slice-
 ```go
-     var userSlice []string = []string{"tkmax777", "matu"}
+var userSlice []string = []string{"tkmax777", "matu"}
 ```
 
 このように、
@@ -484,7 +484,7 @@ func main() {
 }
 ```
 
-以上のStructの使い方の基本を記しました。しかし、一般的にはstructをそのまま型として変数を宣言するケースはあまりあるません。
+以上にStructの使い方の基本を記しました。しかし、一般的にはstructをそのまま型として変数を宣言するケースはあまりあるません。
 
 ## TypeとStruct
 では実際どのようにStruct使われるかというと、type節と組み合わせて使います。
