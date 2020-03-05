@@ -321,7 +321,9 @@ func main(){
 
      fmt.Printf("%v\n",userSlice)// => [tkmax777 matu strelka]
      fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))// => 容量：4, 長さ：3
-	userSlice[2] = "dog"
+
+     userSlice[2] = "dog"
+     
      fmt.Printf("%v\n",userSlice)// => [tkmax777 matu dog]
      fmt.Printf("%v\n",userArray)// => [tkmax777 matu dog zeke]
 }
