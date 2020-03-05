@@ -346,6 +346,7 @@ func modifier(sweet []string) {
 
 ## Struct（構造体）
 Struct（構造体）：変数の集合
+
 ・記法
 
 `struct{...}`という形の型として定義される。
