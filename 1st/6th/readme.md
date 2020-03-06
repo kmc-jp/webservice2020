@@ -37,5 +37,5 @@ $ git config --global url."https://YOUR_TOKEN:x-oauth-basic@github.com/".instead
         "clientID":"クライアントID",
         "secret":"シークレット"
     }
-```
+    ```
    6. 保存したら完了
