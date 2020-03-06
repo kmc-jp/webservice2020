@@ -24,3 +24,18 @@ $ git config --global url."https://YOUR_TOKEN:x-oauth-basic@github.com/".instead
 
 この後`go get`をすればうまくいくはず。
 
+2. credential.jsonの準備
+   1. `webservice2020/1st/6th/`に`credential.json`を用意
+   2. [GoogleDeceloperConsole](https://console.developers.google.com/apis/credentials)にアクセスしてプロジェクト作成
+      - プロジェクト名は`webservice2020-yourname-にしておきましょう。
+   3. 再び[GoogleDeceloperConsole](https://console.developers.google.com/apis/credentials)にアクセスし、`+認証情報を作成`をクリック
+      - 認証画面の作成が出たら適宜いい感じに入力しておきましょう。
+   4. `承認済みの JavaScript 生成元`には`http://localhost:8080`、`承認済みのリダイレクト URI`には`http://localhost:8080/auth/callback/google`と入力しましょう。
+   5. 出てきたクライアントIDとシークレットを先ほどの`credential.json`中に次のように入力
+```json
+{
+    "clientID":"クライアントID",
+    "secret":"シークレット"
+}
+```
+   6. 保存したら完了
