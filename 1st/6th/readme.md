@@ -22,7 +22,7 @@ $ go get github.com/stretchr/gomniauth/...
     $ git config --global url."https://YOUR_TOKEN:x-oauth-basic@github.com/".insteadOf "https://github.com/"
     ```
 
-この後`go get`をすればうまくいくはず。
+    6. `go get`をすればうまくいくはず。
 
 2. credential.jsonの準備
    1. `webservice2020/1st/6th/`に`credential.json`を用意
