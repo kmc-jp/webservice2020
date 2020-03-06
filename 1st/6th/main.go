@@ -8,6 +8,7 @@ import (
 	"math"
 	"net/http"
 	"path/filepath"
+	"strings"
 	"sync"
 	"time"
 )
@@ -32,6 +33,13 @@ type TopPage struct {
 	once     sync.Once
 }
 
+//Page Handle normal page
+type Page struct {
+	template *template.Template
+	once     sync.Once
+	filename string
+}
+
 //Message Put message data
 type Message struct {
 	Name string
@@ -39,48 +47,24 @@ type Message struct {
 	Time time.Time
 }
 
-func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	//templateのcompile作業は一回だけで良い
-	top.once.Do(func() {
-		//templateを定義
-		t := template.New("index.html")
-
-		//index.htmlの内容を読み込み（filepath.Joinは複数の環境に対応できるようにするため。）
-		//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
-		top.template = template.Must(t.ParseFiles(filepath.Join("resources", "index.html")))
-	})
-
-	switch {
-	case DisplayNum > 0:
-		top.Message = Messages[int(math.Max(0, float64(DisplayNum-len(Messages)))):]
-	case DisplayNum <= 0:
-		top.Message = Messages
-	}
-
-	//昇順降順の入れ替え
-	for left, right := 0, len(top.Message)-1; left < right; left, right = left+1, right-1 {
-		top.Message[left], top.Message[right] = top.Message[right], top.Message[left]
-	}
-
-	if err := top.template.Execute(w, top); err != nil {
-		fmt.Fprintf(w, "%v\n", err)
-	}
-
-	return
-}
-
 func init() {
 	//message.jsonのファイルパスを指定（環境依存）
 	MessageFilePath = filepath.Join("data", "message.json")
 	//メッセージデータを読み込み
 	ReadMessageData()
+	//認証情報を読み込み
+	getKeys()
+
+	gominauth.SetSecurityKey("")
 }
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.Handle("/", &Top)
-	http.HandleFunc("/form", AddMessage)
+	http.Handle("/login", Page{filename: "login.html"})
+	http.Handle("/form", MustAuth(http.HandlerFunc(AddMessage)))
+	http.HandleFunc("/auth", loginHandler)
 
 	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
 		log.Fatalln("Error")
@@ -130,4 +114,73 @@ func AddMessage(w http.ResponseWriter, r *http.Request) {
 	ExportFile(MessageFilePath, data)
 	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	return
+}
+
+//loginHandler Handle login page
+// Set cookies to client and complete authorizing process
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	//path: /auth/{action}/{provider}
+
+	//Split the string requested path to []string augments by "/"
+	var segs []string = strings.Split(r.URL.Path, "/")
+
+	//Check the number of the url augments
+	if len(segs) != 4 {
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+
+	//Set variables
+	var action string = segs[2]
+	var provider string = segs[3]
+
+	switch action {
+	case "login":
+
+	default:
+		http.Error(w, fmt.Sprintf("操作：%sには対応していません。\n", action), http.StatusNotFound)
+		return
+	}
+	return
+}
+
+func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	//templateのcompile作業は一回だけで良い
+	top.once.Do(func() {
+		//templateを定義
+		t := template.New("index.html")
+
+		//index.htmlの内容を読み込み（filepath.Joinは複数の環境に対応できるようにするため。）
+		//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
+		top.template = template.Must(t.ParseFiles(filepath.Join("resources", "index.html")))
+	})
+
+	switch {
+	case DisplayNum > 0:
+		top.Message = Messages[int(math.Max(0, float64(DisplayNum-len(Messages)))):]
+	case DisplayNum <= 0:
+		top.Message = Messages
+	}
+
+	//昇順降順の入れ替え
+	for left, right := 0, len(top.Message)-1; left < right; left, right = left+1, right-1 {
+		top.Message[left], top.Message[right] = top.Message[right], top.Message[left]
+	}
+
+	if err := top.template.Execute(w, top); err != nil {
+		fmt.Fprintf(w, "%v\n", err)
+	}
+
+	return
+}
+
+func (p *Page) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	top.once.Do(func() {
+		//templateを定義
+		t := template.New(p.filename))
+
+		//index.htmlの内容を読み込み（filepath.Joinは複数の環境に対応できるようにするため。）
+		//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
+		top.template = template.Must(t.ParseFiles(filepath.Join("resources", p.filename)))
+	})
 }

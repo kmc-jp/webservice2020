@@ -6,10 +6,10 @@ import (
 	"github.com/nlopes/slack"
 )
 
-//EV put new slack event
+//EV put new slack events
 var EV *slack.MessageEvent
 
-//RTM use for sending event to slack
+//RTM use for sending events to slack
 var RTM *slack.RTM
 
 //BotToken Put your slackbot token here
@@ -36,7 +36,7 @@ func main() {
 	}
 }
 
-//ListenTo excute functions under suitable condition
+//ListenTo excute functions under suitable conditions
 func ListenTo() {
 	switch {
 	case ResTo(`Hello`):
