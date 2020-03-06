@@ -32,10 +32,10 @@ $ git config --global url."https://YOUR_TOKEN:x-oauth-basic@github.com/".instead
       - 認証画面の作成が出たら適宜いい感じに入力しておきましょう。
    4. `承認済みの JavaScript 生成元`には`http://localhost:8080`、`承認済みのリダイレクト URI`には`http://localhost:8080/auth/callback/google`と入力しましょう。
    5. 出てきたクライアントIDとシークレットを先ほどの`credential.json`中に次のように入力
-```json
-{
-    "clientID":"クライアントID",
-    "secret":"シークレット"
-}
+    ```json
+    {
+        "clientID":"クライアントID",
+        "secret":"シークレット"
+    }
 ```
    6. 保存したら完了
