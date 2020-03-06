@@ -9,6 +9,12 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+        <!-- As a heading -->
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Webservice2020</span>
+  </nav>
+        <div class="card">
+            <div class="card-body">
         <div class="container">
         <form action="/form" method="POST">
             <div class="form-group">
@@ -25,6 +31,8 @@
             {{range .Message}}<li class="list-group-item"><p><mark>{{.Name}}</mark> <small class="text-muted">{{printf "%02d:%02d" .Time.Hour .Time.Minute}}</small></p>{{.Text}}</li>{{end}}
         </ul>
         </div>
+    </div>
+</div>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

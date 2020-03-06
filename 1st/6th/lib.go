@@ -11,16 +11,18 @@ import (
 var credit credential
 
 type credential struct {
-	clientID string `json:"clientID"`
-	secret   string `json:"secret"`
+	ClientID string `json:"clientID"`
+	Secret   string `json:"secret"`
 }
 
+//getKeys get credential data from json
 func getKeys() {
 	bytes, err := ReadFile("credential.json")
 	if err != nil {
 		panic("panic!:Cannot read credentials!\n")
 	}
-	err := json.Unmarshal(bytes, &credit)
+
+	err = json.Unmarshal(bytes, &credit)
 	if err != nil {
 		log.Printf("json error:\n%v", err)
 		panic("panic!:Cannot marshal credential json!\n")
