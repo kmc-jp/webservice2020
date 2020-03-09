@@ -13,6 +13,7 @@
 - [Struct（構造体）](#struct構造体)
 - [TypeとStruct](#typeとstruct)
 - [interface(インターフェース)](#interfaceインターフェース)
+- [最後に...](#最後に)
 
 <!-- /TOC -->
 
@@ -567,3 +568,154 @@ func(u *User) init() {
 ```
 
 ## interface(インターフェース)
+　今までにType節と、それに付随するメソッドについて学びました。ここで注意したいのは、Type節で定義する型の名前はpackage内で固有なものである必要がありますが、その型に対して定義されたメソッドの名前については一意でなくて良い、ということです。例えば、次のようなプログラムを書くことができます。
+
+```go
+package main
+
+import "fmt"
+
+type Human struct {
+	Name   string
+	Age    int
+	Locate string
+	Job    string
+}
+
+type Cat struct {
+	Name   string
+	Age    int
+	Color  string
+	Locate string
+}
+
+func main() {
+	var human Human
+	var cat Cat
+
+	human.Input()
+	fmt.Println()
+	cat.Input()
+
+	fmt.Printf("%#v\n", human)
+	fmt.Printf("%#v\n", cat)
+
+	return
+}
+
+func (h *Human) Input() {
+	fmt.Printf("人間の情報を入力します。\n")
+Name:
+	fmt.Printf("名前を入力してください。\n")
+	fmt.Scanf("%s", &h.Name)
+	if h.Name == "" {
+		fmt.Printf("無効な入力です。\n")
+		goto Name
+	}
+Age:
+	fmt.Printf("年齢を入力してください。\n")
+	fmt.Scanf("%d", &h.Age)
+	if h.Age == 0 {
+		fmt.Printf("年齢を半角算用数字で入力してください。\n")
+		goto Age
+	}
+Locate:
+	fmt.Printf("所在地を入力してください。\n")
+	fmt.Scanf("%s", &h.Locate)
+	if h.Locate == "" {
+		fmt.Printf("無効な入力です。\n")
+		goto Locate
+	}
+Job:
+	fmt.Printf("職業を入力してください。")
+	fmt.Scanf("%s", &h.Job)
+	if h.Job == "" {
+		fmt.Printf("無効な入力です。\n")
+		goto Job
+	}
+}
+
+func (c *Cat) Input() {
+	fmt.Printf("猫の情報を入力します。\n")
+Name:
+	fmt.Printf("名前を入力してください。\n")
+	fmt.Scanf("%s", &c.Name)
+	if c.Name == "" {
+		fmt.Printf("無効な入力です。\n")
+		goto Name
+	}
+Age:
+	fmt.Printf("年齢を入力してください。\n")
+	fmt.Scanf("%d", &c.Age)
+	if c.Age == 0 {
+		fmt.Printf("年齢を半角算用数字で入力してください。\n")
+		goto Age
+	}
+Locate:
+	fmt.Printf("所在地を入力してください。\n")
+	fmt.Scanf("%s", &c.Locate)
+	if c.Locate == "" {
+		fmt.Printf("無効な入力です。\n")
+		goto Locate
+	}
+Color:
+	fmt.Printf("色を入力してください。\n")
+	fmt.Scanf("%s", &c.Color)
+	if c.Color == "" {
+		fmt.Printf("無効な入力です。\n")
+		goto Color
+	}
+}
+
+```
+
+このプログラムでは、`Human`と`Cat`各々に対して`Input`メソッドが定義されています。いま、対象となる型が違えど、これらの同じ名前のメソッドは同じ働きをしていますね。Golangではこのような同じメソッドを持つ型を関数の引数などに用いたい時に使える手法として`interface`というものが用意されています。
+
+・記法
+```go
+interface{
+     メソッド1
+     メソッド2
+     ...
+}
+```
+例：
+```go
+func input(i interface{ Input() }) {
+	i.Input()
+}
+```
+この関数では`Input`というメソッドを実装している集合（最初の例では`Human`と`Cat`がこれに相当します。）を引数としてとることができます。
+
+さらに、このinterfaceに対しても、今までのようにtype節で名前をつけることができます。
+
+例：
+```go
+type Inputter interface{
+     Input()
+}
+func input(i Inputter) {
+	i.Input()
+}
+```
+
+さて、今までにこのような、あるメソッドを実装している集合に対して特殊な操作をするpackageが一度だけ登場していることにお気づきですか？
+
+そうです。`fmt`packageです。
+
+このpackageでは、`String()`メソッドを実装している集合に対しては自動的にそのメソッドを実行していました。この集合を示すinterfaceは今までと同様に次のように表すことができます。
+
+```go
+type Stringer interface{
+     String()
+}
+```
+
+interfaceは使いこなせればとても柔軟にプログラムを書くことができます。是非うまく使えるように、意識してプログラムを書いてみてください。
+
+## 最後に...
+ここまでこれば、あなたは一通りGolangを書くための基礎を抑えることができたはずです。
+
+しかし今回は時間の都合もあり省略してしまいましたが、他にもgo routineという並列処理をするための優秀な機能や、それに付随する便利な機能がまだまだあります。この言語のさらなる理解を深め、使いこなせるようになるためにも、是非[A Tour of Go](https://go-tour-jp.appspot.com/welcome/1)をやってみてください。
+
+さて、次回からは実際に動くプログラムを作っていきます。お楽しみに。
