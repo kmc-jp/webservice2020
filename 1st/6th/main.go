@@ -185,11 +185,14 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		top.Basic.Name = Accounts[Cookie["id"]].Name
 	}
 
+	var messages []Message = make([]Message, cap(Messages))
+	copy(messages, Messages)
+
 	switch {
 	case DisplayNum > 0:
-		top.Message = Messages[int(math.Max(0, float64(DisplayNum-len(Messages)))):]
+		top.Message = messages[int(math.Max(0, float64(DisplayNum-len(Messages)))):]
 	case DisplayNum <= 0:
-		top.Message = Messages
+		top.Message = messages
 	}
 
 	if authCookie, err := r.Cookie("auth"); err == nil {
