@@ -8,12 +8,12 @@ import (
 	"math"
 	"net/http"
 	"path/filepath"
-	"strings"
 	"sync"
 	"time"
 
 	"github.com/stretchr/gomniauth"
 	"github.com/stretchr/gomniauth/providers/google"
+	"github.com/stretchr/objx"
 )
 
 //DisplayNum Set the number of messages displayed at top page
@@ -34,13 +34,22 @@ type TopPage struct {
 	Message  []Message
 	template *template.Template
 	once     sync.Once
+	UserData objx.Map
+	Basic    HTMLbasic
 }
 
-//Page Handle normal page
+//Page Handle static page
 type Page struct {
 	template *template.Template
-	once     sync.Once
 	filename string
+	Basic    HTMLbasic
+}
+
+//HTMLbasic Put header and footer data
+type HTMLbasic struct {
+	Title string
+	Login int
+	Name  string
 }
 
 //Message Put message data
@@ -60,19 +69,24 @@ func init() {
 	getKeys()
 
 	//OAuthのSetup
-	gomniauth.SetSecurityKey(credit.Secret)
+	gomniauth.SetSecurityKey("HZw?uikhiAol3$XWeiA+XMi&I%daJ?RANDOM")
 	gomniauth.WithProviders(
-		google.New(credit.ClientID, "HZw?uikhiAol3$XWeiA+XMi&I%daJ?RANDOM", "http://localhost:8080/auth/callback/google"),
+		google.New(credit.ClientID, credit.Secret, "http://localhost:8080/auth/callback/google"),
 	)
 }
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	http.HandleFunc("/auth/", loginHandler)
+
 	http.Handle("/", &Top)
-	http.Handle("/login", &Page{filename: "login.html"})
+	http.Handle("/login", &Page{filename: "login.html", Basic: HTMLbasic{Title: "入室 -Webservice2020掲示板-"}})
 	http.Handle("/form", MustAuth(http.HandlerFunc(AddMessage)))
+	http.Handle("/create", MustAuth(&Page{filename: "new_account.html", Basic: HTMLbasic{Title: "会員登録 -Webservice2020掲示板-"}}))
+
+	http.HandleFunc("/createnew", CreateNewAccount)
 
 	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
 		log.Fatalln("Error")
@@ -102,8 +116,27 @@ func AddMessage(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	name := r.Form.Get("name")
 	message := r.Form.Get("message")
+	if message == "" {
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+
+	Cookie, err := GetCookieValue(r)
+	if err != nil {
+		http.Error(w, "Cookieの解析に失敗しました。", http.StatusBadRequest)
+		log.Printf("Cookieの解析に失敗しました。\n%v\n", err)
+		return
+	}
+
+	Accounts, err := ReadAccounts()
+	if err != nil {
+		http.Error(w, "アカウントデータの読み込みに失敗しました。", http.StatusBadRequest)
+		log.Printf("アカウントデータの読み込みに失敗しました。\n%v\n", err)
+		return
+	}
+
+	name := Accounts[Cookie["id"]].Name
 
 	var newMessage Message = Message{
 		Text: message,
@@ -132,8 +165,25 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 		//index.htmlの内容を読み込み（filepath.Joinは複数の環境に対応できるようにするため。）
 		//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
-		top.template = template.Must(t.ParseFiles(filepath.Join("resources", "index.html")))
+		top.template = template.Must(t.ParseFiles(filepath.Join("resources", "index.html"), filepath.Join("resources", "header.html"), filepath.Join("resources", "footer.html")))
 	})
+
+	top.Basic = HTMLbasic{Title: "Webservice2020掲示板", Login: AuthCheck(r)}
+	if top.Basic.Login == 1 {
+		Accounts, err := ReadAccounts()
+		if err != nil {
+			http.Error(w, "データの読み出しに失敗しました。", http.StatusInternalServerError)
+			fmt.Printf("データの読み出しに失敗しました。\n%v", err)
+			return
+		}
+		Cookie, err := GetCookieValue(r)
+		if err != nil {
+			http.Error(w, "Cookieの読み込みに失敗しました。", http.StatusBadRequest)
+			fmt.Printf("Cookieの読み込みに失敗しました。\n%v\n", err)
+			return
+		}
+		top.Basic.Name = Accounts[Cookie["id"]].Name
+	}
 
 	switch {
 	case DisplayNum > 0:
@@ -142,12 +192,16 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		top.Message = Messages
 	}
 
+	if authCookie, err := r.Cookie("auth"); err == nil {
+		top.UserData = objx.MustFromBase64(authCookie.Value)
+	}
+
 	//昇順降順の入れ替え
 	for left, right := 0, len(top.Message)-1; left < right; left, right = left+1, right-1 {
 		top.Message[left], top.Message[right] = top.Message[right], top.Message[left]
 	}
 
-	if err := top.template.Execute(w, top); err != nil {
+	if err := top.template.ExecuteTemplate(w, "content", top); err != nil {
 		fmt.Fprintf(w, "%v\n", err)
 	}
 
@@ -155,15 +209,30 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *Page) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	p.once.Do(func() {
-		//templateを定義
-		t := template.New(p.filename)
+	//templateを定義
+	t := template.New(p.filename)
 
-		//index.htmlの内容を読み込み（filepath.Joinは複数の環境に対応できるようにするため。）
-		//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
-		p.template = template.Must(t.ParseFiles(filepath.Join("resources", p.filename)))
-	})
-	if err := p.template.Execute(w, p); err != nil {
+	//index.htmlなどの内容を読み込み（filepath.Joinは複数の環境に対応できるようにするため。）
+	//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
+	p.template = template.Must(t.ParseFiles(filepath.Join("resources", p.filename), filepath.Join("resources", "header.html"), filepath.Join("resources", "footer.html")))
+
+	p.Basic.Login = AuthCheck(r)
+	if p.Basic.Login == 1 {
+		Accounts, err := ReadAccounts()
+		if err != nil {
+			http.Error(w, "データの読み出しに失敗しました。", http.StatusInternalServerError)
+			fmt.Printf("データの読み出しに失敗しました。\n%v", err)
+			return
+		}
+		Cookie, err := GetCookieValue(r)
+		if err != nil {
+			http.Error(w, "Cookieの読み込みに失敗しました。", http.StatusBadRequest)
+			fmt.Printf("Cookieの読み込みに失敗しました。\n%v\n", err)
+			return
+		}
+		p.Basic.Name = Accounts[Cookie["id"]].Name
+	}
+	if err := p.template.ExecuteTemplate(w, "content", p); err != nil {
 		fmt.Fprintf(w, "%v\n", err)
 	}
 
