@@ -4,14 +4,16 @@
 
 ### 前期予定
 #### 第一回 Golang／VSCodeの導入
-[資料](./1st/1st/readme.md)
+[資料](./1st/1st/)
 #### 第二／三回 Go言語の基本の説明 - A Tour of Goをやってみる。
-[資料](./1st/2nd3rd/readme.md)
+[資料](./1st/2nd3rd/)
 #### 第四回 SlackBotの制作
-[資料](./1st/4th/readme.md)
+[資料](./1st/4th/)
 #### 第五回 Web Pageの仕組みを軽く解説。静的なWeb Pageを作ってみよう
-[資料](./1st/5th/readme.md)
+[資料](./1st/5th/)
 #### 第六回 GoでhttpServerを立ててみよう。
-[資料](./1st/6th/readme.md)
+[資料](./1st/6th/)
 #### 第七回 Gitの使い方
-[資料](./1st/7th/readme.md)
+[資料](./1st/7th/)
+#### 付録 シンプルな掲示板
+[資料](./1st/appendx/)
