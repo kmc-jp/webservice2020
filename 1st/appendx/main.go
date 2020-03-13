@@ -10,10 +10,6 @@ import (
 	"path/filepath"
 	"sync"
 	"time"
-
-	"github.com/stretchr/gomniauth"
-	"github.com/stretchr/gomniauth/providers/google"
-	"github.com/stretchr/objx"
 )
 
 //DisplayNum Set the number of messages displayed at top page
@@ -31,11 +27,11 @@ var Messages []Message
 
 //TopPage Put data used at top page
 type TopPage struct {
-	Message  []Message
-	template *template.Template
-	once     sync.Once
-	UserData objx.Map
-	Basic    HTMLbasic
+	Message    []Message
+	template   *template.Template
+	once       sync.Once
+	Basic      HTMLbasic
+	PresetName string
 }
 
 //Page Handle static page
@@ -48,7 +44,6 @@ type Page struct {
 //HTMLbasic Put header and footer data
 type HTMLbasic struct {
 	Title string
-	Login int
 	Name  string
 }
 
@@ -64,30 +59,14 @@ func init() {
 	MessageFilePath = filepath.Join("data", "message.json")
 	//メッセージデータを読み込み
 	ReadMessageData()
-
-	//認証情報を読み込み
-	getKeys()
-
-	//OAuthのSetup
-	gomniauth.SetSecurityKey("HZw?uikhiAol3$XWeiA+XMi&I%daJ?RANDOM")
-	gomniauth.WithProviders(
-		google.New(credit.ClientID, credit.Secret, "http://localhost:8080/auth/callback/google"),
-	)
 }
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	http.HandleFunc("/auth/", loginHandler)
-
 	http.Handle("/", &Top)
-	http.Handle("/login", &Page{filename: "login.html", Basic: HTMLbasic{Title: "入室 -Webservice2020掲示板-"}})
-	http.HandleFunc("/logout", logoutHandle)
-	http.Handle("/form", MustAuth(http.HandlerFunc(AddMessage)))
-	http.Handle("/create", MustAuth(&Page{filename: "new_account.html", Basic: HTMLbasic{Title: "会員登録 -Webservice2020掲示板-"}}))
-
-	http.HandleFunc("/createnew", CreateNewAccount)
+	http.Handle("/form", http.HandlerFunc(AddMessage))
 
 	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
 		log.Fatalln("Error")
@@ -123,21 +102,10 @@ func AddMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	Cookie, err := GetCookieValue(r)
-	if err != nil {
-		http.Error(w, "Cookieの解析に失敗しました。", http.StatusBadRequest)
-		log.Printf("Cookieの解析に失敗しました。\n%v\n", err)
-		return
+	name := r.Form.Get("user")
+	if name == "" {
+		name = "名無し"
 	}
-
-	Accounts, err := ReadAccounts()
-	if err != nil {
-		http.Error(w, "アカウントデータの読み込みに失敗しました。", http.StatusBadRequest)
-		log.Printf("アカウントデータの読み込みに失敗しました。\n%v\n", err)
-		return
-	}
-
-	name := Accounts[Cookie["id"]].Name
 
 	var newMessage Message = Message{
 		Text: message,
@@ -154,7 +122,7 @@ func AddMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	ExportFile(MessageFilePath, data)
-	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+	http.Redirect(w, r, "/?user="+name, http.StatusTemporaryRedirect)
 	return
 }
 
@@ -169,22 +137,9 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		top.template = template.Must(t.ParseFiles(filepath.Join("resources", "index.html"), filepath.Join("resources", "header.html"), filepath.Join("resources", "footer.html")))
 	})
 
-	top.Basic = HTMLbasic{Title: "Webservice2020掲示板", Login: AuthCheck(r)}
-	if top.Basic.Login == 1 {
-		Accounts, err := ReadAccounts()
-		if err != nil {
-			http.Error(w, "データの読み出しに失敗しました。", http.StatusInternalServerError)
-			fmt.Printf("データの読み出しに失敗しました。\n%v", err)
-			return
-		}
-		Cookie, err := GetCookieValue(r)
-		if err != nil {
-			http.Error(w, "Cookieの読み込みに失敗しました。", http.StatusBadRequest)
-			fmt.Printf("Cookieの読み込みに失敗しました。\n%v\n", err)
-			return
-		}
-		top.Basic.Name = Accounts[Cookie["id"]].Name
-	}
+	top.PresetName = r.URL.Query().Get("user")
+
+	top.Basic = HTMLbasic{Title: "Webservice2020掲示板"}
 
 	var messages []Message = make([]Message, len(Messages))
 	copy(messages, Messages)
@@ -194,19 +149,6 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		top.Message = messages[int(math.Max(0, float64(DisplayNum-len(Messages)))):]
 	case DisplayNum <= 0:
 		top.Message = messages
-	}
-
-	if authCookie, err := r.Cookie("auth"); err == nil {
-		top.UserData, err = objx.FromBase64(authCookie.Value)
-		if err != nil {
-			log.Printf("Cookieの複合化に失敗しました。\n%v\n", err)
-			http.Error(w, "Cookieの複合化に失敗しました。\n", http.StatusInternalServerError)
-			return
-		}
-	} else if err != http.ErrNoCookie {
-		log.Printf("Cookieの取得に失敗しました。\n%v\n", err)
-		http.Error(w, "Cookieの取得に失敗しました。\n", http.StatusInternalServerError)
-		return
 	}
 
 	//昇順降順の入れ替え
@@ -229,22 +171,6 @@ func (p *Page) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//template.MustはtemplateにErrorがあった場合にpanicを起こすための関数
 	p.template = template.Must(t.ParseFiles(filepath.Join("resources", p.filename), filepath.Join("resources", "header.html"), filepath.Join("resources", "footer.html")))
 
-	p.Basic.Login = AuthCheck(r)
-	if p.Basic.Login == 1 {
-		Accounts, err := ReadAccounts()
-		if err != nil {
-			http.Error(w, "データの読み出しに失敗しました。", http.StatusInternalServerError)
-			fmt.Printf("データの読み出しに失敗しました。\n%v", err)
-			return
-		}
-		Cookie, err := GetCookieValue(r)
-		if err != nil {
-			http.Error(w, "Cookieの読み込みに失敗しました。", http.StatusBadRequest)
-			fmt.Printf("Cookieの読み込みに失敗しました。\n%v\n", err)
-			return
-		}
-		p.Basic.Name = Accounts[Cookie["id"]].Name
-	}
 	if err := p.template.ExecuteTemplate(w, "content", p); err != nil {
 		fmt.Fprintf(w, "%v\n", err)
 	}

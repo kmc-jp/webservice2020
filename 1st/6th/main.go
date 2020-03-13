@@ -13,7 +13,6 @@ import (
 
 	"github.com/stretchr/gomniauth"
 	"github.com/stretchr/gomniauth/providers/google"
-	"github.com/stretchr/objx"
 )
 
 //DisplayNum Set the number of messages displayed at top page
@@ -34,7 +33,6 @@ type TopPage struct {
 	Message  []Message
 	template *template.Template
 	once     sync.Once
-	UserData objx.Map
 	Basic    HTMLbasic
 }
 
@@ -194,19 +192,6 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		top.Message = messages[int(math.Max(0, float64(DisplayNum-len(Messages)))):]
 	case DisplayNum <= 0:
 		top.Message = messages
-	}
-
-	if authCookie, err := r.Cookie("auth"); err == nil {
-		top.UserData, err = objx.FromBase64(authCookie.Value)
-		if err != nil {
-			log.Printf("Cookieの複合化に失敗しました。\n%v\n", err)
-			http.Error(w, "Cookieの複合化に失敗しました。\n", http.StatusInternalServerError)
-			return
-		}
-	} else if err != http.ErrNoCookie {
-		log.Printf("Cookieの取得に失敗しました。\n%v\n", err)
-		http.Error(w, "Cookieの取得に失敗しました。\n", http.StatusInternalServerError)
-		return
 	}
 
 	//昇順降順の入れ替え

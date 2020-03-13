@@ -5,6 +5,9 @@
         <div class="container">
         <form action="/form" method="POST">
             <div class="form-group">
+                <label>ユーザ名</label>
+                <input type="text" name="user" class="form-control" placeholder="名無し" value="{{.PresetName}}">
+                
                 <label>投稿内容</label>
                 <textarea name="message" class="form-control" placeholder="思うがままに書いてみましょう"></textarea>
             </div>

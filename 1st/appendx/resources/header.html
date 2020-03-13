@@ -12,17 +12,5 @@
         <!-- As a heading -->
     <nav class="navbar navbar-light bg-light">
     <span class="navbar-brand mb-0 h1">Webservice2020</span>
-    {{if eq .Basic.Login 0 }}
-        <a href="/login">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="button">入室</button>
-        </a>
-    {{else}}
-        <span class="navbar-text">
-        こんにちは、{{.Basic.Name}}さん
-        <a href="/logout">
-            <button type="button" class="btn btn-secondary">退室</button>
-        </a>
-        </span>
-    {{end}}
 </nav>
 {{end}}
