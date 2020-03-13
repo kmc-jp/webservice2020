@@ -1,0 +1,18 @@
+{{define "content"}}
+{{template "header" .}}
+      <div class="card">
+        <div class="card-body">
+        <div class="card">
+            <div class="card-header">
+              未入室
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">入室が必要です。</h5>
+              <p class="card-text">Googleアカウントを使って入室してください。</p>
+              <a href="/auth/login/google" class="btn btn-primary">Google</a>
+            </div>
+          </div>
+        </div>
+      </div>
+{{template "footer" .}}
+{{end}}
