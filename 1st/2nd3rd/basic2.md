@@ -129,7 +129,7 @@ tkmax777：true
      var club string
      club = "KMC"
      
-     fmt.Printf("%s：%t\n", user, varify(club))//コンパイルエラー
+     fmt.Printf("%s：%t\n", user, verify(club))//コンパイルエラー
 ```
 - `verify()`の引数はName型でないといけないため、エラーが発生する。
 
