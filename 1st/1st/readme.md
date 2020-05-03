@@ -29,7 +29,9 @@
 2. terminalと入力
 3. homebrewをインストール
 
- `$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+```sh
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
 
 4. `$ brew install go`
 
