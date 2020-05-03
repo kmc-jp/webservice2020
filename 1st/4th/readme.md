@@ -9,7 +9,11 @@ $ go get -u github.com/slack-go/slack
 ```
 （`-u`:update、既に入っている場合アップデートする。）
 
-2. SlackAppの作成
+2. もしも入会していなければ
+[ここ](https://slack.com/intl/ja-jp/get-started#/create)でワークスペース作ってください...。
+
+**（もしくは入会）**
+3. SlackAppの作成
    1. [Slack Appの作成](https://api.slack.com/apps?new_classic_app=1)に飛ぶ
    2. 次の図を参考に入力
    ![CreateNewSlackApp](resources/CreateNewSlackApp.png)

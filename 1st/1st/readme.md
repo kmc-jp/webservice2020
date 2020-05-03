@@ -5,17 +5,17 @@
 
 <!-- TOC -->
 
-- [第一回](#第一回)
-    - [概要](#概要)
-    - [手順](#手順)
-        - [Golang導入](#golang導入)
+- [第一回](#%E7%AC%AC%E4%B8%80%E5%9B%9E)
+    - [概要](#%E6%A6%82%E8%A6%81)
+    - [手順](#%E6%89%8B%E9%A0%86)
+        - [Golang導入](#golang%E5%B0%8E%E5%85%A5)
             - [macOS](#macos)
             - [Windows](#windows)
-        - [gitの導入](#gitの導入)
+        - [gitの導入](#git%E3%81%AE%E5%B0%8E%E5%85%A5)
             - [macOS](#macos)
             - [Windows](#windows)
-        - [導入確認](#導入確認)
-        - [VSCodeの導入](#vscodeの導入)
+        - [導入確認](#%E5%B0%8E%E5%85%A5%E7%A2%BA%E8%AA%8D)
+        - [VSCodeの導入](#vscode%E3%81%AE%E5%B0%8E%E5%85%A5)
 
 <!-- /TOC -->
 
@@ -27,7 +27,7 @@
 #### macOS
 1. command + Space
 2. terminalと入力
-3. `$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+3. homebrewをインストール `$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
 4. `$ brew install go`
 
 #### Windows
@@ -47,18 +47,20 @@
 
 #### macOS
 1. terminalを起動
-2. `$ git --version`
-3. 何か出た貴方は良い感じにやってください
-4. `git version 2.5.●`とか出た選ばれし貴方は最新のバージョンを入れていただきます
-   - [ここ](https://git-scm.com/download/mac)からダウンロードしてね。
-   - その後いい感じにインストールしてください。
+2. `$ brew install git`
 
 #### Windows
-1. [ここ](https://git-scm.com/download/win)からダウンロードしてね
-2. いい感じにインストールする。（スライド参照）
+1. [ここ](https://git-scm.com/download/win)からダウンロード／実行
+2. 今後作業はGitBashで行うのでこれを選択します。
+![GitSettings](/1st/1st/resources/gitSetting.png)
+3. 
+![GitSettings](/1st/1st/resources/gitSetting2.png)
+4. InstallまでNextを連打します。
 
 ### 導入確認
-- terminal / GitBashでgo --version を確認。
+- terminal / GitBashで
+`$ go --version`
+ を確認。
 
 ### VSCodeの導入
 1. [ここ](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)からダウンロード & インストール
@@ -71,3 +73,34 @@
 ![ここ](/1st/1st/resources/SettingsJson.png)
 5. `"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"`という行を追加
 6. VSCodeを再起動
+
+以上で環境導入は終了です。お疲れ様でした。
+
+以下、サンプルの実行法
+
+1. VS Codeを立ち上げ、ターミナル > 新しいターミナル を開く
+2. 出てきたコマンドラインに次のコマンドをうち、このリポジトリを手元にコピーします。（以後、この作業を
+**クローン**
+と呼びます。）
+```sh
+$ git clone https://github.com/kmc-jp/webservice2020.git
+```
+2. 以下から、ホームディレクトリにある次のディレクトリを選択します。
+
+![ここ](/1st/1st/resources/VSCode.png)
+```
+~/webservice2020/1st/1st
+```
+
+3. コマンドラインに次のコマンドをうちます。
+```sh
+% go run .
+```
+
+4. http://localhost:8800 にアクセス。
+
+この画面が出れば成功です。
+
+![ここ](/1st/1st/resources/Example.png)
+
+お疲れ様でした。
