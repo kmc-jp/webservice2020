@@ -1,6 +1,6 @@
 # Discord: Wikipedia Random Bot
 ## 概要
-　Wikipediaからランダムに記事をとってきて、それをDiscordに送信する。
+　「いつやるの？」に「今でしょ」を返す。
 ## 使い方
 ### 準備
 　discordgo の導入
