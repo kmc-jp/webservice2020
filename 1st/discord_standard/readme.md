@@ -7,6 +7,13 @@
 ```sh
 $ go get github.com/bwmarrin/discordgo
 ```
+　credit.jsonの準備
+credit.jsonを作成し、
+```json
+{
+    "discord": "Bot TOKEN"
+}
+```
 ### 動作
 - こんな感じの挙動
 ![こんな感じ](/1st/discord/resources/program.png)
