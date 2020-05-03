@@ -16,4 +16,4 @@ credit.jsonを作成し、
 ```
 ### 動作
 - こんな感じの挙動
-![こんな感じ](/1st/discord/resources/program.png)
+![こんな感じ](/1st/discord_standard/resources/program.png)
