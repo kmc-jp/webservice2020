@@ -99,7 +99,7 @@ $ git clone https://github.com/kmc-jp/webservice2020.git
 
 3. コマンドラインに次のコマンドをうちます。
 ```sh
-% go run .
+$ go run .
 ```
 
 4. http://localhost:8800 にアクセス。
