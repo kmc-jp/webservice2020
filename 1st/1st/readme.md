@@ -58,7 +58,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 1. [ここ](https://git-scm.com/download/win)からダウンロード／実行
 2. 今後作業はGitBashで行うのでこれを選択します。
 ![GitSettings](/1st/1st/resources/gitSetting.png)
-3. Unixにあわせておきたいのでこれで
+3. <br>
 ![GitSettings](/1st/1st/resources/gitSetting2.png)
 
 4. InstallまでNextを連打します。
