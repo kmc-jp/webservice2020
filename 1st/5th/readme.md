@@ -10,9 +10,8 @@
     - [HTML](#html)
         - [基本](#%E5%9F%BA%E6%9C%AC)
         - [表](#%E8%A1%A8)
-        - [メディアの表示](#%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%81%AE%E8%A1%A8%E7%A4%BA)
-            - [画像・imgタグ](#%E7%94%BB%E5%83%8F%E3%83%BBimg%E3%82%BF%E3%82%B0)
-            - [動画・videoタグ](#%E5%8B%95%E7%94%BB%E3%83%BBvideo%E3%82%BF%E3%82%B0)
+        - [画像・imgタグ](#%E7%94%BB%E5%83%8F%E3%83%BBimg%E3%82%BF%E3%82%B0)
+            - [音声・audioタグ](#%E9%9F%B3%E5%A3%B0%E3%83%BBaudio%E3%82%BF%E3%82%B0)
 
 <!-- /TOC -->
 
@@ -261,53 +260,52 @@ htmlでは、次のように表を作成することができます。
     </tr>
 </table>
 
-### メディアの表示
-HTMLの中には音楽、画像、動画を挿入することが出来ます。
+### 画像・imgタグ
+htmlでは次のように画像を埋めこむことが出来ます。
 
-#### 画像・imgタグ
 ```html
 <img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg">
 ```
 **実行例**<br>
 <img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg">
 
-imgタグのsrc(source)属性に該当する画像ファイルのURLを指定することで、その画像を挿入できる。
+imgタグのsrc(source)属性に該当する画像ファイルのURLを指定することで、その画像を挿入できます。
 
 更に次のように、画像のタイトルや、代替テキストを指定しておくと良いでしょう。ついでに、このように大きさの指定もできます。
 
 ```html
-<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="150px">
 ```
 **実行例**<br>
-<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="150px">
 
 **参考**<br>
-画像にキャプションなど付けたいときはこのようにする。
+画像にキャプションなど付けたいときはこのようにします。
 
 ```html
 <figure>
 <legend>がっこうぐらし!</legend>
-<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="150px">
 </figure>
 ```
 
 <figure>
 <legend>がっこうぐらし!</legend>
-<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="150px">
 </figure>
 
 もしくは
 
 ```html
 <figure>
-<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="150px">
 <figcaption>がっこうぐらし!</figcaption>
 </figure>
 ```
 
 <figure>
-<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="150px">
 <figcaption>がっこうぐらし!</figcaption>
 </figure>
 
-#### 動画・videoタグ
+#### 音声・audioタグ

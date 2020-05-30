@@ -10,7 +10,7 @@ import (
 type Page struct{}
 
 func main() {
-	fmt.Printf("Start listen at:http://localhost:8800")
+	fmt.Printf("Start listening at:http://localhost:8800")
 	http.Handle("/", Page{})
 	if err := http.ListenAndServe(":8800", nil); err != nil {
 		log.Print(err)
