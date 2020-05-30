@@ -266,10 +266,10 @@ HTMLの中には音楽、画像、動画を挿入することが出来ます。
 
 #### 画像・imgタグ
 ```html
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg">
 ```
 **実行例**<br>
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg">
 
 imgタグのsrc(source)属性に該当する画像ファイルのURLを指定することで、その画像を挿入できる。
 
