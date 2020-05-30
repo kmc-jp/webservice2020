@@ -213,7 +213,7 @@ htmlでは、次のように表を作成することができます。
 ```html
 <tr>...<tr>
 ```
-このタグで表の行を一列挿入できます。
+このタグで表の行を一行挿入できます。
 
 ```html
 <th>...<th>
@@ -276,10 +276,10 @@ imgタグのsrc(source)属性に該当する画像ファイルのURLを指定す
 更に次のように、画像のタイトルや、代替テキストを指定しておくと良いでしょう。ついでに、このように大きさの指定もできます。
 
 ```html
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
 ```
 **実行例**<br>
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
 
 **参考**<br>
 画像にキャプションなど付けたいときはこのようにする。
@@ -287,26 +287,26 @@ imgタグのsrc(source)属性に該当する画像ファイルのURLを指定す
 ```html
 <figure>
 <legend>がっこうぐらし!</legend>
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
 </figure>
 ```
 
 <figure>
 <legend>がっこうぐらし!</legend>
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
 </figure>
 
 もしくは
 
 ```html
 <figure>
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
 <figcaption>がっこうぐらし!</figcaption>
 </figure>
 ```
 
 <figure>
-<img src="https://github.com/kmc-jp/webservice2020/tree/master/1st/5th/resources/sample.png" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
+<img src="https://www.kmc.gr.jp/~tkmax777/data/webservice/html/sample.jpg" alt="がっこうぐらし!" title="がっこうぐらし!" width="100px">
 <figcaption>がっこうぐらし!</figcaption>
 </figure>
 
