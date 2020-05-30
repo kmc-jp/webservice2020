@@ -5,17 +5,17 @@
 
 <!-- TOC -->
 
-- [第一回](#%E7%AC%AC%E4%B8%80%E5%9B%9E)
-    - [概要](#%E6%A6%82%E8%A6%81)
-    - [手順](#%E6%89%8B%E9%A0%86)
-        - [Golang導入](#golang%E5%B0%8E%E5%85%A5)
+- [第一回](#第一回)
+    - [概要](#概要)
+    - [手順](#手順)
+        - [Golang導入](#golang導入)
             - [macOS](#macos)
             - [Windows](#windows)
-        - [gitの導入](#git%E3%81%AE%E5%B0%8E%E5%85%A5)
-            - [macOS](#macos)
-            - [Windows](#windows)
-        - [導入確認](#%E5%B0%8E%E5%85%A5%E7%A2%BA%E8%AA%8D)
-        - [VSCodeの導入](#vscode%E3%81%AE%E5%B0%8E%E5%85%A5)
+        - [gitの導入](#gitの導入)
+            - [macOS](#macos-1)
+            - [Windows](#windows-1)
+        - [導入確認](#導入確認)
+        - [VSCodeの導入](#vscodeの導入)
 
 <!-- /TOC -->
 
@@ -58,8 +58,9 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 1. [ここ](https://git-scm.com/download/win)からダウンロード／実行
 2. 今後作業はGitBashで行うのでこれを選択します。
 ![GitSettings](/1st/1st/resources/gitSetting.png)
-3. 
+3. <br>
 ![GitSettings](/1st/1st/resources/gitSetting2.png)
+
 4. InstallまでNextを連打します。
 
 ### 導入確認
@@ -76,6 +77,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 3. VS Codeの設定を開く
 4. 右上のマークをクリック
 ![ここ](/1st/1st/resources/SettingsJson.png)
+
 5. `"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"`という行を追加
 6. VSCodeを再起動
 
