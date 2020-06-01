@@ -3,15 +3,26 @@
 ## 目次
 <!-- TOC -->
 
-- [HTMLやCSS, JavaScriptについて](#html%E3%82%84css-javascript%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
-    - [目次](#%E7%9B%AE%E6%AC%A1)
-    - [概要](#%E6%A6%82%E8%A6%81)
-    - [俯瞰](#%E4%BF%AF%E7%9E%B0)
+- [HTMLやCSS, JavaScriptについて](#htmlやcss-javascriptについて)
+    - [目次](#目次)
+    - [概要](#概要)
+    - [俯瞰](#俯瞰)
     - [HTML](#html)
-        - [基本](#%E5%9F%BA%E6%9C%AC)
-        - [表](#%E8%A1%A8)
-        - [画像・imgタグ](#%E7%94%BB%E5%83%8F%E3%83%BBimg%E3%82%BF%E3%82%B0)
-            - [音声・audioタグ](#%E9%9F%B3%E5%A3%B0%E3%83%BBaudio%E3%82%BF%E3%82%B0)
+        - [基本](#基本)
+        - [表](#表)
+            - [tr](#tr)
+            - [th](#th)
+            - [td](#td)
+            - [結合](#結合)
+        - [画像・imgタグ](#画像・imgタグ)
+        - [音声・audioタグ](#音声・audioタグ)
+            - [基本形](#基本形)
+            - [応用](#応用)
+        - [動画・videoタグ](#動画・videoタグ)
+            - [基本形](#基本形-1)
+            - [応用](#応用-1)
+        - [フォーム](#フォーム)
+            - [基本形](#基本形-2)
 
 <!-- /TOC -->
 
@@ -31,7 +42,7 @@
 **文章の構造を指定するため**
 の言語で書かれたスクリプトです。ブラウザはこの文章を骨格として、ページの文章や画像を表示していきます。
 
-しかし、これだけでは構造を指定するだけで、要素の配置を細かく指定することはできません[^1]。そこで登場するのが
+しかし、これだけでは構造を指定するだけで、要素の配置を細かく指定することはできません<a href="#a1">^1</a>。そこで登場するのが
 **CSS(Cascading Style Sheets, 段階スタイルシート)**
 です。これを用いることで各々の要素の色、配置などの
 **Webページのデザインを指定する**
@@ -44,7 +55,7 @@
 以上の三本柱を元に全てのWebページは構成されています。このことを念頭におきつつ、簡単にそれぞれ見ていきましょう。
 
  
-[^1]:正確にはできますが、望ましくありません
+<a id="a1">正確にはできますが、望ましくありません</a>
 
 ## HTML
 Webページを構成するのに最低限必要不可欠なもの、それがHTMLです。まずはこれがないと何もはじまりません。まずは簡単な例を見てみましょう。
@@ -209,21 +220,25 @@ htmlでは、次のように表を作成することができます。
     </tr>
 </table>  
 
+#### tr
 ```html
 <tr>...<tr>
 ```
 このタグで表の行を一行挿入できます。
 
+#### th
 ```html
 <th>...<th>
 ```
 このタグで表の見出しを定義できます。
 
+#### td
 ```html
 <td>...<td>
 ```
 このタグで表の要素を作成できます。
 
+#### 結合
 更に、次のように記述することで表の要素を結合できたりもします。
 
 ```html
@@ -308,4 +323,148 @@ imgタグのsrc(source)属性に該当する画像ファイルのURLを指定す
 <figcaption>がっこうぐらし!</figcaption>
 </figure>
 
-#### 音声・audioタグ
+### 音声・audioタグ
+#### 基本形
+HTML5で次のように、音声の挿入が出来るようになりました。
+```html
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+<p>このブラウザでは音楽再生をサポートしていません。</p>
+</audio>
+
+```
+**実行例**<br>
+<body>
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+<p>このブラウザでは音楽再生をサポートしていません。</p>
+</audio>
+</body>
+
+順番に解説していきます。
+
+最初にimgタグと同じく、`<audio>`タグのsrc属性に音楽ファイルのURLを指定します。試しにこれだけでかいてみます。
+
+```html
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+```
+**実行例**<br>
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+
+…なにもでません。これだけでは、音声ファイルの選択を行っただけで、再生などの処理はなにも行なわれないのです。一般的なプレーヤーを表示するためには、`controls`属性を指定する必要があります。
+
+```html
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+```
+**実行例**<br>
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+
+
+ここまでですでに音声の挿入ができました。しかし、ブラウザのバージョンによっては`audio`タグに対応していない可能性があります。では一般に非対応のタグの内容がどのように処理されるかというと、そのタグの内容は無視され、その要素をそのまま文章として出力されるようになっています。そこで、この性質を利用し、最初のように`audio`要素に未対応の旨を記述しておくとユーザに通知できてよりベターでしょう。
+
+
+#### 応用
+
+ブラウザによっては、対応していない音声フォーマットがあります。この差埋めるために、`source`タグで複数の形式を用意しておくことが可能です。
+
+```html
+<body>
+<audio controls>
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.wav">
+<p>このブラウザは非対応です。</p>
+</audio>
+</body>
+```
+**実行例**<br>
+<body>
+<audio controls>
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.wav">
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+<p>このブラウザは非対応です。</p>
+</audio>
+</body>
+
+また、次の属性をaudioタグに付加することで、細かい設定が出来ます。
+
+| 属性 | 効果 |
+| ---- | ---- |
+|preload属性|音声の読み込み時期を変更できます。（auto、metadata、none）|
+|loop|繰り返し再生を行います。|
+
+この他、autoplay属性も存在しますが、今日多くのブラウザではこの機能が無視されるようになっているので、あまりつかえません。
+
+### 動画・videoタグ
+#### 基本形
+画像や音声の挿入の仕方を複合した感じで挿入できます。
+
+```html
+<body>
+<video src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp4" width="300px" controls>
+<p>このブラウザでは対応していません。</p>
+</video>
+</body>
+```
+**実行例**<br>
+<body>
+<video src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp4" width="300px" controls>
+<p>このブラウザでは対応していません。</p>
+</video>
+</body>
+
+#### 応用
+音声と同じく複数の形式を用意することが可能です。
+```html
+<body>
+<video  width="300px" controls>
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp4">
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.ogv">
+<p>このブラウザでは対応していません。</p>
+</video>
+</body>
+```
+**実行例**<br>
+<body>
+<video  width="300px" controls>
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp4">
+<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.ogv">
+<p>このブラウザでは対応していません。</p>
+</video>
+</body>
+
+`audio`タグと同様に、読み込み設定などの細かい設定が出来ます。
+
+
+| 属性 | 効果 |
+| ---- | ---- |
+|preload|動画の読み込み時期を変更できます。（auto、metadata、none）|
+|loop|繰り返し再生を行います。|
+|muted|初期状態を消音します。|
+|autoplay|自動再生を有効にします。但し、`muted`属性が必要です。|
+|playsinline|スマホなどで全画面表示をオフにします。<br>但し、`autoplay`, `muted`属性が同時に必要です。|
+|poster|動画のサムネイルになる画像をURLで指定できます。|
+
+詳細は
+[ココ](https://webliker.info/52510/)
+のページがわかりやすく解説してくれているので、興味があれば是非一読あれ。
+
+### フォーム
+#### 基本形
+```html
+<form action="https://script.google.com/macros/s/AKfycbzqmk6foQdJ1RicRXr4nRk6Fsk8da34yut_4QRVtRqHiqeG7ZXf/exec"  method="post">
+<p>
+    <label>
+        入力:
+        <input type="text" name="text">
+    </label>
+</p>
+<input type="submit" value="送信">
+</form>
+```
+<form action="https://script.google.com/macros/s/AKfycbzqmk6foQdJ1RicRXr4nRk6Fsk8da34yut_4QRVtRqHiqeG7ZXf/exec"  method="post">
+<p>
+    <label>
+        入力:
+        <input type="text" name="text">
+    </label>
+</p>
+<input type="submit" value="送信">
+</form>
