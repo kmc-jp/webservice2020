@@ -344,18 +344,18 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 最初にimgタグと同じく、`<audio>`タグのsrc属性に音楽ファイルのURLを指定します。試しにこれだけでかいてみます。
 
 ```html
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3"></audio>
 ```
 **実行例**<br>
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3"></audio>
 
 …なにもでません。これだけでは、音声ファイルの選択を行っただけで、再生などの処理はなにも行なわれないのです。一般的なプレーヤーを表示するためには、`controls`属性を指定する必要があります。
 
 ```html
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls></audio>
 ```
 **実行例**<br>
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls></audio>
 
 
 ここまでですでに音声の挿入ができました。しかし、ブラウザのバージョンによっては`audio`タグに対応していない可能性があります。では一般に非対応のタグの内容がどのように処理されるかというと、そのタグの内容は無視され、その要素をそのまま文章として出力されるようになっています。そこで、この性質を利用し、最初のように`audio`要素に未対応の旨を記述しておくとユーザに通知できてよりベターでしょう。
