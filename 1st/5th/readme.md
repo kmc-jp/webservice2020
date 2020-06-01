@@ -347,7 +347,7 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 <audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3"></audio>
 ```
 **実行例**<br>
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3"></audio>
+
 
 …なにもでません。これだけでは、音声ファイルの選択を行っただけで、再生などの処理はなにも行なわれないのです。一般的なプレーヤーを表示するためには、`controls`属性を指定する必要があります。
 
