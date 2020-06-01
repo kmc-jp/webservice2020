@@ -332,11 +332,12 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 </audio>
 
 ```
-**実行例**<br>
+[実行例](/1st/5th/audio/audio.html)\
 <body>
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
-<p>このブラウザでは音楽再生をサポートしていません。</p>
-</audio>
+    <h1>実行例</h1><br>
+    <audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
+        <p>このブラウザでは音楽再生をサポートしていません。</p>
+    </audio>
 </body>
 
 順番に解説していきます。
@@ -346,17 +347,17 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 ```html
 <audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
 ```
-**実行例**<br>
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+
+[実行例](/1st/5th/audio/audio2.html)
 
 …なにもでません。これだけでは、音声ファイルの選択を行っただけで、再生などの処理はなにも行なわれないのです。一般的なプレーヤーを表示するためには、`controls`属性を指定する必要があります。
 
 ```html
 <audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
 ```
-**実行例**<br>
-<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3" controls>
 
+[実行例](/1st/5th/audio/audio3.html)
+<audio src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
 
 ここまでですでに音声の挿入ができました。しかし、ブラウザのバージョンによっては`audio`タグに対応していない可能性があります。では一般に非対応のタグの内容がどのように処理されるかというと、そのタグの内容は無視され、その要素をそのまま文章として出力されるようになっています。そこで、この性質を利用し、最初のように`audio`要素に未対応の旨を記述しておくとユーザに通知できてよりベターでしょう。
 
@@ -374,14 +375,14 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 </audio>
 </body>
 ```
-**実行例**<br>
-<body>
+
+[実行例](/1st/5th/audio/audio4.html)
+
 <audio controls>
-<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.wav">
-<source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
-<p>このブラウザは非対応です。</p>
-</audio>
-</body>
+        <source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.wav">
+        <source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp3">
+        <p>このブラウザは非対応です。</p>
+    </audio>
 
 また、次の属性をaudioタグに付加することで、細かい設定が出来ます。
 
@@ -403,7 +404,9 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 </video>
 </body>
 ```
-**実行例**<br>
+
+[実行例](/1st/5th/video/video.html)
+
 <body>
 <video src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp4" width="300px" controls>
 <p>このブラウザでは対応していません。</p>
@@ -421,7 +424,7 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 </video>
 </body>
 ```
-**実行例**<br>
+[実行例](/1st/5th/video/video2.html)<br>
 <body>
 <video  width="300px" controls>
 <source src="https://static.kmc.gr.jp/projects/webservice2020/5th/sample.mp4">
@@ -459,12 +462,4 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 <input type="submit" value="送信">
 </form>
 ```
-<form action="https://script.google.com/macros/s/AKfycbzqmk6foQdJ1RicRXr4nRk6Fsk8da34yut_4QRVtRqHiqeG7ZXf/exec"  method="post">
-<p>
-    <label>
-        入力:
-        <input type="text" name="text">
-    </label>
-</p>
-<input type="submit" value="送信">
-</form>
+[実行例](/1st/5th/form/form.html)
