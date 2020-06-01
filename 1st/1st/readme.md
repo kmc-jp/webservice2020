@@ -57,9 +57,9 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 #### Windows
 1. [ここ](https://git-scm.com/download/win)からダウンロード／実行
 2. 今後作業はGitBashで行うのでこれを選択します。
-![GitSettings](/1st/1st/resources/gitSetting.png)
+![GitSettings](./resources/gitSetting.png)
 3. <br>
-![GitSettings](/1st/1st/resources/gitSetting2.png)
+![GitSettings](./resources/gitSetting2.png)
 
 4. InstallまでNextを連打します。
 
@@ -76,7 +76,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 - Windowsの場合
 3. VS Codeの設定を開く
 4. 右上のマークをクリック
-![ここ](/1st/1st/resources/SettingsJson.png)
+![ここ](./resources/SettingsJson.png)
 
 5. `"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"`という行を追加
 6. VSCodeを再起動
@@ -94,7 +94,7 @@ $ git clone https://github.com/kmc-jp/webservice2020.git
 ```
 2. 以下から、ホームディレクトリにある次のディレクトリを選択します。
 
-![ここ](/1st/1st/resources/VSCode.png)
+![ここ](./resources/VSCode.png)
 ```
 ~/webservice2020/1st/1st
 ```
@@ -108,6 +108,6 @@ $ go run .
 
 この画面が出れば成功です。
 
-![ここ](/1st/1st/resources/Example.png)
+![ここ](./resources/Example.png)
 
 お疲れ様でした。
