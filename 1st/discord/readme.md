@@ -9,7 +9,7 @@ $ go get github.com/bwmarrin/discordgo
 ```
 ### 動作
 - こんな感じの挙動
-![こんな感じ](/1st/discord/resources/program.png)
+![こんな感じ](./resources/program.png)
 
 ### HTTPについて
-[学んで行きましょう！](/1st/discord/http.md)
+[学んで行きましょう！](./http.md)
