@@ -34,7 +34,7 @@
 
 その答えはブラウザの開発者ツールを用いれば見ることができます。次の画像はKMCの外部ページをChromeの開発者ツールを用いて眺めてみた例です。
 
-![開発者ツール](/1st/5th/resources/browserDev.png)
+![開発者ツール](https://static.kmc.gr.jp/projects/webservice2020/5th/browserDev.png)
 
 なにやら沢山の記号を用いたスクリプトがでてきました。これは
 **HTML(HyperTextMarkupLanguage)**
