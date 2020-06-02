@@ -146,6 +146,7 @@ func main(){
 このように計算をすることもできる。
 
 **演算子一覧**
+
 |演算子|内容|
 | ---- | ---- |
 |+|加算|
@@ -220,13 +221,11 @@ fmt.Printf("i:%d f:%f\n", i, f)// => i:42 f:42.000000
 |型|内容|
 | ---- | ---- |
 |int|符号付整数|
-|float32|浮動小数点|
+|float64|浮動小数点|
 |string|文字列|
 |bool|真理値|
 
-他にもcomplex64(複素数)，※byte(文字列)など沢山ある。
-
-※byteとスライスは本質的には同じ物。ただし文字列を扱うだけなら基本的にstringで扱う。
+他にもcomplex128(複素数)，※byte(文字列)など沢山ある。
 
 **変数の有効範囲**
 
@@ -240,7 +239,7 @@ package	main
 func main() {
 	var ans int
 	ans = compute(1, 1)
-	print(ans, "\n") // => 2
+	println(ans, "\n") // => 2
 }
 
 func compute(x int, y int) int {
@@ -283,6 +282,7 @@ func main() {
 ☆複数packageをimportするときは、二種類の書き方がある。
 
 1. import を列挙
+
 ```go
 import "fmt"
 import "net/http"
@@ -420,7 +420,7 @@ package main
 import "fmt"
 
 var x int = 1
-const c int = 2
+const c = 2
 
 func main() {
      fmt.Printf("x:%d c:%d", x, c)// => x:1 c:2

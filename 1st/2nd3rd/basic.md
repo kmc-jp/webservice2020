@@ -104,7 +104,7 @@ package main
 import "fmt"
 
 func main() {
-	sum := 0
+	var sum = 0
 	for i := 0; i < 10; i++ {
 		sum += i
 	}
@@ -176,7 +176,7 @@ for i := 0; i < 2; i++ {
        continue
     }
 
-    fmt.Printf("%d\n", %d)// => 1
+    fmt.Printf("%d\n", i)// => 1
 }
 ```
 
