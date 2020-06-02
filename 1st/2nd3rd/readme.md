@@ -278,7 +278,7 @@ func main() {
 
 →関数などの集合。先人の知恵ですね。
 
-各packageの中の関数を使うときは`packageNAME.functionNAME`の形で実行する。
+各packageの中の関数を使うときは`packageNAME.FunctionNAME`の形で実行する。
 
 ☆複数packageをimportするときは、二種類の書き方がある。
 
