@@ -1,5 +1,5 @@
-[CSS](./css.html) 
-[JavaScript](./javascript.html)
+[CSS](./css.md) 
+[JavaScript](./javascript.md)
 ## 目次
 <!-- TOC -->
 
@@ -28,6 +28,9 @@
         - [formタグ](#formタグ)
         - [inputタグ](#inputタグ)
             - [type属性](#type属性)
+- [クラスとID](#クラスとid)
+    - [クラス](#クラス)
+    - [ID](#id)
 - [HTML終了](#html終了)
 
 <!-- /TOC -->
@@ -523,7 +526,22 @@ enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`�
 
 必要になったら探しましょう。そのうち覚えます。
 
+## クラスとID
+ここまでで配置だけなら出来るのですが、今後 CSSやJavaScriptを扱うにあたり、要素を指定できるようにする必要があります。そこで、各々の要素に対してクラスやIDというものを定義します。
+
+### クラス
+```html
+<タグ class="クラス名">
+```
+これだけ。クラスでは同一の名前を何度でも用いることができます。
+
+### ID
+```html
+<タグ id="ID">
+```
+これだけ。IDの名称は一意に決まる必要があります。
+
 ## HTML終了
 以上で簡単なページなら作成できるようになりました。しかしまだデザインの指定ができませんね。次はCSSを学んでいきましょう！
 
-[CSSへ](./css.html)
+[CSSへ](./css.md)
