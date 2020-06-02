@@ -50,7 +50,7 @@ HTTPプロトコルには
         <td>302</td><td>Found</td><td>リソースが一時的に移動したことを示す。</td>
     </tr>
     <tr>
-        <td>303</td><td>See Other</td><td>リクエストに対して他のページに移動させるべき場合に用いる。</td>
+        <td>303</td><td>See Other</td><td>他のページに移動するべきことを示す。</td>
     </tr>
     <tr>
         <td>307</td><td>Temporary Redirect</td><td>リソースが一時的に移動したことを示す。</td>
@@ -62,19 +62,19 @@ HTTPプロトコルには
         <td rowspan="6">クライアントエラー</td><td>400</td><td>Bad Request</td><td>リクエストが不正で要求が達せられなかったことを示す。</td>
     </tr>
     <tr>
-        <td>401</td><td>Unauthorized</td><td>認証が不正なことを示します。</td>
+        <td>401</td><td>Unauthorized</td><td>認証が不正なことを示す。</td>
     </tr>
     <tr>
-        <td>403</td><td>Forbidden</td><td>リソースに触れるための権限が不足していることを示しています。</td>
+        <td>403</td><td>Forbidden</td><td>リソースに触れるための権限が不足していることを示す。</td>
     </tr>
     <tr>
-        <td>404</td><td>Not Found</td><td>リソースが見つからないことを示しています。</td>
+        <td>404</td><td>Not Found</td><td>リソースが見つからないことを示す。</td>
     </tr>
     <tr>
-        <td>408</td><td>Request Timeout</td><td>リクエストを達するのに時間がかかりすぎたことを示します。</td>
+        <td>408</td><td>Request Timeout</td><td>リクエストを達するのに時間がかかりすぎたことを示す。</td>
     </tr>
     <tr>
-        <td>418</td><td>I'm a teapot</td><td>クライアントがコーヒーを淹れようとして、サーバーがティーポットだったことを示します☕</td>
+        <td>418</td><td>I'm a teapot</td><td>クライアントがコーヒーを淹れようとして、サーバーがティーポットだったことを示す☕</td>
     </tr>
     <tr>
         <td rowspan="1">サーバエラー</td><td>500</td><td>Internal Server Error</td><td>サーバの内部エラー時に返される。辛い。</td>
