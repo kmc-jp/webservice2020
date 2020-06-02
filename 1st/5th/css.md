@@ -10,12 +10,12 @@
     <meta charset="UTF-8">
     <link rel="author" href="mailto:someone@example.jp">
     <title lang="jp">WebService2020</title>
-    <style>
-        h1 {
-            font-family: "ＭＳ 明朝", serif;
-            color: #616161;
-        } 
-    </style>
+        <style>
+            h1 {
+                font-family: "ＭＳ 明朝", serif;
+                color: #616161;
+            }
+        </style>
 
 <body>
     <h1>KMCでの暮らし</h1>
@@ -36,13 +36,19 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
 }
 ```
 
-セレクタには、
+## セレクタ
 
-1. タグ
-2. クラス
-3. ID
+|種別|セレクタ|選択される要素|
+| ---- | ---- | ---- |
+|要素型セレクタ|タグ|タグの要素|
+|全称セレクタ|*|すべての要素|
+|classセレクタ|要素名.クラス名|該当するクラスに属する要素|
+|idセレクタ|要素名#id名|該当する要素|
+|/2. 疑似クラス|要素名:link|未訪問のリンク|
+|要素名:visited|訪問済のリンク|
 
-の３種類が該当します。
+## よく使うプロパティ
+
 
 ```html
 <!DOCTYPE html>
@@ -56,10 +62,10 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
             .sample {                
                 font-family: 'M PLUS 1p', sans-serif;
             }
-            h1.sample{
+            h1.sample {
                 font-weight: 700;
             }
-            p.sample{
+            p.sample {
                 font-weight: 500; 
             }
         </style>
