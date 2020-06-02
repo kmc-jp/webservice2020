@@ -444,7 +444,8 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 入力するためのフォームを作成するときに挿入します。この要素のなかに、該当する入力タグを書いていきます。
 
 属性は以下の通りです。
-|属性|内容|
+
+| 属性 | 内容 |
 | ---- | ---- |
 |action|その入力の送信先を指定します|
 |method|送信に使うメソッドをGETかPOSTの内から指定できます。|
@@ -452,7 +453,8 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 |name|フォームに名前を付けることができます。<br>これによってサーバ側でどのフォームからの入力か判別することが出来ます。|
 
 enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain`の３種類があります。
-|種類|目的|
+
+| 種類 | 目的 |
 | ---- | ---- |
 |application/x-www-form-urlencoded|キーとデータを対応させた形で送信。デフォルト|
 |multipart/form-data |ファイルを送信。|
@@ -462,7 +464,8 @@ enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`�
 フォームで送信する内容を指定するためのタグです。
 ##### type属性
 入力方式を選択します。めちゃくちゃあります。雑に一覧にまとめます。
-|type|実装例|HTML|
+
+| type | 実装例 | HTML |
 | ---- | ---- | ---- |
 |email|<input type="email" name="email">|`<input type="email" name="email">`|
 |url|<input type="url" name="url">|`<input type="url" name="url">`|
