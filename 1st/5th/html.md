@@ -487,7 +487,7 @@ enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`�
 |file|<input type="file" name="file">|`<input type="file" name="file">`|
 |image|<input type="image" name="image" src="./resources/button.jpg" height="30px">|`<input type="image" name="image" src="./resources/button.jpg" height="30px">`|
 |reset|<input type="reset" name="reset">|`<input type="reset" name="reset">`|
-|button|<input type="button" name="button">|`<input type="button" name="button">`|
+|button|<input type="button" name="button" value="ボタン">|`<input type="button" name="button">`|
 |submit|<input type="submit" name="submit">|`<input type="submit" name="submit">`|
 
 必要になったら探しましょう。そのうち覚えます。
