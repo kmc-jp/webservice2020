@@ -1,4 +1,5 @@
-
+[CSS](./css.html) 
+[JavaScript](./javascript.html)
 ## HTML
 Webページを構成するのに最低限必要不可欠なもの、それがHTMLです。まずはこれがないと何もはじまりません。まずは簡単な例を見てみましょう。
 
@@ -217,6 +218,41 @@ htmlでは、次のように表を作成することができます。
     </tr>
 </table>
 
+### リスト
+### 基本形
+<figure>
+    <figcaption>りゅうおうのおしごと！</figcaption>
+    <ol>
+        <li>雛鶴あい</li>
+        <li>夜叉神天衣</li>
+        <li value="999">空 銀子</li>
+    </ol>
+    <ol start="10000000">
+        <li>清滝 桂香</li>
+    </ol>
+</figure>
+
+<figure>
+<figcaption>天使の3P!</figcaption>
+    <ul>
+        <li>五島 潤</li>
+        <li>紅葉谷 希美</li>
+        <li>金城 そら</li>
+    </ul>
+</figure>
+
+### olタグ
+Ordered List。序列をつけることができます。この場合、上記のようにstart属性で開始位置を指定できます。
+|属性|効果|
+|----|----|
+|start|開始番号指定|
+|reverse|序列の反転|
+
+### ulタグ
+Unorderd List。箇条書を作ることができます。
+### liタグ
+リストの要素を列挙するのに使います。`ol`要素に含まれる場合にのみ、value属性で序列を指定できます。
+
 ### 画像・imgタグ
 htmlでは次のように画像を埋めこむことが出来ます。
 
@@ -403,3 +439,57 @@ HTML5で次のように、音声の挿入が出来るようになりました。
 </p>
 <input type="submit" value="送信">
 </form>
+
+#### formタグ
+入力するためのフォームを作成するときに挿入します。この要素のなかに、該当する入力タグを書いていきます。
+
+属性は以下の通りです。
+|属性|内容|
+|----|----|
+|action|その入力の送信先を指定します|
+|method|送信に使うメソッドをGETかPOSTの内から指定できます。|
+|enctype|リクエストの記法を指定します。|
+|name|フォームに名前を付けることができます。<br>これによってサーバ側でどのフォームからの入力か判別することが出来ます。|
+
+enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain`の３種類があります。
+|種類|目的|
+|----|----|
+|application/x-www-form-urlencoded|キーとデータを対応させた形で送信。デフォルト|
+|multipart/form-data |ファイルを送信。|
+|text/plain|単なる文を送信|
+
+#### inputタグ
+フォームで送信する内容を指定するためのタグです。
+##### type属性
+入力方式を選択します。めちゃくちゃあります。雑に一覧にまとめます。
+|type|実装例|HTML|
+|----|----|----|
+|email|<input type="email" name="email">|`<input type="email" name="email">`|
+|url|<input type="url" name="url">|`<input type="url" name="url">`|
+|search|<input type="search" name="search">|`<input type="search" name="search">`|
+|tel|<input type="tel" name="tel">|`<input type="tel" name="tel">`|
+|text|<input type="text" name="text">|`<input type="text" name="text">`|
+|password|<input type="password" name="password">|`<input type="password" name="password">`|
+|datetime|<input type="datetime" name="datetime">|`<input type="datetime" name="datetime">`|
+|date|<input type="date" name="date">|`<input type="date" name="date">`|
+|month|<input type="month" name="month">|`<input type="month" name="month">`|
+|week|<input type="week" name="week">|`<input type="week" name="week">`|
+|time|<input type="time" name="time">|`<input type="time" name="time">`|
+|datetime-local|<input type="datetime-local" name="datetime-local">|`<input type="datetime-local" name="datetime-local">`|
+|number|<input type="number" name="number">|`<input type="number" name="number">`|
+|range|<input type="range" name="range">|`<input type="range" name="range">`|
+|color|<input type="color" name="color ">|`<input type="color" name="color">`|
+|checkbox|<input type="checkbox" name="checkbox">|`<input type="checkbox" name="checkbox">`|
+|radio|<input type="radio" name="radio">|`<input type="radio" name="radio">`|
+|file|<input type="file" name="file">|`<input type="file" name="file">`|
+|image|<input type="image" name="image" src="./resources/button.jpg" height="30px">|`<input type="image" name="image" src="./resources/button.jpg" height="30px">`|
+|reset|<input type="reset" name="reset">|`<input type="reset" name="reset">`|
+|button|<input type="button" name="button">|`<input type="button" name="button">`|
+|submit|<input type="submit" name="submit">|`<input type="submit" name="submit">`|
+
+必要になったら探しましょう。そのうち覚えます。
+
+## HTML終了
+以上で簡単なページなら作成できるようになりました。しかしまだデザインの指定ができませんね。次はCSSを学んでいきましょう！
+
+[CSSへ](./css.html)
