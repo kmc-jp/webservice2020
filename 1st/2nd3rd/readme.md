@@ -239,7 +239,7 @@ package	main
 func main() {
 	var ans int
 	ans = compute(1, 1)
-	println(ans, "\n") // => 2
+	println(ans) // => 2
 }
 
 func compute(x int, y int) int {
