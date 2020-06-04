@@ -37,7 +37,10 @@
 </html>
 ```
 **実行例**
-![例1](./resources/css1.jpg)
+<iframe src="./cssSample/css1.html" name="sample" width="90%" height="200">
+    <a href="./cssSample/css1.html"></a>
+</iframe>
+
 
 CSSはこのようにhead内にStyleタグの要素として記述していくことで記述することが出来ます。では、ひとつずつ要素を眺めていきましょう。
 
