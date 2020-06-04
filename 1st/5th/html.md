@@ -65,7 +65,7 @@ Webページを構成するのに最低限必要不可欠なもの、それがHT
 ```
 **実行例**<br>
 
-<iframe src="./sample.html" name="sample" width="90%" height="300">
+<iframe src="./sample.html" name="sample" width="90%" height="200">
     <a href="sample.html"></a>
 </iframe>
 
