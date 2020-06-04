@@ -1,5 +1,7 @@
 # HTMLやCSS, JavaScriptについて
-
+[HTML](./html.md)
+[CSS](./css.md)
+[JavaScript](./javascript.md)
 ## 目次
 <!-- TOC -->
 
