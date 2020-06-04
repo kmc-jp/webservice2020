@@ -64,18 +64,9 @@ Webページを構成するのに最低限必要不可欠なもの、それがHT
 
 ```
 **実行例**<br>
-<article>
-    <h1 lang="ja">KMCとは？</h1>
-    <p>
-        京大マイコンクラブは京都大学を中心に活動している京都大学全学公認のコンピュータサークルです。
-        <b>マイコン</b>
-        という言葉は今では死語ですが、1977年の設立以来その名を引き継いで現在に至ります。
-        KMCの歴史については
-        <a href="https://kmc.gr.jp/guidance/history.html">KMCの歴史</a>
-        をご覧下さい。
-    </p>
-</article>
-
+<iframe src="./sample.html" name="sample" width="200" height="150">
+<a href="sample.html">
+</iframe>
 
 順番に要素をみていきましょう。
 
