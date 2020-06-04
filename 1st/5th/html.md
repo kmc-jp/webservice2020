@@ -559,7 +559,7 @@ enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`�
 ```html
 <タグ class="クラス名">
 ```
-これだけ。クラスでは同一の名前を何度でも用いることができます。
+これだけ。同一クラスを複数のタグに設定することができます。
 
 ### ID
 ```html
