@@ -516,9 +516,9 @@ enctypeの種類は`application/x-www-form-urlencoded`、`multipart/form-data`�
 
 | 種類 | 目的 |
 | ---- | ---- |
-|application/x-www-form-urlencoded|キーとデータを対応させた形で送信。デフォルト|
-|multipart/form-data |ファイルを送信。|
-|text/plain|単なる文を送信|
+|application/x-www-form-urlencoded|キーとデータを対応させた形で送信。初期値|
+|multipart/form-data |ファイルを送信|
+|text/plain|平文を送信|
 
 #### inputタグ
 フォームで送信する内容を指定するためのタグです。
