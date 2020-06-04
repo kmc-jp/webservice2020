@@ -254,6 +254,31 @@ htmlでは、次のように表を作成することができます。
 
 ### リスト
 #### 基本形
+```html
+<figure>
+    <figcaption>りゅうおうのおしごと！</figcaption>
+    <ol>
+        <li>雛鶴あい</li>
+        <li>夜叉神天衣</li>
+        <li value="999">空 銀子</li>
+    </ol>
+    <ol start="10000000">
+        <li>清滝 桂香</li>
+    </ol>
+</figure>
+
+<figure>
+<figcaption>天使の3P!</figcaption>
+    <ul>
+        <li>五島 潤</li>
+        <li>紅葉谷 希美</li>
+        <li>金城 そら</li>
+    </ul>
+</figure>
+```
+
+・実行例<br>
+
 <figure>
     <figcaption>りゅうおうのおしごと！</figcaption>
     <ol>
