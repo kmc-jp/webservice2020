@@ -170,7 +170,7 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         <td>vertical-align</td><td>baseline, top, middle, bottom<br>text-top, text-bottom, super, sub<br>% 数値(単位付き)</td><td>文字列の配置を指定できる。<a href="http://www.htmq.com/style/vertical-align.shtml">詳細はココ参照</a></td>
     </tr>
     <tr>
-        <td>text-underline-position</td><td>auto, under, left, right</td>傍線の位置を指定。<br>但し、left, rightは縦書き用<td></td>
+        <td>text-underline-position</td><td>auto, under, left, right</td><td>傍線の位置を指定。<br>但し、left, rightは縦書き用</td>
     </tr>
         <td>text-indent</td><td>%, 数値, each-line, hanging</td><td>pタグに適応することで、一行目のインデント幅を調整できる。<br>但し、hangingを指定するとこれが反転する。
         </td>
