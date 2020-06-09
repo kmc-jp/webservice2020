@@ -36,8 +36,6 @@ func init() {
 }
 
 func main() {
-	// fmt.Printf("%#v\n", idol.Read())
-
 	var api *slack.Client = slack.New(BotToken)
 
 	RTM = api.NewRTM()
@@ -53,7 +51,6 @@ func main() {
 			ListenTo()
 		}
 	}
-
 }
 
 func ListenTo() {
