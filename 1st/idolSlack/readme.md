@@ -66,3 +66,51 @@ packageは引用されたとき、init関数が最初に実行されるため、
 [このページ](https://imascg-slstage-wiki.gamerch.com/%E3%82%A2%E3%82%A4%E3%83%89%E3%83%AB%E4%B8%80%E8%A6%A7)
 からデレマスキャラの詳細を取得しています。
 
+```go
+func init() {
+	var x []idol.Idol = idol.Get()//1
+	b, err := json.MarshalIndent(x, "", "    ")//2
+	if err != nil {
+		panic("Marshal Error!")
+	}
+	err = ioutil.WriteFile(filepath.Join("..", "data.json"), b, os.ModePerm)//3
+	if err != nil {
+		panic("Write Error!")
+	}
+}
+```
+
+1. idol パッケージのIdol型Getメソッドを実行
+   - この時デレマスのデータを取得している。
+2. jsonパッケージのMarshalIndent関数を実行
+   - json形式にxの中身を変換している。
+3. ioutilパッケージのWriteFile関数を実行
+   - data.jsonに記録している。
+
+### main関数
+```go
+func main(){
+	var api *slack.Client = slack.New(BotToken)//1
+
+	RTM = api.NewRTM()//2
+
+	go RTM.ManageConnection()//3
+
+	for msg := range RTM.IncomingEvents {
+		switch ev := msg.Data.(type) {
+		case *slack.ConnectedEvent:
+			fmt.Printf("Start connection with Slack\n")//4
+		case *slack.MessageEvent:
+			EV = ev
+			ListenTo()//5
+		}
+    }
+}
+```
+
+1. Botトークンをもとに、Slackとの通信をするための初期化をする
+2. Real Time Messangerを作成。これで各種Slackとの通信を行う。
+3. 通信を開始する。
+4. Slackとの通信を開始したらメッセージを表示
+5. メッセージが送信されたらListenTo関数を実行する。
+
