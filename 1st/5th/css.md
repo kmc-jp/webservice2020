@@ -172,6 +172,7 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
     <tr>
         <td>text-underline-position</td><td>auto, under, left, right</td><td>傍線の位置を指定。<br>但し、left, rightは縦書き用</td>
     </tr>
+    <tr>
         <td>text-indent</td><td>%, 数値, each-line, hanging</td><td>pタグに適応することで、一行目のインデント幅を調整できる。<br>但し、hangingを指定するとこれが反転する。
         </td>
     </tr>
