@@ -31,7 +31,7 @@
                 color: #616161;
             }
         </style>
-
+</head>
 <body>
     <h1>KMCでの暮らし</h1>
     <p>KMCにはmatuという優秀な会長が居ます。わからないことがあれば、すべて会長に投げましょう。</p>
@@ -125,47 +125,47 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         <th>ジャンル</th><th>プロパティ</th><th>値</th><th>効果</th>
     </tr>
     <tr>
-        <td rowspan="11">色・画像</td><td>color</td><td>代表値, #RGB記法</td><td>文字色変更</td>
-    <tr>
+        <td rowspan="6">色・画像</td><td>color</td><td>代表値, #RGB記法</td><td>文字色変更</td>
+    </tr>
     <tr>
         <td>background-color</td><td>代表値, #RGB記法</td><td>背景色を指定する</td>
-    <tr>
+    </tr>
     <tr>
         <td>background-image</td><td>url(URL)</td><td>背景色を指定する</td>
-    <tr>
+    </tr>
     <tr>
         <td>background-attachment</td><td>fixed, scroll</td><td>背景画像の固定・非固定を指定</td>
-    <tr>
+    </tr>
     <tr>
         <td>background-position</td><td><a href="#position">位置の名前</a>, <br>左上からの%, <br>ピクセル</td><td>位置指定</td>
-    <tr>
+    </tr>
     <tr>
         <td>background-repeat</td><td>repeat repeat-x repeat-y no-repeat</td><td>背景の繰り返し</td>
+    </tr>
     <tr>
-    <tr>
-        <td rowspan="10">フォント</td><td>font-style</td><td>normal italic oblique</td><td>標準・イタリック体・斜体を切りかえる</td>
-    <tr>
+        <td rowspan="5">フォント</td><td>font-style</td><td>normal italic oblique</td><td>標準・イタリック体・斜体を切りかえる</td>
+    </tr>
     <tr>
         <td>font-variant</td><td>normal small-caps</td><td>小文字大文字を切り替える</td>
-    <tr>
+    </tr>
     <tr>
         <td>font-size</td><td>ピクセル, %<br>xx-small, x-small, small<br>medium, large, x-large, xx-large</td><td>文字の太さ指定</td>
-    <tr>
+    </tr>
     <tr>
         <td>font-size-adjust</td><td>none, 数値(相対比率)<br>inherit(上層に合わせる)</td><td>フォント間のサイズ差を自動調整する</td>
-    <tr>
+    </tr>
     <tr>
         <td>font-variant</td><td>normal small-caps</td><td>小文字大文字を切り替える</td>
+    </tr>
     <tr>
-    <tr>
-        <td rowspan="9">テキスト整形</td><td>line-height</td><td>normal, 数値(比率 or 単位付き), %</td><td>行幅を指定</td>
-    <tr>
+        <td rowspan="6">テキスト整形</td><td>line-height</td><td>normal, 数値(比率 or 単位付き), %</td><td>行幅を指定</td>
+    </tr>
     <tr>
         <td>text-align</td><td>start, end, left, right<br>center, justify, match-parent</td><td>枠内での文字列の振り分け<br>justify選択時にはtext-justifyプロパティで更に詳しく設定できる。</td>
-    <tr>
+    </tr>
     <tr>
         <td>text-justify</td><td>auto none inter-word inter-character</td><td>自動 / 無効 / 単語による調整 / 文字による調整</td>
-    <tr>
+    </tr>
     <tr>
         <td>vertical-align</td><td>baseline, top, middle, bottom<br>text-top, text-bottom, super, sub<br>% 数値(単位付き)</td><td>文字列の配置を指定できる。<a href="http://www.htmq.com/style/vertical-align.shtml">詳細はココ参照</a></td>
     </tr>
@@ -176,8 +176,8 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         </td>
     </tr>
     <tr>
-        <td rowspan="8">大きさ</td><td>width</td><td>auto %, 数値(単位付き)</td><td>幅を指定する。</td>
-    <tr>
+        <td rowspan="6">大きさ</td><td>width</td><td>auto %, 数値(単位付き)</td><td>幅を指定する。</td>
+    </tr>
     <tr>
         <td>max-width</td><td>auto %, 数値(単位付き)</td><td>幅の最大値を指定</td>
     </tr>
@@ -186,7 +186,7 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
     </tr>
     <tr>
         <td>height</td><td>auto %, 数値(単位付き)</td><td>高さを指定する。</td>
-    <tr>
+    </tr>
     <tr>
         <td>max-height</td><td>auto %, 数値(単位付き)</td><td>高さの最大値を指定</td>
     </tr>
@@ -212,6 +212,7 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
 </table>
 
 <a id="weight">・太さの名前</a><br>
+
 <table>
     <tr>
         <th>名前</th><th>対応</th>
