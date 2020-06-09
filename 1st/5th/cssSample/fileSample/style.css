@@ -1,0 +1,27 @@
+div.text div.head{
+    background-color: rgb(228, 228, 228);
+    border-radius: 5px;
+    
+    font-weight: bold;
+
+    height: 50px;
+
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.text div.body{
+    border: 3px solid ;
+    border-color: rgb(228, 228, 228);
+    border-radius: 5px;
+    border-top: transparent;
+
+
+    background-color: whitesmoke;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}

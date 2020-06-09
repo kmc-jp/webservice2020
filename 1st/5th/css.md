@@ -1,5 +1,5 @@
 [HTML](./html.md)
-[JavaScript](./javascript.md)
+[javaScript](./javascript.md)
 # CSS
 とりあえずHTMLの作成はできるようになりましたが、このままではデザインが素朴(ってかダサい)。というわけで、最低限、色付けたり出来るようになりましょう！
 
@@ -12,6 +12,8 @@
     - [各要素の名前](#各要素の名前)
     - [セレクタ](#セレクタ)
     - [プロパティ](#プロパティ)
+    - [色々な指定の仕方](#色々な指定の仕方)
+        - [別ファイルでの指定](#別ファイルでの指定)
 
 <!-- /TOC -->
 ### 基本
@@ -36,7 +38,9 @@
 </body>
 </html>
 ```
-**実行例**
+・<a href="./cssSample/css1.html">
+実行例
+</a>
 
 <iframe src="./cssSample/css1.html" name="sample" width="90%" height="200">
     <a href="./cssSample/css1.html"></a>
@@ -114,6 +118,8 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
 
 ## プロパティ
 
+主要なもの。全部は<a href="http://www.htmq.com/style/">このページ</a>が詳しくかいてあります。これもまた、無理に覚える必要はありません。必要になったら調べましょう。
+
 <table>
     <tr>
         <th>ジャンル</th><th>プロパティ</th><th>値</th><th>効果</th>
@@ -152,7 +158,7 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         <td>font-variant</td><td>normal small-caps</td><td>小文字大文字を切り替える</td>
     <tr>
     <tr>
-        <td rowspan="10">テキスト整形</td><td>line-height</td><td>normal, 数値(比率 or 単位付き), %</td><td>行幅を指定</td>
+        <td rowspan="9">テキスト整形</td><td>line-height</td><td>normal, 数値(比率 or 単位付き), %</td><td>行幅を指定</td>
     <tr>
     <tr>
         <td>text-align</td><td>start, end, left, right<br>center, justify, match-parent</td><td>枠内での文字列の振り分け<br>justify選択時にはtext-justifyプロパティで更に詳しく設定できる。</td>
@@ -160,6 +166,33 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
     <tr>
         <td>text-justify</td><td>auto none inter-word inter-character</td><td>自動 / 無効 / 単語による調整 / 文字による調整</td>
     <tr>
+    <tr>
+        <td>vertical-align</td><td>baseline, top, middle, bottom<br>text-top, text-bottom, super, sub<br>% 数値(単位付き)</td><td>文字列の配置を指定できる。<a href="http://www.htmq.com/style/vertical-align.shtml">詳細はココ参照</a></td>
+    </tr>
+    <tr>
+        <td>text-underline-position</td><td>auto, under, left, right</td>傍線の位置を指定。<br>但し、left, rightは縦書き用<td></td>
+    </tr>
+        <td>text-indent</td><td>%, 数値, each-line, hanging</td><td>pタグに適応することで、一行目のインデント幅を調整できる。<br>但し、hangingを指定するとこれが反転する。
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="8">大きさ</td><td>width</td><td>auto %, 数値(単位付き)</td><td>幅を指定する。</td>
+    <tr>
+    <tr>
+        <td>max-width</td><td>auto %, 数値(単位付き)</td><td>幅の最大値を指定</td>
+    </tr>
+    <tr>
+        <td>min-width</td><td>auto %, 数値(単位付き)</td><td>幅の最小値を指定</td>
+    </tr>
+    <tr>
+        <td>height</td><td>auto %, 数値(単位付き)</td><td>高さを指定する。</td>
+    <tr>
+    <tr>
+        <td>max-height</td><td>auto %, 数値(単位付き)</td><td>高さの最大値を指定</td>
+    </tr>
+    <tr>
+        <td>min-height</td><td>auto %, 数値(単位付き)</td><td>高さの最小値を指定</td>
+    </tr>
 </table>
 
 <a id="position">・位置の名前</a><br>
@@ -196,6 +229,77 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         <td>bolder </td><td>現行より一段階太く</td>
     </tr>
 </table>
+
+## 色々な指定の仕方
+冒頭のように、HTMLのヘッダ内に記述していってもいいのですが、この方法以外にも次の方法があります。
+
+### 別ファイルでの指定
+一般的には、次のように、HTMLのhead要素内にlinkタグで紐付ける方法が最も主流です。
+
+・HTML
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title lang="jp">WebService2020</title>
+</head>
+
+<body>
+    <div class="text">
+        <div class="head">
+            <p>実験</p>
+        </div>
+        <div class="body">
+            <p>こんな感じになります。</p>
+        </div>
+    </div>
+</body>
+
+</html>
+```
+・CSS
+
+```css
+div.text div.head{
+    background-color: rgb(228, 228, 228);
+    
+    border-radius: 5px;
+
+    font-weight: bold;
+
+    height: 50px;
+
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.text div.body{
+    border: 3px solid ;
+    border-color: rgb(228, 228, 228);
+    border-radius: 5px;
+    border-top: transparent;
+
+
+    background-color: whitesmoke;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+```
+
+・<a href="./cssSample/fileSample/index.html">実行結果<br></a>
+<iframe src="./cssSample/fileSample/index.html" name="sample" width="90%" height="200">
+    <a href="./cssSample/fileSample/index.html"></a>
+</iframe>
+
+良い感じですね！
 
 ```html
 <!DOCTYPE html>
