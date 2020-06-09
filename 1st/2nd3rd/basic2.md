@@ -396,6 +396,7 @@ func main(){
 ```
 
 2. 同様に関数に渡したさきの編集がプログラム全体で反映される。
+
 ```go
 func main(){
      var sweet []string = make([]string, 2)
@@ -409,6 +410,7 @@ func modifier(sweet []string) {
      return
 }
 ```
+
 3. 実体化していないスライス変数は`nil`であるため、当然参照できない。
 
 ### 発展 入れ子
