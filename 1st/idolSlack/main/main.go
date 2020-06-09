@@ -21,7 +21,7 @@ var EV *slack.MessageEvent
 var RTM *slack.RTM
 
 //BotToken Put your slackbot token here
-const BotToken string = "YOUR_BOT_TOKEN"
+const BotToken string = "YOUR_TOKEN"
 
 func init() {
 	var x []idol.Idol = idol.Get()
@@ -60,7 +60,7 @@ func ListenTo() {
 	switch {
 	case strings.Contains(EV.Text, "ちゃん"):
 		NameCheck()
-	case strings.Contains(EV.Text, "アイマスランダム"):
+	case strings.Contains(EV.Text, "デレマスランダム"):
 		Random()
 	}
 }
@@ -75,6 +75,9 @@ func Random() {
 	SendText = "名前: " + Info[FoundNum].Name + "\n"
 	SendText += "年齢: " + Info[FoundNum].Age + "\n"
 	SendText += "身長: " + Info[FoundNum].Height + "\n"
+	SendText += "利き手: " + Info[FoundNum].Hand + "\n"
+	SendText += "趣味: " + Info[FoundNum].Hobby + "\n"
+	SendText += "誕生日: " + Info[FoundNum].Birth + "\n"
 	SendText += "3Size: " + Info[FoundNum].B + "/" + Info[FoundNum].W + "/" + Info[FoundNum].H + "\n"
 	SendText += idol.GetImgURL(Info[FoundNum].URL) + "\n"
 	RTM.SendMessage(RTM.NewOutgoingMessage(SendText, EV.Channel))
