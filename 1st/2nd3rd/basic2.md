@@ -303,7 +303,7 @@ func main(){
 ```go
 func main(){
      var userArray [4]string = [4]string{"tkmax777", "matu", "strelka", "zeke"}
-     var userSlice []string = userArray[0:3]
+     var userSlice []string = userArray[0:2]
 
      fmt.Printf("%v\n",userSlice)// => [tkmax777 matu strelka]
      fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))// => 容量：4, 長さ：3
@@ -345,7 +345,7 @@ for文で要素を一つずつ見ていきたいとき、次のような記法�
 var x []string = []string{"tkmax777", "matu", "defined", "murayama"}
 
 for i := range x{
-     fmt.Printf("%d:%s\n", i, x[i])
+     fmt.Printf("%d:%s\n", i+1, x[i])
 }
 
 ```
@@ -363,7 +363,7 @@ for i := range x{
 var x []string = []string{"tkmax777", "matu", "defined", "murayama"}
 
 for i, name := range x{
-     fmt.Printf("%d:%s\n", i, name)
+     fmt.Printf("%d:%s\n", i+1, name)
 }
 ```
 
@@ -382,7 +382,7 @@ for i, name := range x{
 ```go
 func main(){
      var userArray [4]string = [4]string{"tkmax777", "matu", "strelka", "zeke"}
-     var userSlice []string = userArray[0:3]
+     var userSlice []string = userArray[0:2]
 
      fmt.Printf("%v\n",userSlice)// => [tkmax777 matu strelka]
      fmt.Printf("容量：%d, 長さ：%d\n", cap(userSlice), len(userSlice))// => 容量：4, 長さ：3
@@ -393,6 +393,7 @@ func main(){
      fmt.Printf("%v\n",userArray)// => [tkmax777 matu dog zeke]
 }
 ```
+
 2. 同様に関数に渡したさきの編集がプログラム全体で反映される。
 ```go
 func main(){
