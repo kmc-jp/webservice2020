@@ -377,9 +377,10 @@ for i, name := range x{
 
 
 ### 注意
-1. Sliceは配列の参照型（≒配列の番地リスト）なため、編集すると元の配列も編集される。
+1. Sliceは配列の参照型（≒配列の番地リスト）なため、編集すると元の配列も編集される。<br>
 
 ```go
+
 func main(){
      var userArray [4]string = [4]string{"tkmax777", "matu", "strelka", "zeke"}
      var userSlice []string = userArray[0:2]
