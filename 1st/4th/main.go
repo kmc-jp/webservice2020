@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/nlopes/slack"
 )
@@ -39,8 +40,8 @@ func main() {
 //ListenTo excute functions under suitable conditions
 func ListenTo() {
 	switch {
-	case ResTo(`Hello`):
-		MessageSend(EV.Channel, "こんにちは。")
+	case strings.Contains(EV.Text, "こんにちは"):
+		RTM.SendMessage(RTM.NewOutgoingMessage(EV.Channel, "こんにちは。"))
 		return
 	}
 }

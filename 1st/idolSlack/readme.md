@@ -27,7 +27,8 @@ $ go get -u github.com/nlopes/slack
    8. `OAuth & Permissions`に戻ると表示される、`xoxb-`から始まる`Bot User OAuth Access Token`を後に使います。
 
 ## 仕組み
-### init関数
+### main package
+#### init関数
 Golangではinit関数→main関数の順に実行される。
 
 **補足-import-**
@@ -87,7 +88,7 @@ func init() {
 3. ioutilパッケージのWriteFile関数を実行
    - data.jsonに記録している。
 
-### main関数
+#### main関数
 ```go
 func main(){
 	var api *slack.Client = slack.New(BotToken)//1
@@ -113,4 +114,174 @@ func main(){
 3. 通信を開始する。
 4. Slackとの通信を開始したらメッセージを表示
 5. メッセージが送信されたらListenTo関数を実行する。
+
+#### ListenTo関数
+
+```go
+//ListenTo Manage incomming messages
+func ListenTo() {
+	switch {
+	case strings.Contains(EV.Text, "ちゃん"): // 1
+		NameCheck()
+	case strings.Contains(EV.Text, "デレマスランダム"):// 2
+		Random()
+	}
+}
+
+```
+
+1. メッセージに"ちゃん"という文字が含まれていれば`NameCheck`関数を実行する
+2. メッセージにデレマスランダムという文字が含まれていれば`NameCheck`関数を実行する
+
+#### NameCheck関数
+
+```go
+//NameCheck find the idol from dict
+func NameCheck() {
+	var Info []idol.Idol = idol.Read() //1
+	var NAME string = strings.Split(EV.Text, "ちゃん")[0]//2
+	var FoundNUM int
+
+	for i, info := range Info {
+		if info.Name == NAME {//3
+			FoundNUM = i
+			goto Found//4
+		}
+	}
+	return
+
+Found:
+	var SendText string = MakeText(Info[FoundNUM])//5
+
+	RTM.SendMessage(RTM.NewOutgoingMessage(SendText, EV.Channel))//6
+}
+```
+
+1. アイドル情報を取得
+2. "ちゃん"という文字の前にある文字列(=名前)を取得
+3. 一人ずつ一致する人を探す
+4. 見つかればFoundに飛ぶ
+5. アイドル情報を表示する文を作成
+6. Slackに送信
+
+#### Random関数
+
+```go
+//Random chose one Idol
+func Random() {
+	var Info []idol.Idol = idol.Read()
+	rand.Seed(time.Now().UnixNano())//1
+
+	var SendText string = MakeText(Info[int(rand.Float64()*float64(len(Info)))])//2
+	RTM.SendMessage(RTM.NewOutgoingMessage(SendText, EV.Channel))
+}
+```
+
+1. 乱数の初期化
+2. ランダムに一人アイドルを選択し、文章を生成
+
+### idol package
+#### Get関数
+
+```go
+//Get gets idol info from web
+func Get() []Idol {
+	resp, err := http.Get("https://imascg-slstage-wiki.gamerch.com/%E3%82%A2%E3%82%A4%E3%83%89%E3%83%AB%E4%B8%80%E8%A6%A7")//1
+	if err != nil {
+		return []Idol{}
+	}
+	defer resp.Body.Close()
+
+	var buf *bytes.Buffer = new(bytes.Buffer)//2
+	io.Copy(buf, resp.Body)//3
+	var ret []byte = buf.Bytes()//4
+
+	var top []byte = bytes.Split(ret, []byte("id=\"content_1_2\""))[1]//5
+	var content string = string(bytes.Split(bytes.Split(bytes.Split(
+		top,
+		[]byte("id=\"content_1_2\""))[0],
+		[]byte("t-line-img word-keep-all"))[1],
+		[]byte("<tbody>"))[1],
+	)//6
+
+	var table []Idol
+
+	for i, x := range strings.Split(content, "<tr>") {
+		if i == 0 {
+			continue
+		}
+
+		var idol Idol
+
+		for _, y := range strings.Split(x, "<td") {
+			switch {
+			case strings.Contains(y, "data-col=\"1\">"):
+				...
+			case strings.Contains(y, "data-col=\"2\">")://7
+				idol.Age = strings.Split(strings.Split(y, "data-col=\"2\">")[1], "</")[0]//8
+			case strings.Contains(y, "data-col=\"3\">"):
+				...
+			}
+		}
+		table = append(table, idol)
+
+	}
+	fmt.Printf("%#v\n", table)
+	return table
+}
+```
+
+1. 
+[ここ](https://imascg-slstage-wiki.gamerch.com/%E3%82%A2%E3%82%A4%E3%83%89%E3%83%AB%E4%B8%80%E8%A6%A7)
+にGetリクエストを送る(htmlが返ってくる)
+
+2. bytesパッケージのBuffer型(ポインタ)を用意する。
+3. レスポンスの内容をここにコピーする。
+4. byteとして出力
+5. (6も)表の部分を抽出
+7. 表の要素ごとに分岐
+8. 要素ごとに構造体に格納
+
+#### MakeDict関数
+
+```go
+//MakeDict make dictionary file
+func MakeDict(Path string) error {
+	var x []Idol = Get() //1
+	b, err := json.MarshalIndent(x, "", "    ") //2
+	if err != nil {
+		return fmt.Errorf("Marshal Error")
+	}
+	err = ioutil.WriteFile(Path, b, os.ModePerm)//3
+	if err != nil {
+		return fmt.Errorf("Write Error")
+	}
+	return nil
+}
+```
+
+1. xにアイドル情報のスライスを格納
+2. json形式に変換(byteで出力)
+3. この内容をそのままPathに場所に出力
+
+#### Read関数
+
+```go
+//Read read idol data
+func Read(Path string) []Idol {
+	b, err := ioutil.ReadFile(Path))//1
+	if err != nil {
+		fmt.Printf("Error: Cannot Read file\n")
+		return []Idol{}
+	}
+
+	var info []Idol
+
+	json.Unmarshal(b, &info)//2
+	return info
+}
+```
+
+1. Pathにあるファイルを読みこむ
+2. jsonから構造体に入れ込む
 

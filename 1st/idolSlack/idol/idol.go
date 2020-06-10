@@ -7,7 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"path/filepath"
+	"os"
 	"strings"
 )
 
@@ -32,7 +32,21 @@ type Idol struct {
 	Deploy string `json:"deploy"`
 }
 
-//Get gets wikipedia page text and title at random
+//MakeDict make dictionary file
+func MakeDict(Path string) error {
+	var x []Idol = Get()
+	b, err := json.MarshalIndent(x, "", "    ")
+	if err != nil {
+		return fmt.Errorf("Marshal Error")
+	}
+	err = ioutil.WriteFile(Path, b, os.ModePerm)
+	if err != nil {
+		return fmt.Errorf("Write Error")
+	}
+	return nil
+}
+
+//Get gets idol info from web
 func Get() []Idol {
 	resp, err := http.Get("https://imascg-slstage-wiki.gamerch.com/%E3%82%A2%E3%82%A4%E3%83%89%E3%83%AB%E4%B8%80%E8%A6%A7")
 	if err != nil {
@@ -63,47 +77,47 @@ func Get() []Idol {
 
 		for _, y := range strings.Split(x, "<td") {
 			switch {
-			case strings.Contains(y, "data-col=\"1\""):
+			case strings.Contains(y, "data-col=\"1\">"):
 				if len(strings.Split(y, ">")) < 2 || len(strings.Split(strings.Split(strings.Split(y, ">")[1], "</td")[0], "a href=\"")) < 2 {
 					continue
 				}
 				idol.URL = strings.Split(strings.Split(strings.Split(strings.Split(y, ">")[1], "</td")[0], "a href=\"")[1], "\"")[0]
 				idol.Name = strings.Split(strings.Split(y, "title=\"")[1], "\"")[0]
-			case strings.Contains(y, "data-col=\"2\""):
+			case strings.Contains(y, "data-col=\"2\">"):
 				idol.Age = strings.Split(strings.Split(y, "data-col=\"2\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"3\""):
+			case strings.Contains(y, "data-col=\"3\">"):
 				idol.Birth = strings.Split(strings.Split(y, "data-col=\"3\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"4\""):
+			case strings.Contains(y, "data-col=\"4\">"):
 				idol.Star = strings.Split(strings.Split(y, "data-col=\"4\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"5\""):
+			case strings.Contains(y, "data-col=\"5\">"):
 				idol.Blood = strings.Split(strings.Split(y, "data-col=\"5\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"6\""):
+			case strings.Contains(y, "data-col=\"6\">"):
 				idol.Height = strings.Split(strings.Split(y, "data-col=\"6\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"7\""):
+			case strings.Contains(y, "data-col=\"7\">"):
 				if strings.Contains(y, "span") {
 					idol.Weight = strings.Split(strings.Split(y, "size8\">")[1], "</")[0]
 					continue
 				}
 				idol.Weight = strings.Split(strings.Split(y, "data-col=\"7\">")[1], "</")[0]
 
-			case strings.Contains(y, "data-col=\"8\""):
+			case strings.Contains(y, "data-col=\"8\">"):
 				if len(strings.Split(y, "</span>")) < 2 {
 					continue
 				}
 				idol.B = strings.Split(strings.Split(y, "</span>")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"9\""):
+			case strings.Contains(y, "data-col=\"9\">"):
 				idol.W = strings.Split(strings.Split(y, "data-col=\"9\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"10\""):
+			case strings.Contains(y, "data-col=\"10\">"):
 				idol.H = strings.Split(strings.Split(y, "data-col=\"10\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"11\""):
+			case strings.Contains(y, "data-col=\"11\">"):
 				idol.Hand = strings.Split(strings.Split(y, "data-col=\"11\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"12\""):
+			case strings.Contains(y, "data-col=\"12\">"):
 				idol.Locate = strings.Split(strings.Split(y, "data-col=\"12\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"13\""):
+			case strings.Contains(y, "data-col=\"13\">"):
 				idol.Hobby = strings.Split(strings.Split(y, "data-col=\"13\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"14\""):
+			case strings.Contains(y, "data-col=\"14\">"):
 				idol.CV = strings.Split(strings.Split(y, "data-col=\"14\">")[1], "</")[0]
-			case strings.Contains(y, "data-col=\"15\""):
+			case strings.Contains(y, "data-col=\"15\">"):
 				idol.Deploy = strings.Split(strings.Split(y, "data-col=\"15\">")[1], "</")[0]
 			}
 
@@ -116,8 +130,8 @@ func Get() []Idol {
 }
 
 //GetImgURL Get image url from URL page
-func GetImgURL(URL string) string {
-	resp, err := http.Get(URL)
+func (idol Idol) GetImgURL() string {
+	resp, err := http.Get(idol.URL)
 	if err != nil {
 		return ""
 	}
@@ -127,15 +141,22 @@ func GetImgURL(URL string) string {
 	io.Copy(buf, resp.Body)
 	var ret []byte = buf.Bytes()
 
+	if !strings.Contains(string(ret), "id=\"content_1_1\"") {
+		return ""
+	}
 	var top []byte = bytes.Split(ret, []byte("id=\"content_1_1\""))[1]
+
+	if !strings.Contains(string(top), "a href=\"") {
+		return ""
+	}
 	var url []byte = bytes.Split(bytes.Split(top, []byte("a href=\""))[1], []byte("\""))[0]
 
 	return string(url)
 }
 
 //Read read idol data
-func Read() []Idol {
-	b, err := ioutil.ReadFile(filepath.Join("..", "data.json"))
+func Read(Path string) []Idol {
+	b, err := ioutil.ReadFile(Path)
 	if err != nil {
 		fmt.Printf("Error: Cannot Read file\n")
 		return []Idol{}
