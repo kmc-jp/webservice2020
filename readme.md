@@ -8,8 +8,8 @@
 #### 第二／三回 Go言語の基本の説明 - A Tour of Goをやってみる。
 [資料](./1st/2nd3rd/)
 #### 第四回 SlackBotの制作
-[資料1](./1st/idolSlack/readme.md)<br>
-[資料2](./1st/4th/readme.md)
+[資料1](./1st/4th/readme.md)<br>
+[資料2](./1st/idolSlack/readme.md)
 
 #### 第五回 Web Pageの仕組みを軽く解説。静的なWeb Pageを作ってみよう
 [資料](./1st/5th/)
