@@ -1,4 +1,26 @@
 # デレマスBot
+## もくじ
+<!-- TOC -->
+
+- [デレマスBot](#デレマスbot)
+    - [もくじ](#もくじ)
+    - [概要](#概要)
+    - [準備](#準備)
+    - [httpについて](#httpについて)
+    - [jsonについて](#jsonについて)
+    - [仕組み](#仕組み)
+        - [main package](#main-package)
+            - [init関数](#init関数)
+            - [main関数](#main関数)
+            - [ListenTo関数](#listento関数)
+            - [NameCheck関数](#namecheck関数)
+            - [Random関数](#random関数)
+        - [idol package](#idol-package)
+            - [Get関数](#get関数)
+            - [MakeDict関数](#makedict関数)
+            - [Read関数](#read関数)
+
+<!-- /TOC -->
 
 ## 概要
 デレマスのキャラクターの詳細を表示するBot。ランダム or 指名によってキャラを選択する。
@@ -25,6 +47,15 @@ $ go get -u github.com/nlopes/slack
    ![InstallBot](resources/InstallBot.png)
    7. 内容を確認したら`許可する`押しましょう。
    8. `OAuth & Permissions`に戻ると表示される、`xoxb-`から始まる`Bot User OAuth Access Token`を後に使います。
+2. main.goのYOUR_TOKENにさっきのを記述
+
+## httpについて
+
+[学んで行きましょう！](./http.md)
+
+## jsonについて
+
+[学んで行きましょう！](./json.md)
 
 ## 仕組み
 ### main package
