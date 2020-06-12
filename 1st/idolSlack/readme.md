@@ -57,6 +57,10 @@ $ go get -u github.com/nlopes/slack
 
 [学んで行きましょう！](./json.md)
 
+## go routineについて
+
+[学んで行きましょう！](./go.md)
+
 ## 仕組み
 ### main package
 #### init関数
