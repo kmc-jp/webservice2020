@@ -10,15 +10,14 @@
 #### 第四回 SlackBotの制作
 [資料1](./1st/4th/readme.md)<br>
 [資料2](./1st/idolSlack/readme.md)
-
-#### 第五回 Web Pageの仕組みを軽く解説。静的なWeb Pageを作ってみよう
+#### 第五回 Git / Githubを使った開発
+[資料](./1st/git/readme.md)
+#### 第六回 Web Pageの仕組みを軽く解説。静的なWeb Pageを作ってみよう
 [資料](./1st/5th/)
-#### 第六回 GoでhttpServerを立ててみよう。-シンプルな掲示板-
+#### 第七回 GoでhttpServerを立ててみよう。-シンプルな掲示板-
 [資料](./1st/appendix/)
-#### 第七回 認証してみよう
+#### 第八回 認証してみよう
 [資料](./1st/6th/)
-#### 第七回 Gitの使い方
-[資料](./1st/7th/)
 
 #### DiscordBot
 [資料1](./1st/discord_standard/)<br>
