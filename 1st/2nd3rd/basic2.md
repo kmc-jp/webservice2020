@@ -230,9 +230,9 @@ func(s *Sqrt) Sqrt(){
 func main() {
      var x Sqrt = 2
 
-     fmt.Printf("x:%g", x)// => 2
+     fmt.Printf("x:%g", float64(x))// => 2.0000000000000000
      x.Sqrt()
-     fmt.Printf("x:%g", x)// => 1.4142135623730951
+     fmt.Printf("x:%g", float64(x))// => 1.4142135623730951
      return
 }
 ```
