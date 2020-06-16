@@ -83,6 +83,9 @@ func Get() []Idol {
 				}
 				idol.URL = strings.Split(strings.Split(strings.Split(strings.Split(y, ">")[1], "</td")[0], "a href=\"")[1], "\"")[0]
 				idol.Name = strings.Split(strings.Split(y, "title=\"")[1], "\"")[0]
+				if idol.Name == "" {
+					continue
+				}
 			case strings.Contains(y, "data-col=\"2\">"):
 				idol.Age = strings.Split(strings.Split(y, "data-col=\"2\">")[1], "</")[0]
 			case strings.Contains(y, "data-col=\"3\">"):
