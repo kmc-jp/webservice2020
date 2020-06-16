@@ -40,8 +40,8 @@ func main() {
 //ListenTo excute functions under suitable conditions
 func ListenTo() {
 	switch {
-	case strings.Contains(EV.Text, "こんにちは"):
-		RTM.SendMessage(RTM.NewOutgoingMessage(EV.Channel, "こんにちは。"))
+	case strings.Contains("こんにちは", EV.Text):
+		RTM.SendMessage(RTM.NewOutgoingMessage("こんにちは。<@"+EV.User+">", EV.Channel))
 		return
 	}
 }
