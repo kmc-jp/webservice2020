@@ -74,6 +74,10 @@ func NameCheck() {
 	var NAME string = strings.Split(EV.Text, "ちゃん")[0]
 	var FoundNUM int
 
+	if NAME == "" {
+		return
+	}
+
 	for i, info := range Info {
 		if info.Name == NAME {
 			FoundNUM = i
