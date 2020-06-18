@@ -535,7 +535,7 @@ git init            # gitレポジトリを作成
 echo 例1 > Ex.txt   # 例1と書いたEx.txtを作成
 git add Ex.txt      # Ex.txtをステージング・エリアに追加
 git commit -m "例1" # 例1というコミットメッセージを残してコミット
-git branch Second   #Secondブランチを作成
+git branch Second   # Secondブランチを作成
 echo 例2 >> Ex.txt  # masterブランチのEx.txtに例2と追記
 git add Ex.txt      # Ex.txtをステージング・エリアに追加
 git commit -m "例2" # 例2というコミットメッセージを残してmasterブランチにコミット
