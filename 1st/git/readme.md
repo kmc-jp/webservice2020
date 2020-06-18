@@ -1,4 +1,6 @@
 # Git / Github
+[Git](./git.md) 
+[Github](github.md)
 ## 概要
 今回ば今日プログラム開発で一般的に用いられているGit, GitHubが何なのか、どうやって使うのかを学んでいきます。
 
