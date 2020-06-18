@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"../idol"
-	"github.com/nlopes/slack"
+	"github.com/slack-go/slack"
 )
 
 //EV put new slack events
