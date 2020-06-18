@@ -1,4 +1,6 @@
 # Githubの使い方
+[最初](readme.md) 
+[Git](git.md)
 ## 目次
 
 <!-- TOC -->
