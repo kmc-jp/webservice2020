@@ -19,6 +19,7 @@
     - [Pull Requestを送る](#pull-requestを送る)
     - [共同開発者を登録する](#共同開発者を登録する)
     - [参考 Fork](#参考-fork)
+    - [参考 GitHub Pages](#参考-github-pages)
     - [おわりに](#おわりに)
 
 <!-- /TOC -->
@@ -225,6 +226,11 @@ $ git merge origin/master # それをマージ
 ![fork](resources/github_fork.jpg)
 
 ここ押して自分のアカウントを選択すれば、自分のレポジトリに複製されます。こうして複製されるため、もととなるレポジトリをoriginと登録するのです。
+
+## 参考 GitHub Pages
+GitHubのレポジトリにあげたhtmlやmarkdownファイルを使ってWebページが作れます。そこまで難しくないので興味があれば是非使ってみてください。
+
+[詳細](https://help.github.com/en/github/working-with-github-pages)
 
 ## おわりに
 

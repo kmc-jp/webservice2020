@@ -98,3 +98,7 @@ Connection to github.com closed.
 ## Gitについて
 
 [学んで行きましょう！](./git.md)
+
+## GitHubについて
+
+[学んで行きましょう！](./github.md)
