@@ -8,6 +8,7 @@
     - [準備](#準備)
     - [httpについて](#httpについて)
     - [jsonについて](#jsonについて)
+    - [go routineについて](#go-routineについて)
     - [仕組み](#仕組み)
         - [main package](#main-package)
             - [init関数](#init関数)
@@ -104,24 +105,16 @@ packageは引用されたとき、init関数が最初に実行されるため、
 
 ```go
 func init() {
-	var x []idol.Idol = idol.Get()//1
-	b, err := json.MarshalIndent(x, "", "    ")//2
+	DictPath = filepath.Join("..", "data.json")//1
+	var err error = idol.MakeDict(DictPath)//2
 	if err != nil {
-		panic("Marshal Error!")
-	}
-	err = ioutil.WriteFile(filepath.Join("..", "data.json"), b, os.ModePerm)//3
-	if err != nil {
-		panic("Write Error!")
+		panic(err.Error())
 	}
 }
 ```
 
-1. idol パッケージのIdol型Getメソッドを実行
-   - この時デレマスのデータを取得している。
-2. jsonパッケージのMarshalIndent関数を実行
-   - json形式にxの中身を変換している。
-3. ioutilパッケージのWriteFile関数を実行
-   - data.jsonに記録している。
+1. アイドル情報を格納するファイルを指定している。
+2. ここで時デレマスのデータを取得している。
 
 #### main関数
 ```go
@@ -177,27 +170,32 @@ func NameCheck() {
 	var NAME string = strings.Split(EV.Text, "ちゃん")[0]//2
 	var FoundNUM int
 
+	if NAME == "" {//3
+		return
+	}
+	
 	for i, info := range Info {
-		if info.Name == NAME {//3
+		if info.Name == NAME {//4
 			FoundNUM = i
-			goto Found//4
+			goto Found//5
 		}
 	}
 	return
 
 Found:
-	var SendText string = MakeText(Info[FoundNUM])//5
+	var SendText string = MakeText(Info[FoundNUM])//6
 
-	RTM.SendMessage(RTM.NewOutgoingMessage(SendText, EV.Channel))//6
+	RTM.SendMessage(RTM.NewOutgoingMessage(SendText, EV.Channel))//7
 }
 ```
 
 1. アイドル情報を取得
 2. "ちゃん"という文字の前にある文字列(=名前)を取得
-3. 一人ずつ一致する人を探す
-4. 見つかればFoundに飛ぶ
-5. アイドル情報を表示する文を作成
-6. Slackに送信
+3. 名前が空白のときは検索しない
+4. 一人ずつ一致する人を探す
+5. 見つかればFoundに飛ぶ
+6. アイドル情報を表示する文を作成
+7. Slackに送信
 
 #### Random関数
 
