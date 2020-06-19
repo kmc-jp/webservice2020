@@ -10,6 +10,8 @@
 #### 第四回 SlackBotの制作
 [資料1](./1st/4th/readme.md)<br>
 [資料2](./1st/idolSlack/readme.md)
+#### 第四回の補足 コマンドライン / 常態化
+[資料](./1st/4_hosoku/readme.md)
 #### 第五回 Git / Githubを使った開発
 [資料](./1st/git/readme.md)
 #### 第六回 Web Pageの仕組みを軽く解説。静的なWeb Pageを作ってみよう

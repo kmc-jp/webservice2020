@@ -1,4 +1,6 @@
 # shellコマンド(基礎)
+[最初](readme.md)
+[SSH](ssh.md)
 ## 目次
 <!-- TOC -->
 
