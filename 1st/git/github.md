@@ -41,12 +41,12 @@
 図の丸付きの番号で記した順に見ていきましょう。
 
 1. Aさんがローカルレポジトリをつくり、A, B, CファイルをGithub上のmasterブランチにPush
-2. remote/oirigin/masterのブランチにマージされる。
+2. GitHubのmasterのブランチにマージされる。
 3. Bさんがローカル環境にこのレポジトリを複製(
     **Clone**
     する)
 4. Bさんが変更をコミットする。
-5. BさんがGitHub上のremote/origin/masterブランチにPushする。
+5. BさんがGitHub上のmasterブランチにPushする。
 6. マージされる。
 
 それでは各々具体的な操作を学んでいきましょう。
