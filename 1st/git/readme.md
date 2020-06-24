@@ -82,7 +82,7 @@ $ cat github.pub
 最後に
 
 ```sh
-$ ssh git
+$ ssh github
 ```
 を実行したとき、
 
