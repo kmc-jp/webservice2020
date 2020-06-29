@@ -12,10 +12,19 @@
     - [各要素の名前](#各要素の名前)
     - [セレクタ](#セレクタ)
     - [プロパティ](#プロパティ)
+    - [適応ルールの定義(@ルール)](#適応ルールの定義ルール)
+        - [文字コードの指定](#文字コードの指定)
+        - [CSSの結合](#cssの結合)
+        - [デバイスごとの適応CSSの変更](#デバイスごとの適応cssの変更)
+        - [印刷時の体裁指定](#印刷時の体裁指定)
     - [色々な指定の仕方](#色々な指定の仕方)
         - [タグに属性付加](#タグに属性付加)
         - [別ファイルでの指定](#別ファイルでの指定)
     - [外部CSSの利用](#外部cssの利用)
+        - [記法](#記法)
+        - [代表的な公開CSS](#代表的な公開css)
+        - [利用例](#利用例)
+    - [終わり](#終わり)
 
 <!-- /TOC -->
 ### 基本
@@ -157,7 +166,7 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         <td>font-size-adjust</td><td>none, 数値(相対比率)<br>inherit(上層に合わせる)</td><td>フォント間のサイズ差を自動調整する</td>
     </tr>
     <tr>
-        <td>font-variant</td><td>normal small-caps</td><td>小文字大文字を切り替える</td>
+        <td>font-variant</td><td>normal small-caps</td><td>小文字にする</td>
     </tr>
     <tr>
         <td rowspan="6">テキスト整形</td><td>line-height</td><td>normal, 数値(比率 or 単位付き), %</td><td>行幅を指定</td>
@@ -196,6 +205,31 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
     <tr>
         <td>min-height</td><td>auto %, 数値(単位付き)</td><td>高さの最小値を指定</td>
     </tr>
+    <tr>
+        <td rowspan="8">余白</td><td>margin-top</td><td>数値(単位付き)</td><td>外側上部の余白の大きさを指定する。</td>
+    </tr>
+    <tr>
+        <td>margin-bottom</td><td>数値(単位付き)</td><td>外側下部の余白の大きさを指定する。</td>
+    </tr>
+    <tr>
+        <td>margin-left</td><td>数値(単位付き)</td><td>外側左部の余白の大きさを指定する。</td>
+    </tr>
+    <tr>
+        <td>margin-right</td><td>数値(単位付き)</td><td>外側右部の余白の大きさを指定する。</td>
+    </tr>
+     <tr>
+        <td>padding-top</td><td>数値(単位付き)</td><td>内側上部の余白の大きさを指定する。</td>
+    </tr>
+    <tr>
+        <td>padding-bottom</td><td>数値(単位付き)</td><td>内側下部の余白の大きさを指定する。</td>
+    </tr>
+    <tr>
+        <td>padding-left</td><td>数値(単位付き)</td><td>内側左部の余白の大きさを指定する。</td>
+    </tr>
+    <tr>
+        <td>padding-right</td><td>数値(単位付き)</td><td>内側右部の余白の大きさを指定する。</td>
+    </tr>
+    
 </table>
 
 <a id="position">・位置の名前</a><br>
@@ -233,6 +267,74 @@ CSSの文法はおおまかに次の塊の集合であらわされる。
         <td>bolder </td><td>現行より一段階太く</td>
     </tr>
 </table>
+
+## 適応ルールの定義(@ルール)
+CSSを定義するのにあたり、一意的な指定だけではうまくいかない局面が出てきます。例えば、スマートフォンなどの小型機器での表示とパソコンなどの大きな画面を持つ機器では当然適応されるCSSは変更されるべきですね。そのような読み込みのルールを定義するために、CSSには
+**@ルール**
+というものが存在します。
+
+
+### 文字コードの指定
+次のようにCSS内に記述することで読み込む文字コードを指定することができます。
+
+```css
+@charset "UTF-8";
+
+```
+
+### CSSの結合
+一つのCSSデータを複数のファイルに分割するとき、次のように記述することで纏めることができます。
+
+```css
+@import url(適応するcssへのパス);
+
+```
+但し、**@charsetの直後、他の任意の@ルール指定より前に記載する必要があります**。
+
+### デバイスごとの適応CSSの変更
+次のように記述することで、そのメディアタイプで描画するとき、その中に記載した書式が適応されます。
+
+```css
+
+@media handheld {
+    body {font-size: normal;}
+}
+
+@media screen,tv {
+    body {font-size: large;}
+}
+```
+
+但し、指定できるメディアタイプは次のとおり
+
+|メディアタイプ|内容|
+| --- | --- |
+|screen|パソコン|
+|tty|文字幅が固定のデバイス|
+|tv|テレビ|
+|projection|プロジェクタ|
+|handheld|携帯|
+|print|プリント結果に反映|
+|braolle|点字ディスプレイ|
+|embossed|点字プリント結果に反映|
+|all|すべて|
+
+### 印刷時の体裁指定
+
+次のように印刷するときの書式を指定することができます。
+
+```css
+
+/* A4サイズでの印刷 */
+@page { size: A4 }
+
+/* A4かつ横向き */
+@page { size: A4 landscape }
+
+/* 余白指定 */
+@page { margin: 10mm }
+```
+
 
 ## 色々な指定の仕方
 冒頭のように、HTMLのヘッダ内に記述していってもいいのですが、この方法以外にも次の方法があります。
@@ -319,8 +421,31 @@ div.text div.body{
 良い感じですね！
 
 ## 外部CSSの利用
-さて、ここまでざっと軽くCSSの記述の仕方を見てきました。
+### 記法
+さて、ここまでざっと軽くCSSの記述の仕方を見てきました。しかし、一々一からCSSを書いていたらいつまで経ってもプログラムの開発に辿りつけませんね。そこでこれから僕達が開発するときは、既に公開されているCSSを利用し、気軽に良い感じのページを作っていきます。使いかたは次の通りです。
 
+```html
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="author" href="mailto:someone@example.jp">
+        <title lang="jp">WebService2020</title> 
+        <link href="公開されているCSSのURI" rel="stylesheet">
+    </head>
+    <body>
+    ...
+
+```
+
+このように、head内にlinkタグで追加します。
+
+### 代表的な公開CSS
+
+・[GoogleFonts](https://fonts.google.com/)<br>
+・[Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
+
+### 利用例
 
 ```html
 <!DOCTYPE html>
@@ -348,3 +473,13 @@ div.text div.body{
     </body>
 </html>
 ```
+
+・<a href="./cssSample/css2.html">実行結果<br></a>
+<iframe src="./cssSample/css2.html" name="sample" width="90%" height="200">
+    <a href="./cssSamplecss2.html"></a>
+</iframe>
+
+
+## 終わり
+
+正直外部CSSの使いかたさえわかれば、そこまで記法をわかる必要はありません。「このようなデザインが欲しい」ってなったらまずは外部CSSを探しましょう。
