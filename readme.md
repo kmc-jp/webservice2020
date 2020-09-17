@@ -16,6 +16,14 @@
 [資料](./1st/git/readme.md)
 #### 第六回 Web Pageの仕組みを軽く解説。静的なWeb Pageを作ってみよう
 [資料](./1st/5th/)
+
+### 後期予定
+#### 第一回 JavaScript 基本文法
+
+#### 第二回 JavaScript DOM操作
+
+#### 第三回 
+
 #### 第七回 GoでhttpServerを立ててみよう。-シンプルな掲示板-
 [資料](./1st/appendix/)
 #### 第八回 認証してみよう
