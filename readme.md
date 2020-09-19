@@ -19,7 +19,7 @@
 
 ### 後期予定
 #### 第一回 JavaScript の基本
-[資料](2nd/readme.md)
+[資料](2nd/js/readme.md)
 #### 第二回 JavaScript DOM操作
 
 #### 第三回 
