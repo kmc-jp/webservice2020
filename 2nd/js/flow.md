@@ -10,24 +10,24 @@
 - [フロー制御](#フロー制御)
     - [概要](#概要)
     - [目次](#目次)
-    - [if文](#if文)
+    - [条件分岐](#条件分岐)
         - [基本](#基本)
         - [condition](#condition)
             - [falsy](#falsy)
             - [truthy](#truthy)
         - [if...else](#ifelse)
         - [else if](#else-if)
+        - [switch文](#switch文)
     - [Loop](#loop)
         - [For文](#for文)
         - [while文](#while文)
         - [do...while文](#dowhile文)
-        - [switch文](#switch文)
-    - [](#)
+        - [補足 - continue -](#補足---continue--)
     - [参考](#参考)
 
 <!-- /TOC -->
 
-## if文
+## 条件分岐
 まずはif文の記法を見ましょう。
 
 ### 基本
@@ -95,6 +95,74 @@ if (false) {
 }
 
 ```
+
+### switch文
+
+```js
+switch (expression) {
+  case value1:
+    // 式の結果が value1 に一致する場合に実行する文
+    [break;]
+  case value2:
+    // 式の結果が value2 に一致する場合に実行する文
+    [break;]
+  ...
+  case valueN:
+    // 式の結果が valueN に一致する場合に実行する文
+    [break;]
+  [default:
+    // 式の値に一致するものが存在しない場合に実行する文
+    [break;]]
+}
+```
+
+記法は基本的に変わらないのですが、一つおおきな違いがあります。次の例を見てください。
+
+```js
+let i = 1
+switch (i){
+case 0:
+    console.log("zero");
+case 1:
+    console.log("one");
+case 2:
+    console.log("two");
+default:
+    console.log("not matched");
+}
+```
+
+さて、この場合、どのように処理されるでしょうか。正解はこうです。
+
+- 出力
+
+```
+one
+two
+```
+
+Goで考えた場合は、oneが実行された後、switchからその時点で抜け出しそうなものですが、他の言語ではそうはいきません。各caseは該当するものがあったとき、そのcaseのみならず、その後のcaseも一致するかにかかわらず全て実行します。これを防ぐためには、各caseの最後にbreakを記述する必要があります。よって、次のように修正することで、想定した挙動を得ることができます。
+
+
+```js
+let i = 1
+switch (i){
+case 0:
+    console.log("zero");
+    break;
+case 1:
+    console.log("one");
+    break;
+case 2:
+    console.log("two");
+    break;
+default:
+    console.log("not matched");
+}
+
+```
+
+まちがえないように気を付けましょう。
 
 ## Loop
 ### For文
@@ -176,73 +244,19 @@ do {
 ```
 この文のwhile文との違いは、必ずdloの中身を一度は実行することです。それ以外はwhileとかわりません。
 
-### switch文
+### 補足 - continue -
+
+以上の繰り返し操作に於いて、`continue`文を用いると、その時点で次のループへと移行させることができます。
 
 ```js
-switch (expression) {
-  case value1:
-    // 式の結果が value1 に一致する場合に実行する文
-    [break;]
-  case value2:
-    // 式の結果が value2 に一致する場合に実行する文
-    [break;]
-  ...
-  case valueN:
-    // 式の結果が valueN に一致する場合に実行する文
-    [break;]
-  [default:
-    // 式の値に一致するものが存在しない場合に実行する文
-    [break;]]
+for (let i = 0; i < 10; i++) {
+    continue
+    console.log(i); // 実行されない。
 }
 ```
 
-記法は基本的に変わらないのですが、一つおおきな違いがあります。次の例を見てください。
 
-```js
-let i = 1
-switch (i){
-case 0:
-    console.log("zero");
-case 1:
-    console.log("one");
-case 2:
-    console.log("two");
-default:
-    console.log("not matched");
-}
-```
-
-さて、この場合、どのように処理されるでしょうか。正解はこうです。
-
-- 出力
-
-```
-one
-two
-```
-
-Goで考えた場合は、oneが実行された後、switchからその時点で抜け出しそうなものですが、他の言語ではそうはいきません。各caseは該当するものがあったとき、そのcaseのみならず、その後のcaseも一致するかにかかわらず全て実行します。これを防ぐためには、各caseの最後にbreakを記述する必要があります。よって、次のように修正することで、想定した挙動を得ることができます。
-
-
-```js
-let i = 1
-switch (i){
-case 0:
-    console.log("zero");
-    break;
-case 1:
-    console.log("one");
-    break;
-case 2:
-    console.log("two");
-    break;
-default:
-    console.log("not matched");
-}
-
-```
-
-## 
+それでは、いよいよ配列やオブジェクトの勉強をしていきましょう！
 
 ## 参考
 
