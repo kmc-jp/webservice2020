@@ -22,12 +22,16 @@
 [資料](2nd/js/readme.md)
 #### 第二回 JavaScript DOM操作
 
-#### 第三回 
+#### 第三回 テンプレートエンジンを使おう
 
-#### 第七回 GoでhttpServerを立ててみよう。-シンプルな掲示板-
-[資料](./1st/appendix/)
+#### 第四回 GoでhttpServerを立ててみよう。- シンプルな掲示板 -
+[資料](2nd/http_server/readme.md)
+#### 第五回 herokuを使ってみよう
+
+#### 第六回 オリジナルサービスを作ってみよう
+
 #### 第八回 認証してみよう
-[資料](./1st/6th/)
+[資料](2nd/auth/readme.md)
 
 #### DiscordBot
 [資料1](./1st/discord_standard/)<br>
