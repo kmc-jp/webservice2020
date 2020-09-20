@@ -2,6 +2,19 @@
 ## 概要
 前回まで学んできたJavaScriptを使って、いよいよ実践的な知識を学んでいきます。
 
+## 目次
+<!-- TOC -->
+
+- [Web APIを使う](#web-apiを使う)
+    - [概要](#概要)
+    - [目次](#目次)
+    - [Web APIを使ったHello World!](#web-apiを使ったhello-world)
+        - [HTMLへの埋め込みの仕方](#htmlへの埋め込みの仕方)
+        - [alert関数](#alert関数)
+    - [DOM APIを使う](#dom-apiを使う)
+
+<!-- /TOC -->
+
 ## Web APIを使ったHello World!
 
 では早速、Web APIを使った、簡単なプログラムを見てみましょう。
