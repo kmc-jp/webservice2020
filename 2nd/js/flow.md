@@ -264,6 +264,6 @@ for (let i = 0; i < 10; i++) {
 
 ## 参考
 
-[for - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)<br>
-[while - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)<br>
-[do...while - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while)<br>
+[for - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)<br>
+[while - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)<br>
+[do...while - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while)<br>
