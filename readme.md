@@ -30,8 +30,8 @@
 
 #### 第六回 オリジナルサービスを作ってみよう
 
-#### 第八回 認証してみよう
-[資料](2nd/auth/readme.md)
+<!-- #### 第八回 認証してみよう
+[資料](2nd/auth/readme.md) -->
 
 #### DiscordBot
 [資料1](./1st/discord_standard/)<br>
