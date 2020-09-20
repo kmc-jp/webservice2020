@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function Send() {
+            var request = new XMLHttpRequest();
+            request.open('POST', "https://script.google.com/macros/s/AKfycbyEccZlPjl7GOcdK3SXFhE4al1rwhEu6N1pmBhJPKoUCDym77g/exec");
+            request.responseType = "json";
+            request.onreadystatechange = function () {
+                let state = document.getElementById("state");
+
+                if (request.readyState != 4) {
+                    // 送信中
+                } else if (request.status != 200) {
+                    state.textContent = "失敗しました。"
+                } else {
+                    let result = request.response;
+                    state.textContent = result.time
+                }
+            };
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="state">
+
+    </div>
+    <a href="javascript:Send()">
+        <button type="button">実行</button>
+    </a>
+</body>
+
+</html>

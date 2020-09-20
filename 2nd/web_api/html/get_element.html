@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function Ex() {
+            let div_1 = document.getElementsByClassName("hoge")[0];
+            div_1.getElementsByTagName("div")[0].textContent = "Excuted!";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="hoge">
+        <div>
+            First
+        </div>
+    </div>
+    <div class="hoge">
+        <div>
+            Second
+        </div>
+    </div>
+    <a href="javascript:Ex()">
+        <button type="button">実行</button>
+    </a>
+</body>
+
+</html>
