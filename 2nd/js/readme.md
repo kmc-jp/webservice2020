@@ -15,10 +15,8 @@
         - [DOM](#dom)
         - [JavaScript](#javascript)
     - [JavaScriptの世界でHello World!](#javascriptの世界でhello-world)
-        - [HTMLへの埋め込みの仕方](#htmlへの埋め込みの仕方)
+    - [前提事項](#前提事項)
         - [コメントの記法](#コメントの記法)
-        - [function節](#function節)
-        - [alert関数](#alert関数)
         - [console.log](#consolelog)
     - [宣言](#宣言)
     - [型](#型)
@@ -27,6 +25,7 @@
         - [補足 - +演算子をもちいた 文字列 => 数値 変換 -](#補足---演算子をもちいた-文字列--数値-変換--)
         - [補足 - NaN -](#補足---nan--)
         - [補足 - JavaScriptに於ける同一性 -](#補足---javascriptに於ける同一性--)
+    - [function節](#function節)
     - [巻き上げ](#巻き上げ)
     - [参考](#参考)
 
@@ -43,45 +42,23 @@ DOMとは
 JavaScript(JS)は先のDOMを操作するために最もよく用いられるプログラミング言語です。その他、Node.jsやGASなどでサーバ側のプログラムを記述するのにも用いられます。
 
 ## JavaScriptの世界でHello World!
-実際にプログラムを動かしてみましょう。次のようにHTMLを記述することによって、簡単にJSを実行することができます。
+実際にJavaScriptでHello World!を出してみましょう。ブラウザのコンソールを表示して、次のプログラムを入力してください。
 
-- HTML
+- プログラム
 
-```html
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <script>
-        // javascript開始
-            function Hello(){
-                alert("Hello World!")
-            }
-        </script>
-    </head>
-    <body>
-        <a href="javascript:Hello();">
-            <button type="button">実行</button>
-        </a>
-    </body>
-</html>
-
+```js
+console.log("Hello World!")
 ```
 
-- 実行結果
+- 出力
 
-<iframe src="html/hello_world.html" name="sample" width="90%" height="50">
-    <a href="html/hello_world.html"></a>
-</iframe>
+```
+Hello World!
+```
 
-それでは、少しずつこの世界を見ていきましょう。
+簡単ですね！
 
-### HTMLへの埋め込みの仕方
-
-`<script>`
-タグの要素として埋め込むことで、
-**上から順に**
-読み込まれます。
+## 前提事項
 
 ### コメントの記法
 
@@ -100,29 +77,9 @@ JavaScript(JS)は先のDOMを操作するために最もよく用いられるプ
 `/**/`を用いることで、コメントを挿入できます。Golangと同じですね。
 
 
-### function節
-
-```js
-function Hello(){
-    ...
-}
-```
-
-関数
-`Hello`
-を宣言しています。
-
-### alert関数
-
-```js
-alert("Hello World!")
-```
-
-alert関数は、引数にわたされた要素を先程確認したように、ポップアップで表示します。引数には任意の型のデータを渡すことができます。
-
 ### console.log
 
-先程の例にはありませんでしたが、次のように記述することで、ブラウザのコンソール(開発者ビューにあるやつ)に出力することができます。
+次のように記述することで、ブラウザのコンソール(開発者ビューにあるやつ)に出力することができます。
 
 ```js
 
@@ -132,8 +89,23 @@ console.log(arg1, arg2, ...)
 
 arg: 任意の型
 
-基本的にデバッグなどはこれをもちいておこないます。
+ここから、次回DOMの話に行くまでは全てコンソールをもちいてプログラムを実行していきます。
 
+一応、次のように書式指定子を用いることが可能です。
+
+```js
+console.log("文字列:%s 数値:%d", "tkmax777", 61)
+```
+
+- 出力
+
+```
+文字列:tkmax777 数値:61
+```
+
+詳細は
+[ここ](https://developer.mozilla.org/ja/docs/Web/API/console#Using_string_substitutions)
+を参照すると良いでしょう。
 
 ## 宣言
 
@@ -153,15 +125,13 @@ const z;
 次の例を見てくださjい
 
 ```js
-function Awesome() {
-    if (true) {
-        var x = 5;
-        let y = 5;
+if (true) {
+    var x = 5;
+    let y = 5;
 
-        console.log("x = " + x + " y = " + y); // => x = 5 y = 5
-    }
-    console.log("x = " + x + " y = " + y); // => x = 5 y = undefined
+    console.log("x = " + x + " y = " + y); // => x = 5 y = 5
 }
+console.log("x = " + x + " y = " + y); // => x = 5 y = undefined
 
 ```
 
@@ -346,6 +316,16 @@ if (3 == "3") {
 
 しかし、場合によって、これは嬉しくない挙動となる可能性を秘めています。もし、違う型の場合弾いてほしい時は、論理演算子`===`もしくは、`!==`があなたの助けとなることでしょう。覚えておきましょう。
 
+## function節
+JavaScriptに於いて、関数は次のように定義することができます。
+
+```js
+function FuncName(parameter) {
+    処理
+    return 返り値;
+}
+```
+
 ## 巻き上げ
 
 JSでは、変数の宣言順序の規則がゆるく設定されています。まず、次のコードを見てください。
@@ -361,7 +341,7 @@ function awesome_func2() {
 
 ```
 
-みなさんはこの記法をみて、何か違和感を覚えますか。もしあなたがC言語などに触れていれば、awesome_func2はawesome_func1よりあとに宣言されているので、awesome_func1からは参照できない可能性がある、と思うかもしれなせん。しかし、さしあたってGo言語のように、JSでは関数は宣言する順番に関係なく、使用することができます。<a href="#p1">^1</a>このことを、
+みなさんはこの記法をみて、何か違和感を覚えますか。もしあなたがC言語などに触れていれば、awesome_func2はawesome_func1よりあとに宣言されているので、awesome_func1からは参照できない可能性がある、と思うかもしれなせん。しかし、さしあたってGo言語のように、JSでは関数は宣言する順番に関係なく、使用することができます。このことを、
 **関数の巻き上げ**
 と呼びます。
 
@@ -411,8 +391,6 @@ let x = 5;
 と呼びます。
 
 このような記法はバグの原因になりますし、そもそも見にくいです。できるだけ宣言は関数の先頭で行うように心がけましょう。
-
-<a id="p1">^1</a>: ただし、htmlは上から順に読み込まれていくため、複数のscriptタグをまたいで、読み込み前に利用することはできません。
 
 それではフロー制御を見ていきましょう。
 
