@@ -1,4 +1,5 @@
 # Web APIを使う
+[次にすすむ](webapi.md)
 ## 概要
 前回まで学んできたJavaScriptを使って、いよいよ実践的な知識を学んでいきます。
 
@@ -273,3 +274,4 @@ document.getElementById("text").textContent = "Excuted!";
 
 ここまでで、一通りDOMまわりの操作はできるようになりました。ここからは、DOM意外のWeb APIについて、軽くだけ学んでいきましょう。
 
+[次にすすむ](webapi.md)
