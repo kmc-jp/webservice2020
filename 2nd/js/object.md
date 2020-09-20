@@ -136,3 +136,9 @@ let Object = {
     
 }
 ```
+
+## 参考
+[Array - JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array)<br>
+[JavaScript 型付き配列 - JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript/Typed_arrays)<br>
+[JavaScriptでメソッドを使う方法【初心者向け】](https://techacademy.jp/magazine/5562#:~:text=%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%81%AF-,%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%81%AF%E3%80%81%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AB%E4%BB%A3%E5%85%A5%E3%81%95%E3%82%8C%E3%81%9F,%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F%E3%82%82%E3%81%AE%E3%81%A7%E3%81%99%E3%80%82)<br>
+[JavaScript Object Notation - Wikipedia](https://ja.wikipedia.org/wiki/JavaScript_Object_Notation)<br>

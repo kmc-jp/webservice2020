@@ -406,8 +406,8 @@ let x = 5;
 [次にすすむ](flow.md)
 
 ## 参考
-[文法とデータ型 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types)<br>
-[console.log() - Web API | MDN](https://developer.mozilla.org/ja/docs/Web/API/Console/log)<br>
-[Symbol - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol)<br>
+[文法とデータ型 - JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types)<br>
+[console.log() - Web API](https://developer.mozilla.org/ja/docs/Web/API/Console/log)<br>
+[Symbol - JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol)<br>
 [JavaScript: var/letのスコープとletによる巻き上げ](https://qiita.com/jonakp/items/c943c8d457871fa6ceb6)<br>
 [【javascript】関数の宣言はどこに書いてもいいの？（呼び出しと宣言の位置） at softelメモ](https://www.softel.co.jp/blogs/tech/archives/1703)<br>
