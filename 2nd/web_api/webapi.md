@@ -28,7 +28,7 @@ JavaScriptによってできることは、もちろんDOM操作だけではあ�
             console.log(text);
 
             // POSTするリクエストボディを生成
-            let data = "text=" + text;
+            let data = "text=" + encodeURIComponent(text);
 
             let state = document.getElementById("state");
 
