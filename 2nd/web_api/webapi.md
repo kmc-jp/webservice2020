@@ -14,7 +14,7 @@
 
 JavaScriptによってできることは、もちろんDOM操作だけではありません。例えば、ユーザのコメント投稿をサーバに送信するのに、JavaScriptをもちいてHTTP Requestを送信することも可能です。次の例を見てください。
 
-```js
+```html
 <!DOCTYPE html>
 <html lang="ja">
 
