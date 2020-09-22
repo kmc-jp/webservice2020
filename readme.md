@@ -23,7 +23,7 @@
 #### 第二回 JavaScript DOM操作
 [資料](2nd/web_api/readme.md)
 #### 第三回 テンプレートエンジンを使おう
-
+[資料](2nd/template/readme.md)
 #### 第四回 GoでhttpServerを立ててみよう。- シンプルな掲示板 -
 [資料](2nd/http_server/readme.md)
 #### 第五回 herokuを使ってみよう
