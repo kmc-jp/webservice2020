@@ -159,6 +159,7 @@ document.getElementById("text").textContent = "Excuted!";
     <td>getElementsByTagName</td>
     <td>指定したタグの全要素<br>配列を返り値として取るので注意</td>
 </tr>
+<tr>
     <td rowspan="2">全指定</td>
     <td>querySelectorAll</td>
     <td>指定した要素を全て取得<br>
@@ -166,6 +167,7 @@ document.getElementById("text").textContent = "Excuted!";
     指定はCSSセレクタ記法を用いる
     </td>
 </tr>
+<tr>
     <td>querySelector</td>
     <td>指定した要素を取得<br>同上、但し適合した最初の要素だけを抽出する</td>
 </tr>
