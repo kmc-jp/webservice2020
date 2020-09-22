@@ -1,5 +1,5 @@
 # その他の型
-
+[前にもどる](flow.md)
 ## 目次
 <!-- TOC -->
 
@@ -590,7 +590,7 @@ user_1.Print()
 
 ```
 
-このプログラムで新しい記法が出てきたのは恐らくここの部分ですね。
+このプログラムで新しい記法が出てきたのはここの部分ですね。
 
 ```js
 function Student(department, grade, name, age) {
@@ -615,7 +615,9 @@ JavaScriptに於ける継承の方法はこれだけではありません。気�
 [【JavaScript入門】初心者でも分かる継承の作り方（ES2015対応）](https://www.sejuku.net/blog/28158)
 
 ## 終わりに
-さて、ここまでJavaScriptの基本文法をずっとお話してきました。しかし、残念ながらここまでではまだDOMの操作は一切できませんね。これを使うためにはWeb APIのDOMインターフェースについて、もうすこし知る必要があります。次回はこれについて、学んでいこうと思います。お疲れさまでした。
+さて、ここまでJavaScriptの基本文法をずっとお話してきました。しかし残念ながら、ここまでではまだDOMの操作は一切できませんね。これを使うためにはWeb APIのDOMインターフェースについて、もうすこし知る必要があります。次回はこれについて、学んでいこうと思います。お疲れさまでした。
+
+[前にもどる](flow.md)
 
 ## 参考
 [Array - JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array)<br>

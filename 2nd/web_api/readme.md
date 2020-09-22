@@ -16,9 +16,10 @@
     - [Documentオブジェクト](#documentオブジェクト)
         - [要素の編集](#要素の編集)
         - [要素の特定](#要素の特定)
-        - [要素の追加](#要素の追加)
+        - [要素の追加・削除](#要素の追加・削除)
         - [document.createElement](#documentcreateelement)
         - [Element.appendChild](#elementappendchild)
+        - [Element.removeChild](#elementremovechild)
 
 <!-- /TOC -->
 
@@ -147,42 +148,25 @@ document.getElementById("text").textContent = "Excuted!";
 </tr>
 <tr>
     <td rowspan="3">種別指定</td>
-    <td>
-    
-`getElementById`
-    </td>
+    <td>getElementById</td>
     <td>指定したIDの要素</td>
 </tr>
 <tr>
-    <td>
-    
-`getElementsByClassName`
-    </td>
+    <td>getElementsByClassName</td>
     <td>指定したクラス名の全要素<br>配列を返り値として取るので注意</td>
 </tr>
 <tr>
-    <td>
-    
-`getElementsByTagName`
-    </td>
+    <td>getElementsByTagName</td>
     <td>指定したタグの全要素<br>配列を返り値として取るので注意</td>
 </tr>
-
-
-<td rowspan="2">全指定</td>
-    <td>
-    
-`querySelectorAll`
-    </td>
+    <td rowspan="2">全指定</td>
+    <td>querySelectorAll</td>
     <td>指定した要素を全て取得<br>
     配列を返り値として取るので注意<br>
     指定はCSSセレクタ記法を用いる
     </td>
 </tr>
-    <td>
-    
-`querySelector`
-    </td>
+    <td>querySelector</td>
     <td>指定した要素を取得<br>同上、但し適合した最初の要素だけを抽出する</td>
 </tr>
 </table>
@@ -229,34 +213,47 @@ document.getElementById("text").textContent = "Excuted!";
 </iframe>
 
 
-### 要素の追加
+### 要素の追加・削除
 
 これで、すでにHTML上にある要素の取得はできるようになりました。次は、まだ存在しない要素を生み出してみましょう。
 
 ```html
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <script>
-            function Ex(){
-                let Div = document.createElement("div");
-                Div.textContent = "生成完了！";
-                Div.style.textAlign = "center";
 
-                document.body.appendChild(Div);
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function Make() {
+            let div = document.createElement("div");
+            div.textContent = "生成完了！";
+            div.style.textAlign = "center";
 
-                return
+            document.body.appendChild(div);
+
+            return
+        }
+
+        function Del() {
+            let divs = document.getElementsByTagName("div");
+
+            for (let i = divs.length; i > 0; i--) {
+                document.body.removeChild(divs[i - 1]);
             }
-        </script>
-    </head>
-    <body>
-        <a href="javascript:Ex()">
-           <button type="button">実行</button>
-        </a>
-    </body>
-</html>
+        }
+    </script>
+</head>
 
+<body>
+    <a href="javascript:Make()">
+        <button type="button">追加</button>
+    </a>
+    <a href="javascript:Del()">
+        <button type="button">削除</button>
+    </a>
+</body>
+
+</html>
 ```
 
 - <a href="html/append.html">実行結果</a>
@@ -271,6 +268,9 @@ document.getElementById("text").textContent = "Excuted!";
 
 ### Element.appendChild
 このメソッドは、指定した要素を親要素に追加するメソッドです。この操作をするまで元の要素はどこにも親要素を持たない状態の為、描画されません。
+
+### Element.removeChild
+このメソッド、は指定した要素を親要素から削除するメソッドです。
 
 ここまでで、一通りDOMまわりの操作はできるようになりました。ここからは、DOM意外のWeb APIについて、軽くだけ学んでいきましょう。
 

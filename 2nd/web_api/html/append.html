@@ -4,21 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        function Ex() {
-            let Div = document.createElement("div");
-            Div.textContent = "生成完了！";
-            Div.style.textAlign = "center";
+        function Make() {
+            let div = document.createElement("div");
+            div.textContent = "生成完了！";
+            div.style.textAlign = "center";
 
-            document.body.appendChild(Div);
+            document.body.appendChild(div);
 
             return
+        }
+
+        function Del() {
+            let divs = document.getElementsByTagName("div");
+
+            for (let i = divs.length; i > 0; i--) {
+                document.body.removeChild(divs[i - 1]);
+            }
         }
     </script>
 </head>
 
 <body>
-    <a href="javascript:Ex()">
-        <button type="button">実行</button>
+    <a href="javascript:Make()">
+        <button type="button">追加</button>
+    </a>
+    <a href="javascript:Del()">
+        <button type="button">削除</button>
     </a>
 </body>
 
