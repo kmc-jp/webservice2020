@@ -472,7 +472,7 @@ function greeting() {
 window.greeting(); // ふつうに greeting(); を呼び出すのと同じ
 ```
 
-ついでに、一応次のように関数をfunction節を使わずに宣言することも可能です。(好ましくはありませんが。)<br>ref) 
+ついでに、一応次のように関数をfunction宣言を使わずに宣言することも可能です。(好ましくはありませんが。)<br>ref) 
 [Funciton コンストラクターと関数宣言の違い](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function#Difference_between_Function_constructor_and_function_declaration)
 
 ```js
