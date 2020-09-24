@@ -375,11 +375,11 @@ NULL
 
 しかし、JavaScriptではこうなりません。正しくは次のようになります。
 
-<iframe src="html/vars2.html" name="sample" width="90%" height="50">
-    <a href="html/vars2.html"></a>
-</iframe>
-
-![実行例](static/var.png)
+```
+Hello
+undefined
+Hello
+```
 
 これは先程の関数の巻き上げと同様の操作が変数に於いても行われていることによります。if文内で記述されているlet節により、関数の宣言だけ先行しているのです。注意しなければいけないのは、次のような記述をしても初期化はなされません。
 
