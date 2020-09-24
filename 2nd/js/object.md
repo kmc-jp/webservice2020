@@ -28,6 +28,8 @@
         - [組み込みオブジェクト](#組み込みオブジェクト)
         - [コンストラクタ](#コンストラクタ)
         - [new演算子](#new演算子)
+        - [Global Object](#global-object)
+            - [参考 - グローバル変数 -](#参考---グローバル変数--)
         - [Prototype](#prototype)
         - [継承](#継承)
     - [終わりに](#終わりに)
@@ -102,6 +104,26 @@ console.log(ExArray.indexOf("First")); // 0
 ```
 
 このとき、見つからない場合は`-1`を返します。
+
+また、findメソッドをつかって、次のように検索することもできます。
+
+```js
+const inventory = [
+  {name: 'apples', quantity: 2},
+  {name: 'bananas', quantity: 0},
+  {name: 'cherries', quantity: 5}
+];
+
+function isCherries(fruit) { 
+  return fruit.name === 'cherries';
+}
+
+console.log(inventory.find(isCherries)); 
+// { name: 'cherries', quantity: 5 }
+```
+[引用元](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+
+このメソッドでは、入力された関数を各要素について実行ます。その結果、truthyが返された時点で、その値を返します。要素が見つからなかった場合、undefinedを返します。
 
 ### 配列の複製
 配列を実態ごと複製したい場合は、次のようにすることでできます。
@@ -433,6 +455,8 @@ Name: morisawa Age: 20 Org: KMC
 
 うまくいきましたね。`new`演算子では、先程挙げたように、指定したオブジェクトを複製し、コンストラクタを実行することで初期化してくれる働きがあります。こうして得られた複製オブジェクトをカスタマイズし、新しいオブジェクトを生成していくことでJavaScriptの世界は広がっていきます。重要なので絶対に覚えておきましょう。
 
+### Global Object
+
 ところで、JavaScriptの世界は、全てのモノがオブジェクトなのだ、ということを以前に軽く触れました。実はそんなオブジェクトですが、その全てのオブジェクトは
 **Global Object**
 と呼ばれる、唯一のオブジェクトのプロパティとして保持されています。そのプロパティに、Functionオブジェクトが組み込みで存在しています。それを複製し、カスタマイズすることで、プログラマは関数オブジェクトを構築でき、さらにその関数オブジェクトを複製し、カスタマイズすることで多くのオブジェクトをどんどん作成できるのです。
@@ -456,6 +480,21 @@ let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 ```
 
 このことは次のPrototypeを理解する上でとても大事なことなので、絶対に覚えておきましょう。
+
+#### 参考 - グローバル変数 -
+このことを活かして、ブラウザに於けるJavaScriptではグローバル変数を次のように定義することができます。
+
+```js
+window.VAR_NAME = "値"
+```
+
+また、ブラウザ以外ではGlobalObjectの名前は違うことに注意します。このことから、JSとの互換性を持たせるために
+**globalThis**
+という名前のオブジェクトが用意されています。これを次のように用いても、同様の操作が可能です。
+
+```js
+globalThis.VAR_NAME = "値"
+```
 
 ### Prototype
 さて、ここまでは、基本的に一つのオブジェクトに着目して話をしてきました。しかし、実際にはオブジェクトは複雑な聯関の中で存在しています。その聯関を支える概念、それがPrototypeです。

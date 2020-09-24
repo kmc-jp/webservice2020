@@ -9,6 +9,7 @@
 - [Web APIを使う](#web-apiを使う)
     - [概要](#概要)
     - [目次](#目次)
+    - [WebAPIとは](#webapiとは)
     - [Web APIを使ったHello World!](#web-apiを使ったhello-world)
         - [HTMLへの埋め込みの仕方](#htmlへの埋め込みの仕方)
         - [alert関数](#alert関数)
@@ -22,6 +23,9 @@
         - [Element.removeChild](#elementremovechild)
 
 <!-- /TOC -->
+
+## WebAPIとは
+WebAPIというのは、ブラウザにさまざまな機能を持たせることを目的に組み込まれているオブジェクトのことです。これから数多く存在するなかから、基本として挙げられそうなものを取りあげていきます。
 
 ## Web APIを使ったHello World!
 
@@ -80,7 +84,7 @@ alert関数は、引数にわたされた要素を先程確認したように、
 [alert](https://developer.mozilla.org/ja/docs/XPInstall_API_Reference/Install_Object/Methods/alerts)
 
 ## DOM APIを使ってみる
-では、ここから実際に要素の移動を実行していみましょう。
+では、ここからWebAPIのうち、DOMの操作のためのAPIである、DOM APIをもちいて実際に要素の移動を実行していみましょう。
 
 次のHTMLを用意します。
 
@@ -274,6 +278,6 @@ document.getElementById("text").textContent = "Excuted!";
 ### Element.removeChild
 このメソッド、は指定した要素を親要素から削除するメソッドです。
 
-ここまでで、一通りDOMまわりの操作はできるようになりました。ここからは、DOM意外のWeb APIについて、軽くだけ学んでいきましょう。
+ここまでで、一通りDOMまわりの操作はできるようになりました。ここからは、DOM API以外のWeb APIについて、軽くだけ学んでいきましょう。
 
 [次にすすむ](webapi.md)
