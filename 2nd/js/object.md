@@ -20,9 +20,10 @@
         - [参考 - 関連事項 -](#参考---関連事項--)
             - [個別登録](#個別登録)
             - [参考 連想配列的な参照](#参考-連想配列的な参照)
-            - [参考 - for ... in 〜 -](#参考---for--in-〜--)
+            - [参考 - for ... of Object.keys(obj) 〜 -](#参考---for--of-objectkeysobj-〜--)
         - [メソッド](#メソッド)
             - [リテラル](#リテラル-1)
+            - [短縮表記](#短縮表記)
             - [個別登録](#個別登録-1)
             - [自身を参照する](#自身を参照する)
         - [組み込みオブジェクト](#組み込みオブジェクト)
@@ -123,7 +124,7 @@ console.log(inventory.find(isCherries));
 ```
 [引用元](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 
-このメソッドでは、入力された関数を各要素について実行ます。その結果、truthyが返された時点で、その値を返します。要素が見つからなかった場合、undefinedを返します。
+このメソッドでは、入力された関数を各要素について実行します。その結果、truthyが返された時点で、その値を返します。要素が見つからなかった場合、undefinedを返します。
 
 ### 配列の複製
 配列を実態ごと複製したい場合は、次のようにすることでできます。
@@ -296,7 +297,7 @@ Member_1.Name = "tkmax777";
 console.log(Member_1["Name"]) // => tkmax777
 ```
 
-#### 参考 - for ... in 〜 - 
+#### 参考 - for ... of Object.keys(obj) 〜 - 
 配列の時みたく、オブジェクトの全プロパティに対してある処理をしたい場合、次のように記述できます。
 
 - 例
@@ -308,7 +309,7 @@ let ExObject = {
     Proparty_3: "Third"
 }
 
-for (proparty in ExObject) {
+for (proparty of Object.keys(ExObject)) {
     console.log("Proparty Name: " + proparty + " Proparty: " + ExObject[proparty]);
 }
 
@@ -321,7 +322,6 @@ Proparty Name: Proparty_1 Proparty: First
 Proparty Name: Proparty_2 Proparty: Second
 Proparty Name: Proparty_3 Proparty: Third
 ```
-
 
 ### メソッド
 #### リテラル
@@ -355,6 +355,24 @@ let Object = {
 }
 ```
 
+#### 短縮表記
+メソッドの登録には、次のようにも記述することが可能です。
+
+```js
+let Object = {
+    Method_1(parameter) {
+        処理
+        return 
+    },
+    Method_2(parameter) {
+        ...
+    },
+    ...
+}
+```
+
+どちらで記述しても全く同じなので、好みな方で記述しましょう。
+
 #### 個別登録
 メソッドに関しても、同様に後付けできます。
 
@@ -386,7 +404,7 @@ Member.Print(); // => tkmax777
 
 例えば`console`。ブラウザのコンソール周りのメソッドやプロパティを持った組み込みオブジェクトです。そのなかの`log`メソッドを利用して、ここまで出力を書いてきました。
 
-しかし、それだけでもないです。今までに型として登場した、`Array`、`Number`、`String`など、さらには関数`Function`まで、JavaScriptの世界の全てがオブジェクトから成り立っています。
+しかし、それだけではありせん。今までに型として登場した、`Array`、`Number`、`String`など、さらには関数`Function`まで、JavaScriptの世界の全てがオブジェクトから成り立っています。
 
 その全貌を説明することはここではできませんが、興味があるのなら、各々調べてみると良いでしょう。
 
@@ -432,7 +450,7 @@ Uncaught TypeError: Cannot read property 'Name' of undefined at <anonymous>:4:52
 
 悲しいことに、このままでは期待していたようにはうまくいきません。何故でしょうか。このプログラムには大きく２つの問題が潜んでいます。１つ目は、そうです。`user_1`や`user_2`には、`User`関数のオブジェクトではなく、実行した結果(`undefined`)が直接代入されてしまったのです。先のエラーはその結果、`undefined`くんには`Name`なんという名前のプロパティは無いと怒られてしまったのですね。
 
-しかしこの関数には、関数がオブジェクトだとということを理解していれば気がつく、もう一つの大きな問題があります。先程、オブジェクトのコピーを大量に生成する、といいましたが、このコードでは、Userオブジェクトを直接編集しているため、もし仮にうまく行っていても`user_1`の情報はuser_2の処理のときに上書きされてしまい、やはり期待通りには動かないことが予想されますね。
+しかしこの関数には、関数がオブジェクトだとということを理解していれば気がつく、もう一つの大きな問題があります。先程、オブジェクトのコピーを大量に生成する、といいましたが、このコードでは、Userオブジェクトを直接編集しているため、もし仮にうまく行っていても`user_1`の情報は`user_2`の処理のときに上書きされてしまい、やはり期待通りには動かないことが予想されますね。
 
 どうにかして、この２つの問題を回避し、この関数のオブジェクトを複製し、さらにその関数(コンストラクタ)の生成するオブジェクトを代入させるため方法は無いでしょうか。
 
@@ -472,7 +490,7 @@ function greeting() {
 window.greeting(); // ふつうに greeting(); を呼び出すのと同じ
 ```
 
-ついでに、一応次のように関数をfunction宣言を使わずに宣言することも可能です。(好ましくはありませんが。)<br>ref) 
+ついでに一応、`Function`もオブジェクトだということを示すために記しますが、次のように関数をfunction宣言を使わずに宣言することも可能です。(好ましくはありません。)<br>ref) 
 [Funciton コンストラクターと関数宣言の違い](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function#Difference_between_Function_constructor_and_function_declaration)
 
 ```js
@@ -488,7 +506,7 @@ let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 window.VAR_NAME = "値"
 ```
 
-また、ブラウザ以外ではGlobalObjectの名前は違うことに注意します。このことから、JSとの互換性を持たせるために
+また、ブラウザ以外ではGlobalObjectの名前は違うことに注意します。このことから、他の環境のJSと互換性を持たせるために
 **globalThis**
 という名前のオブジェクトが用意されています。これを次のように用いても、同様の操作が可能です。
 
