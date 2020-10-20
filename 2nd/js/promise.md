@@ -107,10 +107,10 @@ new Promise(
     function (successCallback, failedCallback) {
         処理
         if (error) {
-            failedCallback;
+            failedCallback();
             return;
         }
-        succecssCallback;
+        succecssCallback();
         return;
     },
 )
@@ -236,16 +236,13 @@ let awesome_func = async () => {
 ```js
 
 let awesome_func => async function(){
-    // fetchについては後に触れます
-    // 時間がかかる処理です
-    fetch("https://hoge.example", {}).then(...)
-    return "YayYay!"
+    return "YayYay!";
 }
 
 awesome_func().then(
     function(arg) {
         console.log(arg);
-    }
+    }.
 )
 console.log("Hoge")
 
