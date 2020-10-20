@@ -278,6 +278,7 @@ document.getElementById("text").textContent = "Excuted!";
 ### Element.removeChild
 このメソッド、は指定した要素を親要素から削除するメソッドです。
 
-ここまでで、一通りDOMまわりの操作はできるようになりました。ここからは、DOM API以外のWeb APIについて、軽くだけ学んでいきましょう。
+ここまでで、一通りDOMまわりの操作はできるようになりました。ここからはDOM API以外のWeb APIについて、便利なものの例を列挙していきます。
 
-[次にすすむ](webapi.md)
+[次にすすむ](fetch.md)
+

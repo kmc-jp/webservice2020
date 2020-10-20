@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function startVideo() {
+            let videoElement = document.getElementById("video")
+
+            navigator.mediaDevices.getUserMedia(
+                {
+                    video: true,
+                    audio: true,
+                }
+            ).then(
+                function (stream) {
+                    let audioTracks = stream.getAudioTracks();
+                    let videoTracks = stream.getVideoTracks();
+
+                    console.log(audioTracks);
+
+                    videoElement.srcObject = stream;
+                    if (audioTracks.length) {
+                        audioTrack = audioTracks[0];
+                    }
+                    if (videoTracks.length) {
+                        videoTrack = videoTracks[0];
+                    }
+                }
+            ).catch(
+                function (error) {
+                    console.log(error);
+                    return
+                }
+            );
+        }
+    </script>
+</head>
+
+<body>
+    <video id="video" autoplay></video>
+    <a href="javascript:startVideo();"><br>
+        <button type="button">実行</button>
+    </a>
+</body>
+
+</html>

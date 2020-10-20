@@ -20,6 +20,9 @@
 ### 後期予定
 #### 第一回 JavaScript の基本
 [資料](2nd/js/readme.md)
+#### 第一回補足 
+[アロー関数](2nd/js/arrow.md)
+[非同期処理](2nd/js/promise.md)
 #### 第二回 JavaScript DOM操作
 [資料](2nd/web_api/readme.md)
 #### 第三回 テンプレートエンジンを使おう
