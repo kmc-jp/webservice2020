@@ -603,7 +603,8 @@ func main() {
 ```
 ┬
 ├ main.go
-└ template.txt
+├ japanese.txt
+└ english.txt
 ```
 
 - japanese.txt
@@ -809,7 +810,7 @@ func main() {
 
 	t = t.Funcs(funcMap)
 
-	t, err := t.ParseFiles("profile.txt", "date.txt", "index.txt")
+	t, err := t.ParseFiles("profile.txt", "date.txt", "template.txt")
 
 	err = t.ExecuteTemplate(os.Stdout, "index", profile)
 	if err != nil {
