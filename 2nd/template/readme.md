@@ -507,8 +507,8 @@ templateに入れたスライスの各要素について、操作を繰り返す
 template内で変数を別途定義することが可能です。この変数は`$`から始まる名称をつける必要があります。
 
 ```
-{{ $text = `ほげ` }}
-{{ $ほげ }}
+{{ $text := `ほげ` }}
+{{ $text }}
 ```
 
 こういうことが可能です。
@@ -671,8 +671,6 @@ func main() {
 
 	var t = template.New("")
 
-	t = t.Funcs(funcMap)
-
 	t, err := t.ParseFiles("japanese.txt", "english.txt")
 
 	err = t.ExecuteTemplate(os.Stdout, "japanese", profile)
@@ -760,6 +758,7 @@ Projects:
 
 {{template "date" .Day}}
 
+{{end}}
 ```
 
 - main.go
@@ -783,8 +782,12 @@ type Profile struct {
 	Name     string
 	Age      int
     Projects []string
-    Month    int
-    Day      int
+    Day      Day
+}
+
+type Day struct { 
+    Month   int
+    Day     int
 }
 
 func main() {
@@ -796,8 +799,10 @@ func main() {
 			"DTM練習会2020",
 			"お絵描き練習会2020",
         },
-        Month: int(time.Now().Month()),
-        Day: int(time.Now().Day()),
+        Day: Day {
+            Month: int(time.Now().Month()),
+            Day: int(time.Now().Day()),
+        },
     }
 
 	var t = template.New("")
