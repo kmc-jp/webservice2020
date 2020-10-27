@@ -457,10 +457,10 @@ if 関数は入力がfalseまたはそれに準じるもの(例えば`0`や`""`�
 | --- | --- |
 |eq A B|A == B|
 |ne A B|A != B|
-|lt A B|A > B|
-|le A B|A => B|
-|gt A B|A < B|
-|ge A B|A <= B|
+|lt A B|A < B|
+|le A B|A =< B|
+|gt A B|A > B|
+|ge A B|A >= B|
 
 これらは状態に応じてtrue / falseを返します。そのため、これの前にif関数を記述し、入力させれば無事に条件分岐をすることができるという寸法です。
 
