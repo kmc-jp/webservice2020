@@ -403,6 +403,7 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	return
 ```
+
 この部分で先ほどまでに設定した内容のtemplateを実際に展開して、できたデータをクライアントマシンに送信しています。
 
 ## 終わりに

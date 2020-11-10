@@ -30,7 +30,7 @@
 #### 第四回 GoでhttpServerを立ててみよう。- シンプルな掲示板 -
 [資料](2nd/http_server/readme.md)
 
-#### DiscordBot
+#### 付録 DiscordBot
 [資料1](./1st/discord_standard/)<br>
 [資料2](./1st/discord/)
 
