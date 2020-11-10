@@ -408,4 +408,4 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 ## 終わりに
 
-[終わりに](/2nd/final.md)
+[終わりに](../final.md)
