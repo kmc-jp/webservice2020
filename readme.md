@@ -29,13 +29,10 @@
 [資料](2nd/template/readme.md)
 #### 第四回 GoでhttpServerを立ててみよう。- シンプルな掲示板 -
 [資料](2nd/http_server/readme.md)
-#### 第五回 herokuを使ってみよう
-
-#### 第六回 オリジナルサービスを作ってみよう
-
-<!-- #### 第八回 認証してみよう
-[資料](2nd/auth/readme.md) -->
 
 #### DiscordBot
 [資料1](./1st/discord_standard/)<br>
 [資料2](./1st/discord/)
+
+#### 付録 認証してみよう
+[資料](2nd/auth/readme.md) 

@@ -49,6 +49,9 @@ packageは引用されたとき、init関数が最初に実行されるため、
 
 http package：ウェブサーバを立てるためのパッケージ。
 
+追記：以下の前にISUCON向けに書いた次の資料を読むとわかりやすそうなの載せておきます。<br>
+[資料](mux.md)
+
 Handle関数で指定されたパスに対する動作を指定して、ListenAndServe関数でアドレスを指定した上でサーバを起動する。
 
 例：
@@ -391,8 +394,8 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 ```
 
-　templateに埋め込むための変数データを各々代入しています。switch文の部分は無理に理解する必要はありませんが、内容は
-`DisplayNum`に設定された個数の投稿内容を表示するようにしています。簡単な数学なので興味あれば少し考えてみてもいいかもしれません。
+　templateに埋め込むための変数データを各々代入しています。switch文の部分は
+`DisplayNum`に設定された個数の投稿内容を表示するようにしています。
 
 ```go
 	if err := top.template.ExecuteTemplate(w, "content", top); err != nil {
@@ -402,3 +405,6 @@ func (top *TopPage) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 ```
 この部分で先ほどまでに設定した内容のtemplateを実際に展開して、できたデータをクライアントマシンに送信しています。
 
+## 終わりに
+
+[終わりに](/2nd/final.md)
